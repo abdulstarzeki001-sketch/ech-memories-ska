@@ -440,4 +440,25 @@
             }
         });
     </script>
-</body></html>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const routes = {
+    home: './home.html', photos: './photos.html', gallery: './photos.html',
+    songs: './songs.html', videos: './videos.html', writings: './writings.html',
+    journey: './journey.html', archive: './home.html'
+  };
+  document.querySelectorAll('a, button, nav div[role="button"], nav > div').forEach(el => {
+    const label = (el.textContent || '').trim().toLowerCase();
+    for (const [key, url] of Object.entries(routes)) {
+      if (label === key || label.endsWith(' '+key) || label.includes(key)) {
+        if (el.tagName === 'A' && (el.getAttribute('href') === '#' || !el.getAttribute('href'))) el.setAttribute('href', url);
+        else if (el.tagName !== 'A' && !el.closest('form')) {
+          el.style.cursor = 'pointer';
+          el.addEventListener('click', () => location.href = url);
+        }
+        break;
+      }
+    }
+  });
+});
+</script></body></html>
