@@ -129,7 +129,13 @@
             box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
         }
     </style>
-</head>
+<style id="nafsam-login-polish">
+button[type="submit"]{position:relative;overflow:hidden;border:1px solid rgba(165,231,255,.35)!important;box-shadow:0 12px 40px rgba(0,180,255,.14),inset 0 1px rgba(255,255,255,.16);transition:transform .25s ease,box-shadow .25s ease!important}
+button[type="submit"]:hover{transform:translateY(-2px);box-shadow:0 16px 55px rgba(0,210,255,.23),0 0 0 1px rgba(233,195,73,.18)!important}
+input{transition:border-color .25s ease,box-shadow .25s ease,background .25s ease!important}
+input:focus{box-shadow:0 0 0 3px rgba(165,231,255,.08),0 12px 35px rgba(0,0,0,.28)!important}
+@media(max-width:640px){button,input{min-height:52px}}
+</style></head>
 <body class="bg-surface-dim text-on-surface overflow-hidden font-body-md selection:bg-primary/30">
 <!-- Cinematic Background -->
 <div class="fixed inset-0 z-0">
