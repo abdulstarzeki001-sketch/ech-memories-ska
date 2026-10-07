@@ -196,6 +196,13 @@ button:not(.nafsam-link):hover,a[class*="rounded"]:not(.nafsam-link):hover{trans
 ::selection{background:rgba(140,236,255,.22);color:#fff}
 @media(max-width:640px){.fx-status{top:max(8px,env(safe-area-inset-top));font-size:7px}.fx-orb.one{width:190px;height:190px}}
 @media(prefers-reduced-motion:reduce){body:before,body:after,.fx-orb,.fx-status i{animation:none!important}}
+</style><style id="nafsam-hide-legacy-nav">
+/* Keep only the unified futuristic navigation */
+body > nav:not(.nafsam-dock),
+body > header nav,
+main nav:not(.nafsam-dock),
+header nav:not(.nafsam-dock){display:none!important}
+.nafsam-dock{display:flex!important}
 </style></head>
 <body class="font-body-md text-body-md selection:bg-primary/30"><div class="fx-orb one"></div><div class="fx-orb two"></div><div class="fx-status"><i></i><span>NAFSAM // PRIVATE MEMORY SYSTEM</span></div>
 <script id="nafsam-future-engine">
