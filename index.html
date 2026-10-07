@@ -226,10 +226,11 @@
             
             // Countdown logic
             const distance = openDate - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const safeDistance = Math.max(0, distance);
+            const days = Math.floor(safeDistance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((safeDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((safeDistance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((safeDistance % (1000 * 60)) / 1000);
 
             document.getElementById("days").innerText = days.toString().padStart(2, '0');
             document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
