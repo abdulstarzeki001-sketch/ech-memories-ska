@@ -453,4 +453,30 @@ document.addEventListener('DOMContentLoaded', () => {
 <a class="nafsam-link " href="./videos.html"><span class="material-symbols-outlined">movie</span><span>Videos</span></a>
 <a class="nafsam-link " href="./writings.html"><span class="material-symbols-outlined">ink_pen</span><span>Writings</span></a>
 <a class="nafsam-link " href="./journey.html"><span class="material-symbols-outlined">route</span><span>Journey</span></a>
-</nav></body></html>
+</nav><style id="nafsam-2099">
+#fx-transition{position:fixed;inset:0;z-index:20000;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 50%,rgba(140,236,255,.18),#020508 42%,#010203 75%);transition:opacity .32s ease}
+#fx-transition.on{opacity:1;pointer-events:auto}
+#fx-transition:before,#fx-transition:after{content:"";position:absolute;left:0;width:100%;height:1px;background:#8cecff;box-shadow:0 0 18px #8cecff;opacity:.7}
+#fx-transition:before{top:42%;animation:scanA 1.8s linear infinite}#fx-transition:after{top:58%;animation:scanB 2.2s linear infinite reverse}
+@keyframes scanA{50%{transform:translateY(120px);opacity:.15}}@keyframes scanB{50%{transform:translateY(-120px);opacity:.15}}
+#holo-viewer{position:fixed;inset:0;z-index:21000;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(1,4,8,.82);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+#holo-viewer.open{display:flex;animation:holoIn .28s ease both}@keyframes holoIn{from{opacity:0;transform:scale(1.02)}}
+.holo-shell{position:relative;width:min(94vw,1050px);height:min(84vh,760px);padding:14px;border:1px solid rgba(140,236,255,.3);border-radius:30px;background:linear-gradient(145deg,rgba(10,18,28,.9),rgba(3,7,12,.88));box-shadow:0 35px 120px #000,0 0 60px rgba(91,140,255,.12),inset 0 0 50px rgba(140,236,255,.035);overflow:hidden}
+.holo-shell:before{content:"HOLOGRAPHIC MEMORY // DECRYPTED";position:absolute;z-index:3;top:18px;left:22px;font:600 9px Geist;letter-spacing:.18em;color:#8cecff;background:rgba(3,8,13,.7);padding:8px 10px;border-radius:99px;border:1px solid rgba(140,236,255,.15)}
+.holo-shell img,.holo-shell video{width:100%;height:100%;object-fit:contain;border-radius:20px;background:#020407}
+.holo-close{position:absolute;z-index:5;right:22px;top:18px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(140,236,255,.22);background:rgba(2,8,13,.8);color:#dff9ff;font-size:20px;cursor:pointer}
+.holo-line{position:absolute;z-index:4;left:2%;right:2%;height:1px;top:0;background:linear-gradient(90deg,transparent,#8cecff,transparent);box-shadow:0 0 16px #8cecff;animation:holoScan 3.2s linear infinite;pointer-events:none}@keyframes holoScan{to{top:100%}}
+img[data-holo]{cursor:zoom-in}
+</style>
+<div id="fx-transition"></div>
+<div id="holo-viewer" aria-hidden="true"><div class="holo-shell"><button class="holo-close" aria-label="Close">×</button><div class="holo-line"></div><div id="holo-media" style="width:100%;height:100%"></div></div></div>
+<script id="nafsam-2099-engine">
+document.addEventListener('DOMContentLoaded',()=>{
+ const gate=document.getElementById('fx-transition'), viewer=document.getElementById('holo-viewer'), media=document.getElementById('holo-media');
+ document.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(!h||h.startsWith('#')||h.startsWith('http')||h.startsWith('mailto:'))return;a.addEventListener('click',e=>{e.preventDefault();gate.classList.add('on');setTimeout(()=>location.href=h,260)})});
+ document.querySelectorAll('img').forEach(img=>{if(img.closest('#holo-viewer')||img.width<80)return;img.dataset.holo='1';img.addEventListener('click',()=>{const clone=new Image();clone.src=img.currentSrc||img.src;clone.alt=img.alt||'Memory';media.replaceChildren(clone);viewer.classList.add('open');viewer.setAttribute('aria-hidden','false')})});
+ document.querySelectorAll('video').forEach(v=>v.addEventListener('click',()=>{const clone=v.cloneNode(true);clone.controls=true;clone.autoplay=true;media.replaceChildren(clone);viewer.classList.add('open');viewer.setAttribute('aria-hidden','false')}));
+ const close=()=>{viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');media.replaceChildren()};
+ viewer.querySelector('.holo-close').addEventListener('click',close);viewer.addEventListener('click',e=>{if(e.target===viewer)close()});addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+});
+</script></body></html>
