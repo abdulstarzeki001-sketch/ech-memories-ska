@@ -135,8 +135,13 @@ button[type="submit"]:hover{transform:translateY(-2px);box-shadow:0 16px 55px rg
 input{transition:border-color .25s ease,box-shadow .25s ease,background .25s ease!important}
 input:focus{box-shadow:0 0 0 3px rgba(165,231,255,.08),0 12px 35px rgba(0,0,0,.28)!important}
 @media(max-width:640px){button,input{min-height:52px}}
+</style><style id="portal-2099">
+.portal-ring{position:fixed;left:50%;top:50%;width:min(82vw,620px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;z-index:-1;pointer-events:none;background:repeating-conic-gradient(from 0deg,rgba(165,231,255,.24) 0 1deg,transparent 1deg 9deg);-webkit-mask:radial-gradient(circle,transparent 0 54%,#000 55% 56%,transparent 57% 65%,#000 66% 67%,transparent 68%);opacity:.28;animation:portalSpin 38s linear infinite}
+.portal-core{position:fixed;left:50%;top:50%;width:min(48vw,340px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;z-index:-2;pointer-events:none;background:radial-gradient(circle,rgba(165,231,255,.10),rgba(91,140,255,.035) 35%,transparent 70%);filter:blur(10px);animation:portalPulse 4s ease-in-out infinite}
+@keyframes portalSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}@keyframes portalPulse{50%{transform:translate(-50%,-50%) scale(1.12);opacity:.55}}
+body:before{content:"ARCHIVE NODE // 2099";position:fixed;top:max(18px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);font:600 8px Geist;letter-spacing:.28em;color:rgba(165,231,255,.55);white-space:nowrap}
 </style></head>
-<body class="bg-surface-dim text-on-surface overflow-hidden font-body-md selection:bg-primary/30">
+<body class="bg-surface-dim text-on-surface overflow-hidden font-body-md selection:bg-primary/30"><div class="portal-ring"></div><div class="portal-core"></div>
 <!-- Cinematic Background -->
 <div class="fixed inset-0 z-0">
 <div class="absolute inset-0 bg-black/40 z-10"></div>
