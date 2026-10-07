@@ -283,8 +283,43 @@ body{padding-bottom:max(112px,calc(96px + env(safe-area-inset-bottom)))}
 .nafsam-link.active .material-symbols-outlined{transform:translateY(-2px);text-shadow:0 0 16px rgba(155,232,255,.75)}
 @media(max-width:620px){.nafsam-dock{width:calc(100vw - 18px);gap:2px;padding:6px;border-radius:24px}.nafsam-link{height:54px;border-radius:17px;font-size:7px;letter-spacing:.04em}.nafsam-link .material-symbols-outlined{font-size:20px}.nafsam-link:nth-child(5){display:none}}
 @media(prefers-reduced-motion:reduce){.nafsam-link,.nafsam-link .material-symbols-outlined{transition:none}}
+</style><style id="nafsam-future-system">
+:root{--fx-cyan:#8cecff;--fx-blue:#5b8cff;--fx-gold:#e8c76a;--fx-ink:#030508;--mx:50vw;--my:35vh}
+html{background:#030508;scroll-behavior:smooth}
+body{position:relative;min-height:100dvh;background:
+radial-gradient(900px circle at var(--mx) var(--my),rgba(91,140,255,.10),transparent 42%),
+radial-gradient(700px circle at 78% 12%,rgba(140,236,255,.08),transparent 45%),
+linear-gradient(145deg,#020407 0%,#071019 52%,#030508 100%)!important}
+body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:
+linear-gradient(rgba(140,236,255,.035) 1px,transparent 1px),
+linear-gradient(90deg,rgba(140,236,255,.035) 1px,transparent 1px);
+background-size:54px 54px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 88%);animation:fxGrid 18s linear infinite}
+body:after{content:"";position:fixed;z-index:-1;inset:-20%;pointer-events:none;background:
+conic-gradient(from 180deg at 50% 50%,transparent,rgba(140,236,255,.025),transparent 28%,rgba(232,199,106,.025),transparent 58%);
+filter:blur(28px);animation:fxOrbit 32s linear infinite}
+@keyframes fxGrid{to{transform:translateY(54px)}}
+@keyframes fxOrbit{to{transform:rotate(360deg)}}
+.fx-orb{position:fixed;z-index:-1;border-radius:999px;filter:blur(1px);pointer-events:none;opacity:.65}
+.fx-orb.one{width:280px;height:280px;right:-110px;top:18%;background:radial-gradient(circle,rgba(140,236,255,.13),transparent 68%);animation:fxFloat 9s ease-in-out infinite}
+.fx-orb.two{width:360px;height:360px;left:-180px;bottom:10%;background:radial-gradient(circle,rgba(91,140,255,.11),transparent 68%);animation:fxFloat 12s ease-in-out infinite reverse}
+@keyframes fxFloat{50%{transform:translate3d(0,-28px,0) scale(1.06)}}
+.fx-status{position:fixed;z-index:9998;top:max(14px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid rgba(140,236,255,.14);border-radius:999px;background:rgba(3,8,13,.56);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);font:600 8px/1 Geist,system-ui;letter-spacing:.18em;color:rgba(210,244,255,.62);text-transform:uppercase;box-shadow:0 8px 35px rgba(0,0,0,.28)}
+.fx-status i{width:5px;height:5px;border-radius:50%;background:#82ffd0;box-shadow:0 0 12px #82ffd0;animation:fxPulse 1.8s ease-in-out infinite}
+@keyframes fxPulse{50%{opacity:.35;transform:scale(.7)}}
+.glass-panel,[class*="surface-container"],article{transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s}
+.glass-panel:hover,article:hover{border-color:rgba(140,236,255,.18)!important;box-shadow:0 22px 70px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.035);transform:translateY(-3px)}
+button:not(.nafsam-link),a[class*="rounded"]:not(.nafsam-link){transition:transform .25s ease,filter .25s ease,box-shadow .25s ease}
+button:not(.nafsam-link):hover,a[class*="rounded"]:not(.nafsam-link):hover{transform:translateY(-2px);filter:brightness(1.08)}
+::selection{background:rgba(140,236,255,.22);color:#fff}
+@media(max-width:640px){.fx-status{top:max(8px,env(safe-area-inset-top));font-size:7px}.fx-orb.one{width:190px;height:190px}}
+@media(prefers-reduced-motion:reduce){body:before,body:after,.fx-orb,.fx-status i{animation:none!important}}
 </style></head>
-<body class="antialiased min-h-screen relative flex flex-col items-center pb-32">
+<body class="antialiased min-h-screen relative flex flex-col items-center pb-32"><div class="fx-orb one"></div><div class="fx-orb two"></div><div class="fx-status"><i></i><span>NAFSAM // PRIVATE MEMORY SYSTEM</span></div>
+<script id="nafsam-future-engine">
+(()=>{let raf=0;addEventListener('pointermove',e=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{document.documentElement.style.setProperty('--mx',e.clientX+'px');document.documentElement.style.setProperty('--my',e.clientY+'px')})},{passive:true});
+document.querySelectorAll('main > *, section').forEach((el,i)=>{el.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'translateY(0)'}],{duration:650,delay:Math.min(i*55,420),easing:'cubic-bezier(.2,.8,.2,1)',fill:'both'})});
+})();
+</script>
 <!-- Ambient Layers -->
 <div class="ambient-aurora"></div>
 <div class="film-grain"></div>
