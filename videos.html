@@ -308,7 +308,14 @@ header nav:not(.nafsam-dock){display:none!important}
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="نفسم"/>
-</head>
+<style id="nafsam-two-column-toggle">
+#video-only-grid.nafsam-two-col{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+#video-only-grid.nafsam-two-col article .p-4{padding:10px!important}
+#video-only-grid.nafsam-two-col article strong{font-size:12px!important}
+#video-only-grid.nafsam-two-col article video{min-height:0}
+.nafsam-view-toggle{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(165,231,255,.22);border-radius:999px;padding:10px 14px;background:rgba(165,231,255,.06);color:#a5e7ff;font:600 11px Geist,system-ui;letter-spacing:.04em;cursor:pointer;transition:.2s}
+.nafsam-view-toggle.active{background:rgba(165,231,255,.14);box-shadow:0 0 20px rgba(71,214,255,.08)}
+</style></head>
 <body class="font-body-md text-body-md antialiased selection:bg-primary selection:text-on-primary"><div class="fx-orb one"></div><div class="fx-orb two"></div><div class="fx-status"><i></i><span>NAFSAM // PRIVATE MEMORY SYSTEM</span></div>
 <script id="nafsam-future-engine">
 (()=>{let raf=0;addEventListener('pointermove',e=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{document.documentElement.style.setProperty('--mx',e.clientX+'px');document.documentElement.style.setProperty('--my',e.clientY+'px')})},{passive:true});
@@ -363,9 +370,15 @@ document.querySelectorAll('main > *, section').forEach((el,i)=>{el.animate([{opa
       <h1 class="font-headline-md text-headline-md text-primary mb-3" data-i18n="videos.cinematic">Cinematic Archives</h1>
       <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl" data-i18n="videos.desc">Chronicles of light and motion. A curated temporal gallery of visual memories spanning the archive.</p>
     </div>
-    <div class="glass-panel rounded-full px-5 py-3 flex items-center gap-3">
-      <span class="material-symbols-outlined text-primary">movie</span>
-      <span id="video-count" class="font-mono-ui text-mono-ui text-on-surface-variant" data-i18n="videos.loading">Loading videos…</span>
+    <div class="flex items-center gap-3 flex-wrap">
+      <button id="video-view-toggle" type="button" class="nafsam-view-toggle" aria-pressed="false">
+        <span class="material-symbols-outlined text-[18px]">grid_view</span>
+        <span data-i18n="view.two">2 per row</span>
+      </button>
+      <div class="glass-panel rounded-full px-5 py-3 flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary">movie</span>
+        <span id="video-count" class="font-mono-ui text-mono-ui text-on-surface-variant" data-i18n="videos.loading">Loading videos…</span>
+      </div>
     </div>
   </div>
 </section>
@@ -481,7 +494,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   const loading=document.querySelector('#legacy-media-root .legacy-loading');
   const more=document.getElementById('video-more');
   const count=document.getElementById('video-count');
+  const viewToggle=document.getElementById('video-view-toggle');
   if(!grid||!more)return;
+  try{
+    const two=localStorage.getItem('nafsam_video_two_col')==='1';
+    grid.classList.toggle('nafsam-two-col',two);
+    if(viewToggle){viewToggle.classList.toggle('active',two);viewToggle.setAttribute('aria-pressed',String(two))}
+  }catch(e){}
+  if(viewToggle)viewToggle.addEventListener('click',()=>{
+    const two=!grid.classList.contains('nafsam-two-col');
+    grid.classList.toggle('nafsam-two-col',two);
+    viewToggle.classList.toggle('active',two);
+    viewToggle.setAttribute('aria-pressed',String(two));
+    try{localStorage.setItem('nafsam_video_two_col',two?'1':'0')}catch(e){}
+  });
 
   const lang=()=>{try{return localStorage.getItem('nafsam_language')||'ar'}catch(e){return 'ar'}};
   const tx={
