@@ -220,6 +220,19 @@ body > header nav,
 main nav:not(.nafsam-dock),
 header nav:not(.nafsam-dock){display:none!important}
 .nafsam-dock{display:flex!important}
+</style><style id="nafsam-dual-theme">
+#nafsam-theme-switch{position:fixed;right:16px;top:84px;z-index:9999;border:1px solid rgba(235,196,124,.75);border-radius:999px;padding:10px 16px;color:#f8dfb2;background:rgba(10,15,27,.9);box-shadow:0 5px 30px #0009;font:600 12px system-ui;cursor:pointer;backdrop-filter:blur(16px)}
+html[data-nafsam-theme="fantasy"] body{background:radial-gradient(ellipse at 50% 0%,#24466a 0%,#111c31 34%,#080b16 76%) fixed!important;color:#f7e9d3}
+html[data-nafsam-theme="fantasy"] body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 20% 20%,#d7956333,transparent 35%),radial-gradient(circle at 75% 5%,#54b9ee3d,transparent 40%),linear-gradient(135deg,#05071488,transparent 65%)}
+html[data-nafsam-theme="fantasy"] .glass-panel{border:1px solid #d6ad7580!important;background:linear-gradient(155deg,#233c5977,#0b111df2)!important;box-shadow:0 12px 44px #0008,0 0 22px #d2a26421,inset 0 1px #ffe3b44a!important;backdrop-filter:blur(24px)}
+html[data-nafsam-theme="fantasy"] h1,html[data-nafsam-theme="fantasy"] h2,html[data-nafsam-theme="fantasy"] h3{color:#f7deb1!important;text-shadow:0 2px 18px #f3b97725}
+html[data-nafsam-theme="fantasy"] .tile-glow-blue,html[data-nafsam-theme="fantasy"] .tile-glow-gold,html[data-nafsam-theme="fantasy"] .tile-glow-white{transition:transform .4s,box-shadow .4s}
+html[data-nafsam-theme="fantasy"] .tile-glow-blue:hover,html[data-nafsam-theme="fantasy"] .tile-glow-gold:hover,html[data-nafsam-theme="fantasy"] .tile-glow-white:hover{transform:translateY(-7px);box-shadow:0 18px 60px #000b,0 0 30px #e8b66d44!important}
+html[data-nafsam-theme="fantasy"] .nafsam-fantasy-tile{background-position:center!important;background-size:cover!important;isolation:isolate;overflow:hidden}
+html[data-nafsam-theme="fantasy"] .nafsam-fantasy-tile:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#09132110 5%,#090f1cc9 78%,#090d19ef);z-index:0;pointer-events:none}
+html[data-nafsam-theme="fantasy"] .nafsam-fantasy-tile>*{position:relative;z-index:1}
+@media(max-width:640px){#nafsam-theme-switch{top:72px;right:10px;padding:9px 12px;font-size:11px}}
+@media(prefers-reduced-motion:reduce){html[data-nafsam-theme="fantasy"] .tile-glow-blue,html[data-nafsam-theme="fantasy"] .tile-glow-gold,html[data-nafsam-theme="fantasy"] .tile-glow-white{transition:none}}
 </style></head>
 <body class="bg-background"><div class="fx-orb one"></div><div class="fx-orb two"></div><div class="fx-status"><i></i><span>NAFSAM // PRIVATE MEMORY SYSTEM</span></div>
 <script id="nafsam-future-engine">
@@ -486,4 +499,30 @@ document.addEventListener('DOMContentLoaded',()=>{
  const close=()=>{viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');media.replaceChildren()};
  viewer.querySelector('.holo-close').addEventListener('click',close);viewer.addEventListener('click',e=>{if(e.target===viewer)close()});addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 });
+</script><script id="nafsam-dual-theme-script">
+(function(){
+ const key='nafsam-theme-v2';
+ let theme='classic';try{theme=localStorage.getItem(key)==='fantasy'?'fantasy':'classic'}catch(e){}
+ document.documentElement.dataset.nafsamTheme=theme;
+ document.addEventListener('DOMContentLoaded',()=>{
+  const btn=document.createElement('button');btn.id='nafsam-theme-switch';btn.type='button';btn.setAttribute('aria-label','Switch visual theme');
+  const label=()=>btn.textContent=document.documentElement.dataset.nafsamTheme==='fantasy'?'✦ Fantasy / خيالي':'◈ Classic / الحالي';
+  btn.onclick=()=>{const next=document.documentElement.dataset.nafsamTheme==='fantasy'?'classic':'fantasy';document.documentElement.dataset.nafsamTheme=next;try{localStorage.setItem(key,next)}catch(e){}label()};
+  label();document.body.append(btn);
+  if(!location.pathname.endsWith('/home.html')&&!location.pathname.endsWith('/home'))return;
+  const titles=['Photos','Journey','Songs','Videos'];
+  const cards=[...document.querySelectorAll('h3')].filter(x=>titles.includes(x.textContent.trim()));
+  cards.forEach(h=>{const tile=h.closest('.glass-panel');if(tile)tile.classList.add('nafsam-fantasy-tile')});
+  fetch('./nafsam-media.json').then(r=>r.ok?r.json():null).then(data=>{
+   if(!data)return;
+   const base='https://ech-nafasm-ska.pages.dev/pub/0524488da2bf9d4cb0d9fc5afa6618ca01574416cd04c3bf';
+   const enc=f=>String(f).split('/').map(encodeURIComponent).join('/');
+   const photo=data.photos?.[0];const video=data.videos?.find(v=>v.file&&!/^https?:/i.test(v.file));
+   const image=photo?base+'/images/_thumbs/all_photos/'+enc(photo.replace(/\.(jpg|jpeg|png)$/i,'.webp')):null;
+   const poster=video?base+'/posters/'+enc(video.file.replace(/\.[^.]+$/,''))+'.jpg':null;
+   const map={Photos:image,Journey:image,Songs:image,Videos:poster};
+   cards.forEach(h=>{const tile=h.closest('.glass-panel');const url=map[h.textContent.trim()];if(tile&&url){const bg=document.createElement('div');bg.style.cssText='position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .3s;pointer-events:none';bg.style.backgroundImage='linear-gradient(180deg,transparent,#060c1b),url("'+url.replace(/"/g,'%22')+'")';tile.prepend(bg);const update=()=>bg.style.opacity=document.documentElement.dataset.nafsamTheme==='fantasy'?'0.85':'0';update();new MutationObserver(update).observe(document.documentElement,{attributes:true,attributeFilter:['data-nafsam-theme']})}});
+  }).catch(()=>{});
+ });
+})();
 </script></body></html>
