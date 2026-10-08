@@ -110,18 +110,31 @@
   }
   function switcher(){
     if(document.getElementById("nafsam-lang"))return;
-    const box=document.createElement("div");box.id="nafsam-lang";
-    box.innerHTML='<button data-l="ar">AR</button><button data-l="fa">FA</button><button data-l="tr">TR</button><button data-l="en">EN</button>';
-    Object.assign(box.style,{position:"fixed",zIndex:"10050",top:"14px",left:"14px",display:"flex",gap:"4px",padding:"5px",border:"1px solid rgba(231,187,119,.28)",borderRadius:"999px",background:"rgba(7,10,16,.82)",backdropFilter:"blur(16px)",boxShadow:"0 8px 30px rgba(0,0,0,.35)"});
-    box.querySelectorAll("button").forEach(b=>{
-      Object.assign(b.style,{border:"0",borderRadius:"999px",padding:"7px 9px",background:"transparent",color:"#c9d5dc",font:"600 10px Geist,system-ui",cursor:"pointer"});
-      b.onclick=()=>setLang(b.dataset.l);
+    const wrap=document.createElement("div");wrap.id="nafsam-lang";
+    Object.assign(wrap.style,{position:"fixed",zIndex:"10050",top:"14px",left:"14px"});
+    const trigger=document.createElement("button");trigger.type="button";trigger.id="nafsam-lang-trigger";
+    trigger.setAttribute("aria-label",t("lang.label"));trigger.setAttribute("aria-expanded","false");
+    trigger.innerHTML='<span style="font-size:17px;line-height:1">◎</span>';
+    Object.assign(trigger.style,{width:"38px",height:"38px",border:"1px solid rgba(231,187,119,.32)",borderRadius:"50%",display:"grid",placeItems:"center",background:"rgba(7,10,16,.86)",color:"#e7bb77",backdropFilter:"blur(16px)",boxShadow:"0 8px 28px rgba(0,0,0,.35)",cursor:"pointer"});
+    const menu=document.createElement("div");menu.id="nafsam-lang-menu";
+    menu.innerHTML='<button data-l="ar"><b>AR</b><span>العربية</span></button><button data-l="fa"><b>FA</b><span>فارسی</span></button><button data-l="tr"><b>TR</b><span>Türkçe</span></button><button data-l="en"><b>EN</b><span>English</span></button>';
+    Object.assign(menu.style,{position:"absolute",top:"46px",left:"0",minWidth:"150px",padding:"7px",display:"none",border:"1px solid rgba(231,187,119,.24)",borderRadius:"16px",background:"rgba(7,10,16,.96)",backdropFilter:"blur(20px)",boxShadow:"0 16px 42px rgba(0,0,0,.48)"});
+    menu.querySelectorAll("button").forEach(b=>{
+      Object.assign(b.style,{width:"100%",border:"0",borderRadius:"11px",padding:"9px 10px",background:"transparent",color:"#d7e0e5",display:"flex",alignItems:"center",gap:"10px",font:"500 12px Geist,system-ui",cursor:"pointer",textAlign:"left"});
+      b.querySelector("b").style.cssText="color:#e7bb77;min-width:24px;font-size:10px";
+      b.onclick=(e)=>{e.stopPropagation();setLang(b.dataset.l)};
+      b.onmouseenter=()=>b.style.background="rgba(231,187,119,.10)";
+      b.onmouseleave=()=>{if(b.dataset.l!==current)b.style.background="transparent"};
     });
-    document.body.append(box);highlight();
+    trigger.onclick=(e)=>{e.stopPropagation();const open=menu.style.display!=="none";menu.style.display=open?"none":"block";trigger.setAttribute("aria-expanded",String(!open))};
+    document.addEventListener("click",()=>{menu.style.display="none";trigger.setAttribute("aria-expanded","false")});
+    wrap.append(trigger,menu);document.body.append(wrap);highlight();
   }
   function highlight(){
-    document.querySelectorAll("#nafsam-lang button").forEach(b=>{
-      const active=b.dataset.l===current;b.style.background=active?"linear-gradient(135deg,#e7bb77,#b7833e)":"transparent";b.style.color=active?"#111015":"#c9d5dc";
+    document.querySelectorAll("#nafsam-lang-menu button").forEach(b=>{
+      const active=b.dataset.l===current;
+      b.style.background=active?"rgba(231,187,119,.14)":"transparent";
+      b.style.color=active?"#fff4df":"#d7e0e5";
     });
   }
   function setLang(lang){
