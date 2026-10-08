@@ -553,14 +553,55 @@ document.addEventListener('DOMContentLoaded', async () => {
           link.querySelector('span:last-child').textContent=T().external;
           mediaWrap.append(link);
         }else{
-          const video=document.createElement('video');
-          video.src=fileUrl('media',filename);
-          video.controls=true;
-          video.playsInline=true;
-          video.preload='metadata';
-          video.className='w-full h-full object-contain bg-black';
-          video.setAttribute('aria-label',T().item(index+1));
-          mediaWrap.append(video);
+          const src=fileUrl('media',filename);
+          const poster=fileUrl('posters',filename.replace(/\.[^.]+$/,'')+'.jpg');
+
+          const preview=document.createElement('div');
+          preview.className='relative w-full h-full cursor-pointer group overflow-hidden bg-black';
+          const img=document.createElement('img');
+          img.loading='lazy';
+          img.decoding='async';
+          img.alt=T().item(index+1);
+          img.src=poster;
+          img.className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.025]';
+
+          const overlay=document.createElement('button');
+          overlay.type='button';
+          overlay.className='absolute inset-0 grid place-items-center bg-gradient-to-t from-black/35 via-transparent to-black/10';
+          overlay.setAttribute('aria-label',T().item(index+1));
+          overlay.innerHTML='<span class="w-14 h-14 rounded-full border border-primary/50 bg-black/55 backdrop-blur-md grid place-items-center shadow-[0_0_28px_rgba(71,214,255,.18)]"><span class="material-symbols-outlined text-primary text-3xl ml-1">play_arrow</span></span>';
+
+          const openVideo=()=>{
+            const video=document.createElement('video');
+            video.src=src;
+            video.controls=true;
+            video.autoplay=true;
+            video.playsInline=true;
+            video.preload='metadata';
+            video.className='w-full h-full object-contain bg-black';
+            video.setAttribute('aria-label',T().item(index+1));
+            preview.replaceChildren(video);
+            video.play().catch(()=>{});
+          };
+          overlay.onclick=openVideo;
+
+          img.onerror=()=>{
+            img.onerror=null;
+            const fallback=document.createElement('video');
+            fallback.src=src;
+            fallback.muted=true;
+            fallback.playsInline=true;
+            fallback.preload='metadata';
+            fallback.className='w-full h-full object-cover bg-black';
+            fallback.addEventListener('loadedmetadata',()=>{
+              try{fallback.currentTime=Math.min(1,Math.max(.15,(fallback.duration||1)*.03))}catch(e){}
+            },{once:true});
+            preview.prepend(fallback);
+            img.remove();
+          };
+
+          preview.append(img,overlay);
+          mediaWrap.append(preview);
         }
 
         const info=document.createElement('div');
