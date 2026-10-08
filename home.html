@@ -220,6 +220,13 @@ body > header nav,
 main nav:not(.nafsam-dock),
 header nav:not(.nafsam-dock){display:none!important}
 .nafsam-dock{display:flex!important}
+</style><style id="nafsam-card-covers">
+.nafsam-home-card{overflow:hidden!important;padding-top:0!important;justify-content:flex-end!important;min-height:320px}
+.nafsam-home-card .nafsam-cover{position:absolute!important;inset:0 0 auto 0!important;height:58%!important;opacity:.92!important;background-size:cover!important;background-position:center!important;border-bottom:1px solid rgba(165,231,255,.12);filter:saturate(.92) contrast(1.04);transition:transform .55s ease,filter .55s ease!important}
+.nafsam-home-card .nafsam-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(7,9,13,.95) 100%)}
+.nafsam-home-card:hover .nafsam-cover{transform:scale(1.035);filter:saturate(1.05) contrast(1.05)}
+.nafsam-home-card>div.relative{padding-top:54%;width:100%}
+@media(max-width:640px){.nafsam-home-card{min-height:300px}.nafsam-home-card .nafsam-cover{height:56%!important}.nafsam-home-card>div.relative{padding-top:52%}}
 </style></head>
 <body class="bg-background"><div class="fx-orb one"></div><div class="fx-orb two"></div><div class="fx-status"><i></i><span>NAFSAM // PRIVATE MEMORY SYSTEM</span></div>
 <script id="nafsam-future-engine">
@@ -498,21 +505,23 @@ document.addEventListener('DOMContentLoaded',async()=>{
   const thumb=f=>base+'/images/_thumbs/all_photos/'+encode(f.replace(/\.(jpe?g|png)$/i,'.webp'));
   const covers={
    Photos:photos[0]?thumb(photos[0]):null,
-   Journey:photos[1]?thumb(photos[1]):null,
-   Songs:photos[2]?thumb(photos[2]):null,
+   Journey:photos[24]?thumb(photos[24]):(photos[1]?thumb(photos[1]):null),
+   Songs:null,
    Videos:video?base+'/posters/'+encode(video.file.replace(/\.[^.]+$/,'')+'.jpg'):null,
-   Writings:photos[3]?thumb(photos[3]):null,
-   Feelings:photos[4]?thumb(photos[4]):null
+   Writings:photos[67]?thumb(photos[67]):(photos[3]?thumb(photos[3]):null),
+   Feelings:photos[108]?thumb(photos[108]):(photos[4]?thumb(photos[4]):null)
   };
   document.querySelectorAll('h3').forEach(h=>{
-   const title=h.textContent.trim(),src=covers[title];if(!src)return;
+   const title=h.textContent.trim(),src=covers[title];
    const card=h.closest('.glass-panel');if(!card)return;
+   card.classList.add('nafsam-home-card');
    const bg=card.querySelector('[data-alt]')||card.querySelector('.absolute.inset-0');
    if(!bg)return;
-   bg.style.backgroundImage='url("'+src.replace(/"/g,'%22')+'")';
+   bg.classList.add('nafsam-cover');
+   if(src)bg.style.backgroundImage='url("'+src.replace(/"/g,'%22')+'")';
    bg.style.backgroundSize='cover';bg.style.backgroundPosition='center';
    bg.style.opacity='0.46';
-   const test=new Image();test.onerror=()=>{bg.style.backgroundImage='';bg.style.opacity='0.2'};test.src=src;
+   if(src){const test=new Image();test.onerror=()=>{bg.style.opacity='0.72'};test.src=src;}
   });
  }catch(e){console.warn('Archive covers unavailable',e)}
 });
