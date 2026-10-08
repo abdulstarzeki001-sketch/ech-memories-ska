@@ -356,115 +356,25 @@ document.querySelectorAll('main > *, section').forEach((el,i)=>{el.animate([{opa
 </header>
 <!-- Main Content Canvas -->
 <main class="relative z-10 pt-28 md:pt-32 pb-40 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-screen">
-<!-- Section Header & Controls -->
-<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 relative">
-<div>
-<h1 class="font-headline-md text-headline-md text-primary mb-2">Cinematic Archives</h1>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
-                    Chronicles of light and motion. A curated temporal gallery of visual memories spanning the archive.
-                </p>
-</div>
-<div class="flex items-center space-x-4 glass-panel rounded-full px-6 py-3">
-<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Theater Mode</span>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" id="theaterModeToggle" type="checkbox" value=""/>
-<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-primary after:border-primary after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container/20 border border-primary/20"></div>
-</label>
-</div>
-</div>
-<!-- Video Grid Layout -->
-<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter relative">
-<!-- Vertical Timeline Axis (Desktop Only) -->
-<div class="hidden md:block col-span-1 relative flex justify-center">
-<div class="absolute top-0 bottom-0 w-px timeline-line"></div>
-<div class="sticky top-40 h-16 flex flex-col items-center">
-<div class="w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(165,231,255,0.8)] z-10"></div>
-<span class="font-mono-ui text-mono-ui text-primary mt-4 -rotate-90 origin-top-left absolute left-6 top-10 whitespace-nowrap">PRESENT</span>
-</div>
-</div>
-<!-- Video Cards Container -->
-<div class="col-span-1 md:col-span-11 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="videoGrid">
-<!-- Video Card 1: Featured (Spans 2 cols on Desktop) -->
-<article class="glass-panel rounded-xl overflow-hidden group relative aspect-video cursor-pointer md:col-span-2 lg:col-span-2 row-span-2 shadow-2xl transition-all duration-500 hover:scale-[1.02]">
-<img class="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700" data-alt="A highly cinematic wide shot of a futuristic neon-lit city street at night, reflecting in puddles, shot on 35mm film. High contrast, cinematic lighting, moody atmosphere, deep blues and vibrant pinks, sleek futuristic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXShqs70GuWxx2npsX4sbbBRlfqlnHxm6_rGWD4pgMekXAXh6JwVUaj_ovvWBPX7J6vs1vZK4Yp_pzyCp7hAjIhNNd41urzuy20q0t4GuvugN11y5SO3UOgyzZ9iMWKUfLv_f021NHcsLJbsNRx9YmnfKqldUorzovEPV_EouBOjEiV3OrjwZknwiHShh5Flpl-mAvFFAYDxg7kryYkuoqvd4qwMpzc-yJKbi8NI60VKq38jguKq9GH8z3E4yrumA04c3fb83etrY"/>
-<div class="absolute inset-0 video-card-overlay opacity-90 group-hover:opacity-70 transition-opacity duration-500"></div>
-<div class="absolute inset-0 scanlines opacity-10 pointer-events-none"></div>
-<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-90 group-hover:scale-100">
-<div class="w-16 h-16 rounded-full border border-primary bg-primary/10 backdrop-blur-md flex items-center justify-center">
-<span class="material-symbols-outlined text-primary text-3xl ml-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-</div>
-</div>
-<div class="absolute bottom-0 left-0 w-full p-6 flex justify-between items-end">
-<div>
-<div class="flex gap-2 mb-2">
-<span class="font-label-caps text-label-caps bg-surface-container-low/50 border border-primary/20 backdrop-blur-sm text-primary px-2 py-1 rounded">2084.11.04</span>
-<span class="font-label-caps text-label-caps bg-surface-container-low/50 border border-outline/20 backdrop-blur-sm text-tertiary-container px-2 py-1 rounded">ISTANBUL</span>
-</div>
-<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Echoes of the Bosphorus</h2>
-<p class="font-body-md text-body-md text-on-surface-variant/70 mt-1 line-clamp-1">Boğaziçi'nin yankıları karanlıkta parlıyor.</p>
-</div>
-<div class="font-mono-ui text-mono-ui text-primary/80">14:23</div>
-</div>
-</article>
-<!-- Video Card 2 -->
-<article class="glass-panel rounded-xl overflow-hidden group relative aspect-video cursor-pointer transition-all duration-500 hover:scale-[1.02]">
-<img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" data-alt="A serene, minimalist digital installation of glowing geometric rings floating in a vast, dark, museum-like space. Volumetric lighting cutting through subtle mist. Monochromatic color palette with subtle gold accents, invoking luxury and legacy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK8g6k3SB_anwMci_T0FzcSp8pITFmYGvaqo-XYD8Tw3b8qZRKCZt3FytZRNzld926tWeiPHAjMFvd2dOUAblfZJF7AIyhJ4TjadBTVNIk_6S2S73PZodm-7CdncEIkUhn0m00SnNClSaFTVLefZhuCunGMhLJzK7EvntmquHSs5rkWX0QNZxCDlC2Xtg5XK10-28U_xQFF_XgHk2LVf813SmFMVt7TPgSWsq39yEL3DkYlG8cOHFG7iF3LO99jxLmaP0GNRKZkPY"/>
-<div class="absolute inset-0 video-card-overlay opacity-90 group-hover:opacity-60 transition-opacity duration-500"></div>
-<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-<div class="w-12 h-12 rounded-full border border-primary bg-primary/10 backdrop-blur-md flex items-center justify-center">
-<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-</div>
-</div>
-<div class="absolute bottom-0 left-0 w-full p-4">
-<div class="flex justify-between items-end">
-<div>
-<h3 class="font-headline-sm text-[20px] text-on-surface group-hover:text-primary transition-colors leading-tight">Vault Sequence Alpha</h3>
-<div class="font-label-caps text-label-caps text-on-surface-variant mt-2 tracking-widest">TOKYO</div>
-</div>
-<div class="font-mono-ui text-mono-ui text-tertiary-container">03:45</div>
-</div>
-</div>
-</article>
-<!-- Video Card 3 -->
-<article class="glass-panel rounded-xl overflow-hidden group relative aspect-video cursor-pointer transition-all duration-500 hover:scale-[1.02]">
-<img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" data-alt="Abstract macro photography of ferrofluid reacting to a magnet, looking like dark, glossy alien architecture. Deep blacks, metallic silvers, and a single, intense beam of pure white light. High tech, sophisticated, mysterious." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiH7SQq7mERRw12MOS2HiV_7iSu0cT_NTJHn-c71y4JlwvZcIPo6pdYz3SYdYYw1WlC6YKfN7WUoA7LXjZIxWfXVXGZ-VLwqg_VfWvBuY2OfTJWOqn3vplXVf56VNWP3qFIyfY4Z2tzAR4q2gfaGBkArnWyUupSdoYhu6BuN_bhkPivaoen2XL1mtX4S8otJwIjuQqqJInX7L1dfgcr80XjVI_q8Il8LOSXaL6pre1O-KGZm1L7Eqb5ADJrhpgLzOZ-uen6_AwCNY"/>
-<div class="absolute inset-0 video-card-overlay opacity-90 group-hover:opacity-60 transition-opacity duration-500"></div>
-<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-<div class="w-12 h-12 rounded-full border border-primary bg-primary/10 backdrop-blur-md flex items-center justify-center">
-<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-</div>
-</div>
-<div class="absolute bottom-0 left-0 w-full p-4">
-<div class="flex justify-between items-end">
-<div>
-<h3 class="font-headline-sm text-[20px] text-on-surface group-hover:text-primary transition-colors leading-tight">Magnetic Flux</h3>
-<div class="font-label-caps text-label-caps text-on-surface-variant mt-2 tracking-widest">LONDON</div>
-</div>
-<div class="font-mono-ui text-mono-ui text-tertiary-container">01:12</div>
-</div>
-</div>
-</article>
-<!-- Video Card 4 -->
-<article class="glass-panel rounded-xl overflow-hidden group relative aspect-video cursor-pointer transition-all duration-500 hover:scale-[1.02]">
-<img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" data-alt="A lone figure standing before a massive, ancient desert structure bathed in the ethereal glow of a binary sunset. Warm amber and deep purple sky. Cinematic wide angle, epic scale, evoking a sense of ancient memory and timelessness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAerMjlbzjw5vFs5kqTE-_HPYDHJm3ypArgsCgHDru4HQ8AcLKfhBV7McPidGiaBz8THGwmUT_WysM8Czopmcn6u0d-Cw2i9BnNI0gQ1LKRfJMeCSw0eCwQbkvT077ddgcQOITyTW0bMfXsnB0n2_vS_9YXdyJ4PEz-YmNWoMhinkHeRVjqgm2KMUT6iPL7VUdc8qS1AgjaJson6WABv_P607rsxa4oz87YZpxeIdN5DwLRyov0CRy9-p9pEGdJ98zC1P44ALS3lmM"/>
-<div class="absolute inset-0 video-card-overlay opacity-90 group-hover:opacity-60 transition-opacity duration-500"></div>
-<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-<div class="w-12 h-12 rounded-full border border-primary bg-primary/10 backdrop-blur-md flex items-center justify-center">
-<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-</div>
-</div>
-<div class="absolute bottom-0 left-0 w-full p-4">
-<div class="flex justify-between items-end">
-<div>
-<h3 class="font-headline-sm text-[20px] text-on-surface group-hover:text-primary transition-colors leading-tight">Desert Chronicles</h3>
-<div class="font-label-caps text-label-caps text-on-surface-variant mt-2 tracking-widest">CAIRO</div>
-</div>
-<div class="font-mono-ui text-mono-ui text-tertiary-container">45:00</div>
-</div>
-</div>
-</article>
-</div>
-</div>
+<section class="mb-10">
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+    <div>
+      <p class="font-label-caps text-label-caps text-secondary tracking-[.22em] mb-3" data-i18n="videos.archive">NAFSAM / VIDEO ARCHIVE</p>
+      <h1 class="font-headline-md text-headline-md text-primary mb-3" data-i18n="videos.cinematic">Cinematic Archives</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl" data-i18n="videos.desc">Chronicles of light and motion. A curated temporal gallery of visual memories spanning the archive.</p>
+    </div>
+    <div class="glass-panel rounded-full px-5 py-3 flex items-center gap-3">
+      <span class="material-symbols-outlined text-primary">movie</span>
+      <span id="video-count" class="font-mono-ui text-mono-ui text-on-surface-variant" data-i18n="videos.loading">Loading videos…</span>
+    </div>
+  </div>
+</section>
+
+<section id="legacy-media-root" aria-live="polite">
+  <div class="legacy-loading" role="status" data-i18n="videos.loading">Loading videos…</div>
+  <div id="video-only-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+  <button id="video-more" type="button" class="hidden mx-auto mt-8 px-7 py-3 rounded-full border border-primary/30 text-primary bg-primary/5 hover:bg-primary/10 transition" data-i18n="videos.more">Load more videos</button>
+</section>
 </main>
 <!-- BottomNavBar (Hidden on Desktop, Visible on Mobile) -->
 <nav class="md:hidden docked fixed bottom-8 left-1/2 -translate-x-1/2 rounded-full w-[90%] max-w-4xl bg-surface-container-low/10 backdrop-blur-[30px] border border-primary/20 bg-clip-padding relative after:content-[''] after:absolute after:inset-0 after:bg-[url('scanlines.png')] after:opacity-5 after:pointer-events-none shadow-[0_0_40px_rgba(0,210,255,0.15)] flex justify-around items-center py-3 px-6 z-50">
@@ -564,69 +474,90 @@ document.addEventListener('DOMContentLoaded',()=>{
  const close=()=>{viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');media.replaceChildren()};
  viewer.querySelector('.holo-close').addEventListener('click',close);viewer.addEventListener('click',e=>{if(e.target===viewer)close()});addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 });
-</script><script id="legacy-r2-loader">
+</script><script src="./i18n.js"></script>
+<script id="video-only-loader">
 document.addEventListener('DOMContentLoaded', async () => {
- const main=document.querySelector('main'); if(!main)return;
- const root=document.createElement('section');root.id='legacy-media-root';
- root.innerHTML='<div class="legacy-head"><div><p>NAFSAM ARCHIVE</p><h2>Original memories</h2></div></div><div class="legacy-loading" role="status">Loading archive…</div>';
- main.replaceChildren(root);
- const base='https://ech-nafasm-ska.pages.dev/pub/0524488da2bf9d4cb0d9fc5afa6618ca01574416cd04c3bf';
- const fileUrl=(folder,file)=>base+'/'+folder+'/'+String(file).split('/').map(encodeURIComponent).join('/');
- const openViewer=(element)=>{
-  const viewer=document.getElementById('holo-viewer'),media=document.getElementById('holo-media');
-  if(!viewer||!media)return;
-  media.replaceChildren(element);viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');
- };
- try{
-  const response=await fetch('./nafsam-media.json',{cache:'no-store'});
-  if(!response.ok)throw new Error('Manifest HTTP '+response.status);
-  const data=await response.json();
-  const g=document.createElement('div');g.className='legacy-grid';root.querySelector('.legacy-loading').remove();
-  const items="videos"==='photos'?data.photos:"videos"==='videos'?data.videos:data.songs;
-  if(!Array.isArray(items))throw new Error('Missing archive section');
-  const counter=document.createElement('p');counter.style.cssText='padding:16px;color:#b6ebff';counter.textContent=items.length+' memories';root.append(counter,g);
-  let index=0;const batchSize=24;
-  function addBatch(){
-   const stop=Math.min(index+batchSize,items.length);
-   for(;index<stop;index++){
-    const entry=items[index],i=index;
-    const card=document.createElement('article');card.className='legacy-card';
-    if("videos"==='photos'){
-     const filename=typeof entry==='string'?entry:entry.file;
-     const image=document.createElement('img');image.loading='lazy';image.decoding='async';image.alt='Memory '+(i+1);
-     const full=fileUrl('images/all_photos',filename);
-     const thumb=fileUrl('images/_thumbs/all_photos',filename.replace(/\.(jpe?g|png|heic)$/i,'.webp'));
-     image.src=thumb;image.onerror=()=>{if(image.src!==full){image.onerror=null;image.src=full}};
-     image.style.cursor='zoom-in';
-     image.addEventListener('click',()=>{const large=new Image();large.src=full;large.alt=image.alt;openViewer(large)});
-     card.append(image);
-    }else if("videos"==='videos'){
-     const filename=entry.file||'';const external=/^https?:\/\//i.test(filename);
-     const src=external?filename:fileUrl('media',filename);
-     const poster=document.createElement('img');poster.loading='lazy';poster.alt='';poster.src=fileUrl('posters',filename.replace(/\.[^.]+$/,'')+'.jpg');
-     poster.onerror=()=>{poster.onerror=null;poster.style.display='none'};
-     const title=document.createElement('strong');title.textContent=entry.title||'Video '+(i+1);
-     const play=document.createElement('button');play.type='button';play.textContent='▶ Play';play.style.cssText='padding:12px;color:#fff;cursor:pointer';
-     play.onclick=()=>{if(external){window.open(src,'_blank','noopener,noreferrer');return}
-      const video=document.createElement('video');video.src=src;video.controls=true;video.autoplay=true;video.playsInline=true;video.preload='metadata';openViewer(video);video.play().catch(()=>{});
-     };
-     card.append(poster,title,play);
-    }else{
-     const title=document.createElement('strong');title.textContent=entry.title||'Song '+(i+1);
-     const a=document.createElement('a');a.textContent='▶ Open on YouTube';a.target='_blank';a.rel='noopener noreferrer';a.href=String(entry.src||'').replace('playlist?: list=','playlist?list=').replace(/\s+/g,'');
-     a.style.cssText='display:block;padding:12px;color:#b6ebff';
-     card.append(title,a);
-    }
-    g.append(card);
-   }
-   more.hidden=index>=items.length;
+  const grid=document.getElementById('video-only-grid');
+  const loading=document.querySelector('#legacy-media-root .legacy-loading');
+  const more=document.getElementById('video-more');
+  const count=document.getElementById('video-count');
+  if(!grid||!more)return;
+
+  const lang=()=>{try{return localStorage.getItem('nafsam_language')||'ar'}catch(e){return 'ar'}};
+  const tx={
+    ar:{loading:'جارِ تحميل الفيديوهات…',count:n=>n+' فيديو',more:'تحميل المزيد من الفيديوهات',item:n=>'فيديو '+n,error:'تعذر تحميل أرشيف الفيديوهات.',external:'فتح الفيديو'},
+    fa:{loading:'در حال بارگذاری ویدیوها…',count:n=>n+' ویدیو',more:'ویدیوهای بیشتری بارگذاری کن',item:n=>'ویدیو '+n,error:'بارگذاری آرشیو ویدیوها ممکن نشد.',external:'باز کردن ویدیو'},
+    tr:{loading:'Videolar yükleniyor…',count:n=>n+' video',more:'Daha fazla video yükle',item:n=>'Video '+n,error:'Video arşivi yüklenemedi.',external:'Videoyu aç'},
+    en:{loading:'Loading videos…',count:n=>n+' videos',more:'Load more videos',item:n=>'Video '+n,error:'The video archive could not be loaded.',external:'Open video'}
+  };
+  const T=()=>tx[lang()]||tx.en;
+  if(loading)loading.textContent=T().loading;
+  more.textContent=T().more;
+
+  const base='https://ech-nafasm-ska.pages.dev/pub/0524488da2bf9d4cb0d9fc5afa6618ca01574416cd04c3bf';
+  const fileUrl=(folder,file)=>base+'/'+folder+'/'+String(file).split('/').map(encodeURIComponent).join('/');
+
+  try{
+    const response=await fetch('./nafsam-media.json',{cache:'no-store'});
+    if(!response.ok)throw new Error('Manifest HTTP '+response.status);
+    const data=await response.json();
+    const items=Array.isArray(data.videos)?data.videos:[];
+    if(count)count.textContent=T().count(items.length);
+    if(loading)loading.remove();
+
+    let index=0;
+    const batchSize=12;
+    const addBatch=()=>{
+      const stop=Math.min(index+batchSize,items.length);
+      for(;index<stop;index++){
+        const entry=items[index]||{};
+        const filename=String(entry.file||'');
+        const external=/^https?:\/\//i.test(filename);
+        const card=document.createElement('article');
+        card.className='glass-panel rounded-2xl overflow-hidden border border-white/5 bg-white/[.025]';
+
+        const mediaWrap=document.createElement('div');
+        mediaWrap.className='aspect-video bg-black/70 relative flex items-center justify-center';
+
+        if(external){
+          const link=document.createElement('a');
+          link.href=filename;link.target='_blank';link.rel='noopener noreferrer';
+          link.className='w-full h-full flex flex-col items-center justify-center gap-3 text-primary hover:bg-primary/5 transition';
+          link.innerHTML='<span class="material-symbols-outlined text-5xl">open_in_new</span><span></span>';
+          link.querySelector('span:last-child').textContent=T().external;
+          mediaWrap.append(link);
+        }else{
+          const video=document.createElement('video');
+          video.src=fileUrl('media',filename);
+          video.controls=true;
+          video.playsInline=true;
+          video.preload='metadata';
+          video.className='w-full h-full object-contain bg-black';
+          video.setAttribute('aria-label',T().item(index+1));
+          mediaWrap.append(video);
+        }
+
+        const info=document.createElement('div');
+        info.className='p-4 flex items-center justify-between gap-3';
+        const title=document.createElement('strong');
+        title.className='text-on-surface font-medium';
+        title.textContent=T().item(index+1);
+        const badge=document.createElement('span');
+        badge.className='text-[10px] tracking-widest text-primary/70 uppercase';
+        badge.textContent=filename.split('.').pop()?.toUpperCase()||'VIDEO';
+        info.append(title,badge);
+        card.append(mediaWrap,info);
+        grid.append(card);
+      }
+      more.classList.toggle('hidden',index>=items.length);
+    };
+
+    more.onclick=addBatch;
+    addBatch();
+  }catch(error){
+    console.error('NAFSAM videos:',error);
+    if(loading)loading.textContent=T().error;
+    if(count)count.textContent=T().error;
   }
-  const more=document.createElement('button');more.type='button';more.textContent='Load more memories';more.style.cssText='display:block;margin:28px auto;padding:14px 26px;border:1px solid #b6ebff;border-radius:12px;color:#b6ebff';more.onclick=addBatch;
-  root.append(more);addBatch();
- }catch(error){
-  console.error('NAFSAM archive:',error);
-  const loading=root.querySelector('.legacy-loading');
-  if(loading)loading.textContent='Archive could not be loaded. Please refresh or check the deployment.';
- }
 });
-</script><script src="./i18n.js"></script></body></html>
+</script></body></html>
