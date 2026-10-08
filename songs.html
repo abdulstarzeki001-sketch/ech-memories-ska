@@ -557,4 +557,69 @@ document.addEventListener('DOMContentLoaded',()=>{
  const close=()=>{viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');media.replaceChildren()};
  viewer.querySelector('.holo-close').addEventListener('click',close);viewer.addEventListener('click',e=>{if(e.target===viewer)close()});addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 });
-</script><script id="legacy-r2-loader">document.addEventListener('DOMContentLoaded',async()=>{const main=document.querySelector('main');if(!main)return;const root=document.createElement('section');root.id='legacy-media-root';root.innerHTML='<div class="legacy-head"><div><p>ORIGINAL ARCHIVE // R2</p><h2>Sound memories</h2></div></div><div class="legacy-loading">DECRYPTING AUDIO VAULT...</div>';main.replaceChildren(root);try{const d=await fetch('/nafsam-media.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json()});root.querySelector('.legacy-loading').remove();const g=document.createElement('div');g.className='legacy-grid';(d.songs||[]).forEach((s,i)=>{const src=/^https?:\/\//i.test(s.src)?s.src:'https://ech-nafasm-ska.pages.dev/pub/0524488da2bf9d4cb0d9fc5afa6618ca01574416cd04c3bf/media/'+encodeURIComponent(s.src);const a=document.createElement('article');a.className='legacy-card legacy-song';const title=document.createElement('strong');title.textContent=s.title||'Audio Memory '+(i+1);const audio=document.createElement('audio');audio.controls=true;audio.preload='none';audio.src=src;a.append(title,audio);g.append(a)});g.addEventListener('play',e=>{if(e.target.tagName==='AUDIO')g.querySelectorAll('audio').forEach(a=>{if(a!==e.target)a.pause()})},true);root.append(g)}catch(e){root.querySelector('.legacy-loading').textContent='AUDIO VAULT CONNECTION FAILED';console.error(e)}});</script></body></html>
+</script><script id="legacy-r2-loader">
+document.addEventListener('DOMContentLoaded', async () => {
+ const main=document.querySelector('main'); if(!main)return;
+ const root=document.createElement('section');root.id='legacy-media-root';
+ root.innerHTML='<div class="legacy-head"><div><p>NAFSAM ARCHIVE</p><h2>Original memories</h2></div></div><div class="legacy-loading" role="status">Loading archive…</div>';
+ main.replaceChildren(root);
+ const base='https://ech-nafasm-ska.pages.dev/pub/0524488da2bf9d4cb0d9fc5afa6618ca01574416cd04c3bf';
+ const fileUrl=(folder,file)=>base+'/'+folder+'/'+String(file).split('/').map(encodeURIComponent).join('/');
+ const openViewer=(element)=>{
+  const viewer=document.getElementById('holo-viewer'),media=document.getElementById('holo-media');
+  if(!viewer||!media)return;
+  media.replaceChildren(element);viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');
+ };
+ try{
+  const response=await fetch('./nafsam-media.json',{cache:'no-store'});
+  if(!response.ok)throw new Error('Manifest HTTP '+response.status);
+  const data=await response.json();
+  const g=document.createElement('div');g.className='legacy-grid';root.querySelector('.legacy-loading').remove();
+  const items="songs"==='photos'?data.photos:"songs"==='videos'?data.videos:data.songs;
+  if(!Array.isArray(items))throw new Error('Missing archive section');
+  const counter=document.createElement('p');counter.style.cssText='padding:16px;color:#b6ebff';counter.textContent=items.length+' memories';root.append(counter,g);
+  let index=0;const batchSize=24;
+  function addBatch(){
+   const stop=Math.min(index+batchSize,items.length);
+   for(;index<stop;index++){
+    const entry=items[index],i=index;
+    const card=document.createElement('article');card.className='legacy-card';
+    if("songs"==='photos'){
+     const filename=typeof entry==='string'?entry:entry.file;
+     const image=document.createElement('img');image.loading='lazy';image.decoding='async';image.alt='Memory '+(i+1);
+     const full=fileUrl('images/all_photos',filename);
+     const thumb=fileUrl('images/_thumbs/all_photos',filename.replace(/\.(jpe?g|png|heic)$/i,'.webp'));
+     image.src=thumb;image.onerror=()=>{if(image.src!==full){image.onerror=null;image.src=full}};
+     image.style.cursor='zoom-in';
+     image.addEventListener('click',()=>{const large=new Image();large.src=full;large.alt=image.alt;openViewer(large)});
+     card.append(image);
+    }else if("songs"==='videos'){
+     const filename=entry.file||'';const external=/^https?:\/\//i.test(filename);
+     const src=external?filename:fileUrl('media',filename);
+     const poster=document.createElement('img');poster.loading='lazy';poster.alt='';poster.src=fileUrl('posters',filename.replace(/\.[^.]+$/,'')+'.jpg');
+     poster.onerror=()=>{poster.onerror=null;poster.style.display='none'};
+     const title=document.createElement('strong');title.textContent=entry.title||'Video '+(i+1);
+     const play=document.createElement('button');play.type='button';play.textContent='▶ Play';play.style.cssText='padding:12px;color:#fff;cursor:pointer';
+     play.onclick=()=>{if(external){window.open(src,'_blank','noopener,noreferrer');return}
+      const video=document.createElement('video');video.src=src;video.controls=true;video.autoplay=true;video.playsInline=true;video.preload='metadata';openViewer(video);video.play().catch(()=>{});
+     };
+     card.append(poster,title,play);
+    }else{
+     const title=document.createElement('strong');title.textContent=entry.title||'Song '+(i+1);
+     const a=document.createElement('a');a.textContent='▶ Open on YouTube';a.target='_blank';a.rel='noopener noreferrer';a.href=String(entry.src||'').replace('playlist?: list=','playlist?list=').replace(/\s+/g,'');
+     a.style.cssText='display:block;padding:12px;color:#b6ebff';
+     card.append(title,a);
+    }
+    g.append(card);
+   }
+   more.hidden=index>=items.length;
+  }
+  const more=document.createElement('button');more.type='button';more.textContent='Load more memories';more.style.cssText='display:block;margin:28px auto;padding:14px 26px;border:1px solid #b6ebff;border-radius:12px;color:#b6ebff';more.onclick=addBatch;
+  root.append(more);addBatch();
+ }catch(error){
+  console.error('NAFSAM archive:',error);
+  const loading=root.querySelector('.legacy-loading');
+  if(loading)loading.textContent='Archive could not be loaded. Please refresh or check the deployment.';
+ }
+});
+</script></body></html>
