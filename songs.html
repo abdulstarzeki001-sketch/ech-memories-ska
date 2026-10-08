@@ -536,7 +536,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           play.className='yt-overlay';
           play.setAttribute('aria-label',T().play);
           play.innerHTML='<span class="yt-play">▶</span>';
-          play.onclick=()=>{
+          play.onclick=()=>{window.dispatchEvent(new Event('nafsam:pause-page-audio'));
             const frame=document.createElement('iframe');
             frame.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?autoplay=1&playsinline=1&rel=0';
             frame.title=entry.title||('Song '+(index+1));
@@ -575,4 +575,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     count.textContent=T().error;
   }
 });
-</script></body></html>
+</script><script src="./page-audio.js"></script></body></html>
