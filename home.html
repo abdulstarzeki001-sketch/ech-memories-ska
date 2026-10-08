@@ -500,7 +500,9 @@ document.addEventListener('DOMContentLoaded',async()=>{
    Photos:photos[0]?thumb(photos[0]):null,
    Journey:photos[1]?thumb(photos[1]):null,
    Songs:photos[2]?thumb(photos[2]):null,
-   Videos:video?base+'/posters/'+encode(video.file.replace(/\.[^.]+$/,'')+'.jpg'):null
+   Videos:video?base+'/posters/'+encode(video.file.replace(/\.[^.]+$/,'')+'.jpg'):null,
+   Writings:photos[3]?thumb(photos[3]):null,
+   Feelings:photos[4]?thumb(photos[4]):null
   };
   document.querySelectorAll('h3').forEach(h=>{
    const title=h.textContent.trim(),src=covers[title];if(!src)return;
