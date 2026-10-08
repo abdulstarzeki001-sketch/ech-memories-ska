@@ -15,7 +15,7 @@
       "login.lead":"مر زمن منذ أن بدأ حبك ينزف من قلبي، وأنا أتعلم كيف يعيش الإنسان بقلبٍ مكسورٍ لا يتوقف عن الخفقان.",
       "login.since":"مرّ على البداية","login.day":"يوم","login.hour":"ساعة","login.minute":"دقيقة","login.second":"ثانية","login.name":"اختر الاسم","login.open":"افتح ما تبقّى",
       "login.bottom":"أقسى ما في الأمر أن حبك لم يغادرني، بل خرج من قلبي وهو يمزق كل شيءٍ كان جميلًا بداخلي","login.error":"اكتب الاسم أولًا.",
-      "lang.label":"اللغة"
+      "lang.label":"اللغة","view.two":"عرض اثنين في الصف"
     },
     fa:{
       "app.private":"نَفَسَم // سامانهٔ خصوصی خاطرات",
@@ -28,7 +28,7 @@
       "videos.cinematic":"آرشیو ویدیوها","videos.theater":"حالت نمایش","videos.echoes":"پژواک‌های بسفر","videos.vault":"توالی آلفای خزانه","videos.desert":"روایت‌های صحرا","videos.archive":"نَفَسَم / آرشیو ویدیو","videos.desc":"لحظه‌هایی از نور و حرکت؛ آرشیوی تصویری از خاطرات ما که به شکل ویدیو حفظ شده‌اند.","videos.present":"اکنون","videos.loading":"در حال بارگذاری ویدیوها…","videos.more":"ویدیوهای بیشتری بارگذاری کن","videos.error":"بارگذاری آرشیو ویدیوها ممکن نشد.","videos.open":"باز کردن ویدیو",
       "writings.thought":"آرشیو اندیشه","writings.new":"یادداشت تازه","writings.atrium":"آتریوم دیجیتال","writings.anomaly":"ناهنجاری‌های معماری","writings.protocol":"پروتکل نهایی",
       "archive.title":"آرشیو نَفَسَم","archive.original":"خاطرات واقعی ما","archive.more":"خاطرات بیشتری بارگذاری کن","archive.play":"پخش","archive.youtube":"باز کردن در یوتیوب",
-      "login.brand":"نفسم","login.lead":"مدتی‌ست که عشق تو از قلبم خون می‌چکاند و من یاد می‌گیرم انسان چگونه با قلبی شکسته که هنوز می‌تپد زندگی می‌کند.","login.since":"از آغاز گذشته","login.day":"روز","login.hour":"ساعت","login.minute":"دقیقه","login.second":"ثانیه","login.name":"نام را انتخاب کن","login.open":"آنچه مانده را باز کن","login.bottom":"سخت‌ترین بخش این است که عشقت مرا ترک نکرد؛ از قلبم بیرون آمد و هر چیز زیبایی را درونم پاره کرد.","login.error":"ابتدا نام را وارد کن.","lang.label":"زبان"
+      "login.brand":"نفسم","login.lead":"مدتی‌ست که عشق تو از قلبم خون می‌چکاند و من یاد می‌گیرم انسان چگونه با قلبی شکسته که هنوز می‌تپد زندگی می‌کند.","login.since":"از آغاز گذشته","login.day":"روز","login.hour":"ساعت","login.minute":"دقیقه","login.second":"ثانیه","login.name":"نام را انتخاب کن","login.open":"آنچه مانده را باز کن","login.bottom":"سخت‌ترین بخش این است که عشقت مرا ترک نکرد؛ از قلبم بیرون آمد و هر چیز زیبایی را درونم پاره کرد.","login.error":"ابتدا نام را وارد کن.","lang.label":"زبان","view.two":"نمایش دوتایی در هر ردیف"
     },
     tr:{
       "app.private":"NAFSAM // ÖZEL HATIRA SİSTEMİ",
@@ -41,7 +41,7 @@
       "videos.cinematic":"Video Arşivi","videos.theater":"Gösterim Modu","videos.echoes":"Boğazın Yankıları","videos.vault":"Kasa Dizisi Alfa","videos.desert":"Çöl Günlükleri","videos.archive":"NAFSAM / VİDEO ARŞİVİ","videos.desc":"Işık ve hareketten anlar. Anılarımızın video olarak saklandığı görsel arşiv.","videos.present":"Şimdi","videos.loading":"Videolar yükleniyor…","videos.more":"Daha fazla video yükle","videos.error":"Video arşivi yüklenemedi.","videos.open":"Videoyu aç",
       "writings.thought":"Düşünce Arşivi","writings.new":"Yeni Kayıt","writings.atrium":"Dijital Atrium","writings.anomaly":"Mimari Anomaliler","writings.protocol":"Son Protokol",
       "archive.title":"NAFSAM ARŞİVİ","archive.original":"Gerçek Anılarımız","archive.more":"Daha fazla anı yükle","archive.play":"Oynat","archive.youtube":"YouTube'da Aç",
-      "login.brand":"Nafsam","login.lead":"Aşkının kalbimden kanamaya başlamasının üzerinden zaman geçti; ben de insanın atmayı bırakmayan kırık bir kalple nasıl yaşadığını öğreniyorum.","login.since":"Başlangıçtan beri","login.day":"Gün","login.hour":"Saat","login.minute":"Dakika","login.second":"Saniye","login.name":"İsmini seç","login.open":"Geriye kalanı aç","login.bottom":"En acısı, aşkın beni terk etmedi; kalbimden çıkarken içimde güzel olan her şeyi parçaladı.","login.error":"Önce ismini yaz.","lang.label":"Dil"
+      "login.brand":"Nafsam","login.lead":"Aşkının kalbimden kanamaya başlamasının üzerinden zaman geçti; ben de insanın atmayı bırakmayan kırık bir kalple nasıl yaşadığını öğreniyorum.","login.since":"Başlangıçtan beri","login.day":"Gün","login.hour":"Saat","login.minute":"Dakika","login.second":"Saniye","login.name":"İsmini seç","login.open":"Geriye kalanı aç","login.bottom":"En acısı, aşkın beni terk etmedi; kalbimden çıkarken içimde güzel olan her şeyi parçaladı.","login.error":"Önce ismini yaz.","lang.label":"Dil","view.two":"Satırda iki tane göster"
     },
     en:{
       "app.private":"NAFSAM // PRIVATE MEMORY SYSTEM",
@@ -54,12 +54,12 @@
       "videos.cinematic":"Video Archive","videos.theater":"Theater Mode","videos.echoes":"Echoes of the Bosphorus","videos.vault":"Vault Sequence Alpha","videos.desert":"Desert Chronicles","videos.archive":"NAFSAM / VIDEO ARCHIVE","videos.desc":"Moments of light and motion. A visual archive of our memories preserved as videos.","videos.present":"Present","videos.loading":"Loading videos…","videos.more":"Load more videos","videos.error":"The video archive could not be loaded.","videos.open":"Open video",
       "writings.thought":"Archives of Thought","writings.new":"New Entry","writings.atrium":"The Digital Atrium","writings.anomaly":"Architectural Anomalies","writings.protocol":"The Final Protocol",
       "archive.title":"NAFSAM ARCHIVE","archive.original":"Our Original Memories","archive.more":"Load more memories","archive.play":"Play","archive.youtube":"Open on YouTube",
-      "login.brand":"Nafsam","login.lead":"Time has passed since your love began bleeding from my heart, and I am learning how a person lives with a broken heart that never stops beating.","login.since":"Since the beginning","login.day":"Day","login.hour":"Hour","login.minute":"Minute","login.second":"Second","login.name":"Choose your name","login.open":"Open what remains","login.bottom":"The hardest part is that your love never left me; it came out of my heart tearing apart everything beautiful inside me.","login.error":"Enter your name first.","lang.label":"Language"
+      "login.brand":"Nafsam","login.lead":"Time has passed since your love began bleeding from my heart, and I am learning how a person lives with a broken heart that never stops beating.","login.since":"Since the beginning","login.day":"Day","login.hour":"Hour","login.minute":"Minute","login.second":"Second","login.name":"Choose your name","login.open":"Open what remains","login.bottom":"The hardest part is that your love never left me; it came out of my heart tearing apart everything beautiful inside me.","login.error":"Enter your name first.","lang.label":"Language","view.two":"Show 2 per row"
     }
   };
 
   const sourceToKey = new Map([
-    ["NAFSAM // PRIVATE MEMORY SYSTEM","app.private"],["Nafsam","login.brand"],["NAFSAM","login.brand"],
+    ["NAFSAM // PRIVATE MEMORY SYSTEM","app.private"],["2 per row","view.two"],["Show 2 per row","view.two"],["Nafsam","login.brand"],["NAFSAM","login.brand"],
     ["Home","nav.home"],["Photos","nav.photos"],["Journey","nav.journey"],["Songs","nav.songs"],["Videos","nav.videos"],["Writings","nav.writings"],["Feelings","nav.feelings"],["Chat","nav.chat"],
     ["DASHBOARD","home.dashboard"],["ARCHIVE","home.archive"],["NODES","home.nodes"],
     ["4.2k High-Fidelity Captures","card.photos.sub"],["The Eternal Narrative","card.journey.sub"],["Sonic Imprints & Echoes","card.songs.sub"],["Living Motion Archives","card.videos.sub"],["Coded Journals & Logs","card.writings.sub"],["Biometric Sentiment Data","card.feelings.sub"],
