@@ -527,7 +527,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const response=await fetch('./nafsam-media.json',{cache:'no-store'});
     if(!response.ok)throw new Error('Manifest HTTP '+response.status);
     const data=await response.json();
-    const items=Array.isArray(data.videos)?data.videos:[];
+    const items=Array.isArray(data.videoEntries)&&data.videoEntries.length?data.videoEntries:(Array.isArray(data.videos)?data.videos:[]);
     if(count)count.textContent=T().count(items.length);
     if(loading)loading.remove();
 
@@ -605,14 +605,32 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const info=document.createElement('div');
-        info.className='p-4 flex items-center justify-between gap-3';
+        info.className='p-4';
+        const top=document.createElement('div');
+        top.className='flex items-center justify-between gap-3';
         const title=document.createElement('strong');
         title.className='text-on-surface font-medium';
-        title.textContent=T().item(index+1);
+        title.textContent=entry.title||T().item(index+1);
         const badge=document.createElement('span');
         badge.className='text-[10px] tracking-widest text-primary/70 uppercase';
         badge.textContent=filename.split('.').pop()?.toUpperCase()||'VIDEO';
-        info.append(title,badge);
+        top.append(title,badge);info.append(top);
+        const pick=v=>{
+          if(v==null)return '';
+          if(typeof v==='string')return v;
+          const l=lang();return v[l]||v.ar||v.tr||v.en||v.fa||'';
+        };
+        const caption=pick(entry.caption),quote=pick(entry.quote);
+        if(caption){
+          const p=document.createElement('p');
+          p.className='mt-3 text-sm leading-7 text-on-surface-variant';
+          p.textContent=caption;info.append(p);
+        }
+        if(quote){
+          const q=document.createElement('p');
+          q.className='mt-2 text-sm leading-7 text-secondary italic';
+          q.textContent=quote;info.append(q);
+        }
         card.append(mediaWrap,info);
         grid.append(card);
       }
