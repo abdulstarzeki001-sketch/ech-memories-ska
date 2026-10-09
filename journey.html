@@ -465,10 +465,9 @@ document.addEventListener('DOMContentLoaded',async()=>{
     const r=await fetch('./nafsam-media.json',{cache:'no-store'});
     if(!r.ok)throw new Error('Manifest HTTP '+r.status);
     const data=await r.json();
-    const photos=Array.isArray(data.journeyPhotos)&&data.journeyPhotos.length?data.journeyPhotos:(Array.isArray(data.photos)?data.photos:[]);
-    const caps=data.archiveText?.captions||{};
+    const photos=Array.isArray(data.journeySelectedPhotos)&&data.journeySelectedPhotos.length?data.journeySelectedPhotos:[];
     const l=lang();
-    const captionList=caps[l]||caps.ar||caps.tr||[];
+    const page=data.archiveText?.pages?.[l]||data.archiveText?.pages?.ar||data.archiveText?.pages?.tr||data.archiveText?.pages?.en||{};
     count.textContent=T().count(photos.length);
 
     let index=0;
@@ -478,7 +477,13 @@ document.addEventListener('DOMContentLoaded',async()=>{
       for(;index<stop;index++){
         const filename=typeof photos[index]==='string'?photos[index]:(photos[index]?.file||'');
         if(!filename)continue;
-        const cap=captionList[index]||null;
+        const moment=index+1;
+        const cap={
+          title:page['moment'+moment+'_title']||'',
+          text:page['moment'+moment+'_text']||'',
+          memory:page['moment'+moment+'_memory']||'',
+          time:page['moment'+moment+'_time']||''
+        };
 
         const card=document.createElement('article');
         card.className='journey-memory-card';
@@ -497,12 +502,22 @@ document.addEventListener('DOMContentLoaded',async()=>{
         const copy=document.createElement('div');
         copy.className='journey-memory-copy';
         const title=document.createElement('h3');
-        title.textContent=cap?.title||T().untitled+' '+(index+1);
+        title.textContent=cap.title||T().untitled+' '+(index+1);
         copy.append(title);
-        if(cap?.text){
+        if(cap.time){
+          const time=document.createElement('span');
+          time.style.cssText='display:block;margin:-2px 0 10px;color:#d8b878;font:600 10px Geist;letter-spacing:.08em';
+          time.textContent=cap.time;copy.append(time);
+        }
+        if(cap.text){
           const p=document.createElement('p');
           p.textContent=cap.text;
           copy.append(p);
+        }
+        if(cap.memory){
+          const memory=document.createElement('p');
+          memory.style.cssText='margin-top:12px;color:#d8b878;font-style:italic';
+          memory.textContent=cap.memory;copy.append(memory);
         }
         card.append(media,copy);
         grid.append(card);
