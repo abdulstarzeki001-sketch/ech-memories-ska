@@ -1,0 +1,8 @@
+{
+  "name": "ech-memories-ska",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build-cloudflare.cjs"
+  }
+}
