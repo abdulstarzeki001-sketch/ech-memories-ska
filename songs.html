@@ -509,6 +509,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(!response.ok)throw new Error('Manifest HTTP '+response.status);
     const data=await response.json();
     const items=Array.isArray(data.songs)?data.songs.filter(s=>s&&s.src):[];
+    const l=lang();
+    const page=data.archiveText?.pages?.[l]||data.archiveText?.pages?.ar||data.archiveText?.pages?.tr||data.archiveText?.pages?.en||{};
     count.textContent=T().count(items.length);
 
     let index=0;
@@ -562,7 +564,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         link.href=entry.src;link.target='_blank';link.rel='noopener noreferrer';
         link.innerHTML='<span class="material-symbols-outlined" style="font-size:16px">smart_display</span><span></span>';
         link.querySelector('span:last-child').textContent=T().youtube+': '+entry.src;
-        info.append(title,link);
+        info.append(title);
+        const songText=page['song'+(index+1)+'_text']||'';
+        if(songText){
+          const desc=document.createElement('p');
+          desc.style.cssText='margin:0 0 10px;color:#aebfc7;font:400 13px/1.8 Cairo,Geist,sans-serif;white-space:pre-wrap';
+          desc.textContent=songText;
+          info.append(desc);
+        }
+        info.append(link);
         card.append(media,info);
         grid.append(card);
       }
