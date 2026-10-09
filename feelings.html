@@ -1,0 +1,81 @@
+<!doctype html>
+<html class="dark" lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nafsam | Feelings</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Geist:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;800&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<style>
+:root{--cyan:#9be8ff;--gold:#e8c76a;--bg:#030508}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;min-height:100dvh;color:#edf9fd;background:radial-gradient(800px circle at 80% 5%,rgba(155,232,255,.09),transparent 46%),linear-gradient(145deg,#020407,#071019 52%,#030508);font-family:Tajawal,Geist,sans-serif;padding-bottom:120px}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(155,232,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(155,232,255,.025) 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(#000,transparent 88%)}
+.wrap{width:min(980px,calc(100% - 28px));margin:auto;padding:110px 0 80px}.hero{text-align:center;padding:44px 18px 54px}.eyebrow{font:600 10px Geist;letter-spacing:.28em;color:var(--cyan);text-transform:uppercase}.hero h1{margin:14px 0 18px;font-family:"Playfair Display",serif;font-size:clamp(42px,8vw,76px);line-height:1.02;background:linear-gradient(180deg,#fff4dc,#d8b878);-webkit-background-clip:text;color:transparent}.hero p{white-space:pre-line;max-width:620px;margin:auto;color:#aebfc7;font-size:17px;line-height:2}
+.section{margin:26px 0;padding:28px;border:1px solid rgba(155,232,255,.12);border-radius:28px;background:rgba(10,16,23,.68);backdrop-filter:blur(20px);box-shadow:0 24px 70px rgba(0,0,0,.28)}.section h2{margin:0 0 18px;color:#f6e3b0;font:600 28px "Playfair Display",serif}.prose p{color:#c3d0d5;line-height:2.05;margin:0 0 18px;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{padding:22px;border:1px solid rgba(232,199,106,.14);border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012))}.card b{display:block;color:var(--gold);font:600 12px Geist;letter-spacing:.15em;margin-bottom:12px}.card p{margin:0;color:#d6e0e4;line-height:1.9}.collapse p{margin:0;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.05);color:#c7d2d8;text-align:center}.ending{text-align:center;color:#e8d39e;white-space:pre-line;font:500 20px/2 "Playfair Display",serif}
+.dock{position:fixed;z-index:99;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(94vw,760px);display:flex;gap:4px;padding:7px;border:1px solid rgba(155,232,255,.18);border-radius:26px;background:rgba(4,9,14,.86);backdrop-filter:blur(22px)}.dock a{flex:1;min-width:0;text-decoration:none;color:#8398a3;text-align:center;padding:10px 3px;border-radius:18px;font:600 8px Geist;letter-spacing:.05em;text-transform:uppercase}.dock a span{display:block;font-size:21px;margin-bottom:3px}.dock a.active{color:var(--cyan);background:rgba(155,232,255,.10);box-shadow:inset 0 0 0 1px rgba(155,232,255,.18)}
+.lang{position:fixed;top:18px;right:18px;z-index:100;border:1px solid rgba(155,232,255,.18);border-radius:999px;background:rgba(4,9,14,.7);color:var(--cyan);padding:9px 13px;cursor:pointer}
+@media(max-width:640px){.grid{grid-template-columns:1fr}.section{padding:21px}.wrap{padding-top:84px}.dock a{font-size:0}.dock a span{margin:0}}
+</style>
+</head>
+<body>
+<button id="lang" class="lang" type="button" aria-label="Language"><span class="material-symbols-outlined">language</span></button>
+<main class="wrap">
+<section class="hero">
+<div class="eyebrow" id="eyebrow">SESSİZLİĞİN BAŞLANGICI</div>
+<h1 id="title">Hisler Öldüğünde</h1>
+<p id="hero-sub"></p>
+</section>
+<section class="section">
+<h2 id="story-title"></h2><div id="story" class="prose"></div>
+</section>
+<section class="section">
+<h2 id="mem-title"></h2><p id="mem-sub" style="color:#9fb0b9;margin-top:-8px"></p><div id="memories" class="grid"></div>
+</section>
+<section class="section collapse">
+<h2 id="collapse-title"></h2><div id="collapse"></div>
+</section>
+<section class="section ending" id="ending"></section>
+</main>
+<nav class="dock">
+<a href="home.html"><span class="material-symbols-outlined">home</span>Home</a>
+<a href="photos.html"><span class="material-symbols-outlined">image</span>Photos</a>
+<a href="journey.html"><span class="material-symbols-outlined">route</span>Journey</a>
+<a href="songs.html"><span class="material-symbols-outlined">music_note</span>Songs</a>
+<a href="videos.html"><span class="material-symbols-outlined">movie</span>Videos</a>
+<a href="writings.html"><span class="material-symbols-outlined">edit_note</span>Writings</a>
+<a class="active" href="feelings.html"><span class="material-symbols-outlined">favorite</span>Feelings</a>
+</nav>
+<script>
+const UI={
+ ar:{eyebrow:'بداية الصمت',title:'حين تموت المشاعر',story:'الغرق يبدأ بصمت',mem:'ذكريات مكسورة',sub:'كل واحدة منها شظية زجاج. تجرح بصمت.',collapse:'الانهيار'},
+ fa:{eyebrow:'آغاز سکوت',title:'وقتی احساسات می‌میرند',story:'غرق شدن آرام آغاز می‌شود',mem:'خاطرات شکسته',sub:'هر کدام تکه‌ای شیشه‌اند. بی‌صدا زخم می‌زنند.',collapse:'فروپاشی'},
+ tr:{eyebrow:'SESSİZLİĞİN BAŞLANGICI',title:'Hisler Öldüğünde',story:'Boğulma sessiz başlar',mem:'Kırık hatıralar',sub:'Her biri bir cam kırığı. Sessizce kanatıyor.',collapse:'Çöküş'},
+ en:{eyebrow:'THE BEGINNING OF SILENCE',title:'When Feelings Die',story:'Drowning begins quietly',mem:'Broken memories',sub:'Each one is a shard of glass. It cuts in silence.',collapse:'Collapse'}
+};
+const order=['ar','fa','tr','en'];
+let lang=localStorage.getItem('nafsam_language')||'ar';
+const pick=o=>o?.[lang]||o?.ar||o?.tr||o?.en||o?.fa||'';
+async function render(){
+ const r=await fetch('./nafsam-media.json',{cache:'no-store'}),d=await r.json();
+ const f=d.feelings?.[lang]||d.feelings?.tr||{};
+ document.documentElement.lang=lang;document.documentElement.dir=['ar','fa'].includes(lang)?'rtl':'ltr';
+ const u=UI[lang]||UI.en;
+ document.getElementById('eyebrow').textContent=u.eyebrow;
+ document.getElementById('title').textContent=u.title;
+ document.getElementById('hero-sub').textContent=f.heroSub||'';
+ document.getElementById('story-title').textContent=f.storyTitle||u.story;
+ document.getElementById('story').innerHTML=(f.storyParagraphs||[]).map(x=>'<p>'+x.replace(/</g,'&lt;')+'</p>').join('');
+ document.getElementById('mem-title').textContent=f.memoriesTitle||u.mem;
+ document.getElementById('mem-sub').textContent=f.memoriesSub||u.sub;
+ document.getElementById('memories').innerHTML=(f.memoryFragments||[]).map(x=>'<article class="card"><b>'+x.label+'</b><p>'+x.body.replace(/</g,'&lt;')+'</p></article>').join('');
+ document.getElementById('collapse-title').textContent=f.collapseTitle||u.collapse;
+ document.getElementById('collapse').innerHTML=(f.collapseLines||[]).map(x=>'<p>'+x.replace(/</g,'&lt;')+'</p>').join('');
+ document.getElementById('ending').textContent=f.endingLine||'';
+}
+document.getElementById('lang').onclick=()=>{lang=order[(order.indexOf(lang)+1)%order.length];localStorage.setItem('nafsam_language',lang);render()};
+render().catch(console.error);
+</script>
+<script src="./page-audio.js"></script>
+</body></html>
