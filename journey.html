@@ -211,7 +211,22 @@ header nav:not(.nafsam-dock){display:none!important}
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="نفسم"/>
-</head>
+<style id="nafsam-real-journey">
+#journey-real-root{width:min(1180px,92vw);margin:0 auto 150px}
+.journey-real-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.journey-memory-card{overflow:hidden;border-radius:24px;border:1px solid rgba(165,231,255,.12);background:rgba(8,15,22,.7);box-shadow:0 18px 55px rgba(0,0,0,.22)}
+.journey-memory-image{aspect-ratio:4/5;background:#05080d;overflow:hidden}
+.journey-memory-image img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .55s ease,filter .55s ease}
+.journey-memory-card:hover img{transform:scale(1.025)}
+.journey-memory-copy{padding:18px 19px 21px}
+.journey-memory-copy h3{margin:0 0 9px;color:#edf9fd;font:600 20px/1.45 "Playfair Display",serif}
+.journey-memory-copy p{margin:0;color:#aebfc7;font:400 15px/1.9 Cairo,Geist,sans-serif;white-space:pre-wrap}
+.journey-memory-file{display:block;margin-top:13px;color:#6e8895;font:500 9px/1.4 Geist,system-ui;letter-spacing:.08em;overflow-wrap:anywhere}
+.journey-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 24px}
+.journey-toolbar p{margin:0;color:#8cecff;font:600 10px Geist;letter-spacing:.18em}
+.journey-load-more{display:block;margin:28px auto 0;padding:12px 22px;border:1px solid rgba(165,231,255,.26);border-radius:999px;background:rgba(165,231,255,.05);color:#a5e7ff;cursor:pointer}
+@media(max-width:720px){.journey-real-grid{grid-template-columns:1fr}.journey-memory-card{border-radius:20px}}
+</style></head>
 <body class="font-body-md text-body-md selection:bg-primary/30"><div class="fx-orb one"></div><div class="fx-orb two"></div><div class="fx-status"><i></i><span>NAFSAM // PRIVATE MEMORY SYSTEM</span></div>
 <script id="nafsam-future-engine">
 (()=>{let raf=0;addEventListener('pointermove',e=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{document.documentElement.style.setProperty('--mx',e.clientX+'px');document.documentElement.style.setProperty('--my',e.clientY+'px')})},{passive:true});
@@ -248,61 +263,13 @@ document.querySelectorAll('main > *, section').forEach((el,i)=>{el.animate([{opa
 </header>
 <!-- Journey Timeline Content -->
 <main class="relative min-h-screen pb-40">
-<!-- Central Timeline Axis -->
-<div class="absolute left-1/2 top-0 bottom-0 w-px timeline-line -translate-x-1/2 z-0 hidden md:block"></div>
-<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop space-y-24 md:space-y-48 relative">
-<!-- Entry 1: Left Aligned -->
-<div class="relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-<div class="md:pr-16 text-right order-2 md:order-1">
-<div class="inline-block px-4 py-1 glass-panel rounded-full font-mono-ui text-[10px] text-primary uppercase tracking-[0.2em] mb-4">October 14, 2024</div>
-<h2 class="font-headline-md text-headline-md text-on-surface mb-4 italic">The Genesis of Stillness</h2>
-<p class="text-on-surface-variant font-body-md leading-relaxed mb-8">
-                        The first archive was formed in the quiet of a coastal morning. A deliberate choice to freeze the ephemeral spray of the Atlantic against the grey cliffs of Vík.
-                    </p>
-<button class="font-mono-ui text-label-caps uppercase border border-primary/30 px-6 py-2 rounded-full hover:bg-primary/10 transition-all active:scale-95 text-primary">View Metadata</button>
-</div>
-<div class="relative order-1 md:order-2 group">
-<div class="absolute -left-6 top-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded-full timeline-node z-10 hidden md:block"></div>
-<div class="aspect-[4/3] glass-panel p-2 overflow-hidden rounded-xl parallax-target shadow-2xl" data-speed="0.05">
-<div class="w-full h-full bg-cover bg-center rounded-lg grayscale group-hover:grayscale-0 transition-all duration-1000" data-alt="A cinematic, high-contrast black and white photograph of dramatic basalt cliffs in Vík, Iceland. Moody atmospheric fog rolls over the dark grey Atlantic ocean waves crashing against the shore. The lighting is ethereal and soft, evoking a sense of deep solitude and technological preservation." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCR0gtmcQFX343q_hIWQ6asimtL5hDgEd766KW3SJ-fjabyTGGKLOpwT6Dl3Y-Ff4K1DubHxnlFy6Gfx5UmtxWUdEGnNNCVDXKMJ3BzSjxH_1Ccg-VAbLsZjXLQk0tGUR7bA3JKb0i4kQjTfBdzzOQHPD2jM5SF_JFNzvcFybs0xJZjdDGVliOISfeHwK0SmZlHHrgx-5Bjf3j6IcLoO1Qb1nlPN11GNQ4agp5LPwlawB71VRREXKchukvbnzW4678fwFebB7W00nI')"></div>
-</div>
-</div>
-</div>
-<!-- Entry 2: Right Aligned -->
-<div class="relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-<div class="relative order-1 group">
-<div class="absolute -right-6 top-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded-full timeline-node z-10 hidden md:block"></div>
-<div class="aspect-[4/3] glass-panel p-2 overflow-hidden rounded-xl parallax-target shadow-2xl" data-speed="-0.05">
-<div class="w-full h-full bg-cover bg-center rounded-lg grayscale group-hover:grayscale-0 transition-all duration-1000" data-alt="A macro close-up of a futuristic glowing memory chip embedded in a translucent crystalline structure. Blue and gold light fibers weave through the glass-like interior. The background is an infinite obsidian void, giving the impression of a digital relic suspended in deep space." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCDPTZ32gYZZBu_-JJWOJodtpPmD92fTAMye8K5esHL6emXJgt_2-LI3W-ZIdO87PPzLDif2SQ2MeVp10igqItBd33LfQnxJPzzmsqf8f_GiDvMmIVB6xYj-3S-5QTjjD0yCenJLpU5v4u-bH-b_2GWJvNtjY7dIUnim9-irogE9RdGFwe8fr2RGqQa8KCBRwdwaEc6Z2hJ7MNLEDJBBvz0KTYNS8n7c1Lcrql_OjEJ3dkjj6_udb_4CO7ES7gpNQLqwain8aDNSMs')"></div>
-</div>
-</div>
-<div class="md:pl-16 order-2">
-<div class="inline-block px-4 py-1 glass-panel rounded-full font-mono-ui text-[10px] text-primary uppercase tracking-[0.2em] mb-4">December 02, 2024</div>
-<h2 class="font-headline-md text-headline-md text-on-surface mb-4 italic">The Encryption of Thought</h2>
-<p class="text-on-surface-variant font-body-md leading-relaxed mb-8">
-                        Vocalis III encryption protocols were finalized today. The neural patterns of the primary archivist were successfully mapped to the holographic matrix, ensuring total fidelity of emotional resonance.
-                    </p>
-<button class="font-mono-ui text-label-caps uppercase border border-primary/30 px-6 py-2 rounded-full hover:bg-primary/10 transition-all active:scale-95 text-primary">Access Vault</button>
-</div>
-</div>
-<!-- Entry 3: Left Aligned -->
-<div class="relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-<div class="md:pr-16 text-right order-2 md:order-1">
-<div class="inline-block px-4 py-1 glass-panel rounded-full font-mono-ui text-[10px] text-primary uppercase tracking-[0.2em] mb-4">January 19, 2025</div>
-<h2 class="font-headline-md text-headline-md text-on-surface mb-4 italic">Ethereal Convergence</h2>
-<p class="text-on-surface-variant font-body-md leading-relaxed mb-8">
-                        The integration of the multi-layered aurora gradients. A visual symphony designed to mimic the shifting nature of memories—never static, always breathing, forever evolving within the archival space.
-                    </p>
-<button class="font-mono-ui text-label-caps uppercase border border-primary/30 px-6 py-2 rounded-full hover:bg-primary/10 transition-all active:scale-95 text-primary">Analyze Waveforms</button>
-</div>
-<div class="relative order-1 md:order-2 group">
-<div class="absolute -left-6 top-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded-full timeline-node z-10 hidden md:block"></div>
-<div class="aspect-[4/3] glass-panel p-2 overflow-hidden rounded-xl parallax-target shadow-2xl" data-speed="0.08">
-<div class="w-full h-full bg-cover bg-center rounded-lg grayscale group-hover:grayscale-0 transition-all duration-1000" data-alt="An artistic rendering of soft, ethereal aurora borealis light dancing across a dark celestial sky. The colors are muted cyan and deep indigo. The composition is minimal and elegant, with the lights appearing like gossamer ribbons of silk floating in a silent, high-tech vacuum." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCfNSY-Wq4KtkoV8CuLfVHZEp-GFTMw4RpDS50bGv1Lkgpm6RZflypZTHExbLsh3eAiSxYvXbHf4E0kzy1cH86dzmLkxy5bqdAB5ckPtiCiWsxTquDbeaWzcGD-no3ASHANc6UMoDUuX93wjD4GZ73fJN9ETMQRDjMc0JPJrbez8_ToapZbpIs404MAe-WjB6e0aqHu81bWgYBQ41l5zWW8f_yJNJiSxjU3V2RP2oR8HbmOkDu9jv09uK0X5UEi4cKsl3CT-3mCZUE')"></div>
-</div>
-</div>
-</div>
-</div>
+  <section id="journey-real-root" aria-live="polite">
+    <div class="journey-toolbar">
+      <p id="journey-count">Loading journey…</p>
+    </div>
+    <div id="journey-real-grid" class="journey-real-grid"></div>
+    <button id="journey-more" type="button" class="journey-load-more hidden">Load more</button>
+  </section>
 </main>
 <!-- Bottom Floating Navigation -->
 <nav class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl z-50 flex justify-around items-center py-3 px-6 glass-panel rounded-full scanlines shadow-[0_0_40px_rgba(0,210,255,0.15)] after:content-[''] after:absolute after:inset-0 after:bg-[url('scanlines.png')] after:opacity-5 after:pointer-events-none" id="bottom-nav">
@@ -474,4 +441,84 @@ document.addEventListener('DOMContentLoaded',()=>{
  const close=()=>{viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');media.replaceChildren()};
  viewer.querySelector('.holo-close').addEventListener('click',close);viewer.addEventListener('click',e=>{if(e.target===viewer)close()});addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 });
-</script><script src="./i18n.js"></script><script src="./page-audio.js"></script></body></html>
+</script><script src="./i18n.js"></script><script src="./page-audio.js"></script><script id="nafsam-real-journey-loader">
+document.addEventListener('DOMContentLoaded',async()=>{
+  const grid=document.getElementById('journey-real-grid');
+  const count=document.getElementById('journey-count');
+  const more=document.getElementById('journey-more');
+  if(!grid||!count||!more)return;
+
+  const lang=()=>{try{return localStorage.getItem('nafsam_language')||'ar'}catch(e){return 'ar'}};
+  const ui={
+    ar:{loading:'جارِ تحميل الرحلة…',count:n=>n+' صورة في الرحلة',more:'تحميل المزيد',untitled:'ذكرى'},
+    fa:{loading:'در حال بارگذاری سفر…',count:n=>n+' عکس در سفر',more:'نمایش بیشتر',untitled:'خاطره'},
+    tr:{loading:'Yolculuk yükleniyor…',count:n=>n+' yolculuk fotoğrafı',more:'Daha fazla yükle',untitled:'Anı'},
+    en:{loading:'Loading journey…',count:n=>n+' journey photos',more:'Load more',untitled:'Memory'}
+  };
+  const T=()=>ui[lang()]||ui.en;
+  count.textContent=T().loading;more.textContent=T().more;
+
+  const base='https://ech-nafasm-ska.pages.dev/pub/0524488da2bf9d4cb0d9fc5afa6618ca01574416cd04c3bf';
+  const fileUrl=(folder,file)=>base+'/'+folder+'/'+String(file).split('/').map(encodeURIComponent).join('/');
+
+  try{
+    const r=await fetch('./nafsam-media.json',{cache:'no-store'});
+    if(!r.ok)throw new Error('Manifest HTTP '+r.status);
+    const data=await r.json();
+    const photos=Array.isArray(data.journeyPhotos)&&data.journeyPhotos.length?data.journeyPhotos:(Array.isArray(data.photos)?data.photos:[]);
+    const caps=data.archiveText?.captions||{};
+    const l=lang();
+    const captionList=caps[l]||caps.ar||caps.tr||[];
+    count.textContent=T().count(photos.length);
+
+    let index=0;
+    const batch=18;
+    const add=()=>{
+      const stop=Math.min(index+batch,photos.length);
+      for(;index<stop;index++){
+        const filename=typeof photos[index]==='string'?photos[index]:(photos[index]?.file||'');
+        if(!filename)continue;
+        const cap=captionList[index]||null;
+
+        const card=document.createElement('article');
+        card.className='journey-memory-card';
+
+        const media=document.createElement('div');
+        media.className='journey-memory-image';
+        const img=document.createElement('img');
+        img.loading='lazy';img.decoding='async';
+        img.alt=cap?.title||T().untitled+' '+(index+1);
+        const full=fileUrl('images/all_photos',filename);
+        const thumb=fileUrl('images/_thumbs/all_photos',filename.replace(/\.(jpe?g|png|heic|webp)$/i,'.webp'));
+        img.src=thumb;
+        img.onerror=()=>{if(img.src!==full){img.onerror=null;img.src=full}};
+        media.append(img);
+
+        const copy=document.createElement('div');
+        copy.className='journey-memory-copy';
+        const title=document.createElement('h3');
+        title.textContent=cap?.title||T().untitled+' '+(index+1);
+        copy.append(title);
+        if(cap?.text){
+          const p=document.createElement('p');
+          p.textContent=cap.text;
+          copy.append(p);
+        }
+        const file=document.createElement('span');
+        file.className='journey-memory-file';
+        file.textContent=filename;
+        copy.append(file);
+
+        card.append(media,copy);
+        grid.append(card);
+      }
+      more.classList.toggle('hidden',index>=photos.length);
+    };
+    more.onclick=add;
+    add();
+  }catch(e){
+    console.error('NAFSAM journey:',e);
+    count.textContent='Journey could not be loaded.';
+  }
+});
+</script></body></html>
