@@ -1,0 +1,3 @@
+[submodule "upstream-ech-nafasm-ska"]
+	path = upstream-repository
+	url = https://github.com/abo330899-debug/ech-nafasm-ska.git
