@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nafsam - Songs Archive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Playfair+Display:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-container": "#00566a",
+                      "tertiary-container": "#c3c0c0",
+                      "surface-bright": "#3a3939",
+                      "secondary-fixed-dim": "#e9c349",
+                      "secondary": "#e9c349",
+                      "outline": "#859399",
+                      "on-tertiary-fixed-variant": "#474746",
+                      "on-tertiary-container": "#4f4e4e",
+                      "inverse-surface": "#e5e2e1",
+                      "surface-container-low": "#1c1b1b",
+                      "secondary-fixed": "#ffe088",
+                      "error-container": "#93000a",
+                      "primary-fixed-dim": "#47d6ff",
+                      "on-tertiary-fixed": "#1c1b1b",
+                      "surface-container-lowest": "#0e0e0e",
+                      "background": "#131313",
+                      "surface-dim": "#131313",
+                      "inverse-primary": "#00677f",
+                      "on-primary": "#003543",
+                      "tertiary-fixed": "#e5e2e1",
+                      "surface": "#131313",
+                      "on-primary-fixed-variant": "#004e60",
+                      "outline-variant": "#3c494e",
+                      "surface-container-high": "#2a2a2a",
+                      "on-primary-fixed": "#001f28",
+                      "on-surface-variant": "#bbc9cf",
+                      "on-secondary": "#3c2f00",
+                      "surface-container": "#201f1f",
+                      "error": "#ffb4ab",
+                      "primary": "#a5e7ff",
+                      "secondary-container": "#af8d11",
+                      "surface-tint": "#47d6ff",
+                      "on-secondary-fixed": "#241a00",
+                      "surface-variant": "#353534",
+                      "on-error-container": "#ffdad6",
+                      "inverse-on-surface": "#313030",
+                      "on-error": "#690005",
+                      "on-background": "#e5e2e1",
+                      "tertiary": "#dfdcdb",
+                      "primary-fixed": "#b6ebff",
+                      "on-secondary-container": "#342800",
+                      "on-surface": "#e5e2e1",
+                      "surface-container-highest": "#353534",
+                      "on-secondary-fixed-variant": "#574500",
+                      "tertiary-fixed-dim": "#c8c6c5",
+                      "primary-container": "#00d2ff",
+                      "on-tertiary": "#313030"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "20px",
+                      "unit": "8px",
+                      "margin-desktop": "64px",
+                      "gutter": "24px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "mono-ui": [
+                              "Geist"
+                      ],
+                      "label-caps": [
+                              "Geist"
+                      ],
+                      "headline-sm": [
+                              "Playfair Display"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "display-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "body-md": [
+                              "Geist"
+                      ],
+                      "body-lg": [
+                              "Geist"
+                      ],
+                      "display-lg": [
+                              "Playfair Display"
+                      ]
+              },
+              "fontSize": {
+                      "mono-ui": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #050505;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Background Effects */
+        .ambient-aurora {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 210, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(165, 231, 255, 0.03) 0%, transparent 40%);
+            z-index: -2;
+            pointer-events: none;
+            animation: drift 30s linear infinite alternate;
+        }
+        
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay;
+        }
+
+        .scanlines {
+            background-image: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 3px,
+                rgba(255, 255, 255, 0.02) 4px
+            );
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-2%, 3%) scale(1.05); }
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .glass-panel-interactive:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(165, 231, 255, 0.3);
+            box-shadow: 0 0 20px rgba(165, 231, 255, 0.1);
+        }
+
+        /* Audio Player Customizations */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background: #a5e7ff;
+            cursor: pointer;
+            margin-top: -5px;
+            box-shadow: 0 0 10px rgba(165, 231, 255, 0.8);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 2px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 1px;
+        }
+        
+        input[type=range]:focus {
+            outline: none;
+        }
+        
+        .play-btn-glow {
+            box-shadow: 0 0 15px rgba(165, 231, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .play-btn-glow:hover {
+            box-shadow: 0 0 25px rgba(165, 231, 255, 0.5);
+            background-color: rgba(165, 231, 255, 0.2);
+        }
+    </style>
+<style id="nafsam-premium-nav">
+:root{--nx:#9be8ff;--ng:#e8c76a;--nb:#05070a;--np:rgba(12,18,24,.72)}
+body{padding-bottom:max(112px,calc(96px + env(safe-area-inset-bottom)))}
+.nafsam-dock{position:fixed;z-index:9999;left:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;gap:6px;width:min(94vw,720px);padding:8px;border:1px solid rgba(155,232,255,.18);border-radius:28px;background:linear-gradient(135deg,rgba(15,23,31,.86),rgba(5,7,10,.74));box-shadow:0 18px 60px rgba(0,0,0,.55),inset 0 1px rgba(255,255,255,.06);backdrop-filter:blur(24px) saturate(145%);-webkit-backdrop-filter:blur(24px) saturate(145%)}
+.nafsam-dock:before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(110deg,rgba(155,232,255,.6),transparent 35%,transparent 65%,rgba(232,199,106,.45));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;pointer-events:none}
+.nafsam-link{position:relative;flex:1;min-width:0;height:58px;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#82929d;text-decoration:none;transition:.28s cubic-bezier(.2,.8,.2,1);font:600 9px/1 Geist,system-ui;letter-spacing:.08em;text-transform:uppercase}
+.nafsam-link .material-symbols-outlined{font-size:21px;transition:.28s}
+.nafsam-link:hover{color:#eafaff;background:rgba(155,232,255,.07);transform:translateY(-3px)}
+.nafsam-link.active{color:var(--nx);background:linear-gradient(180deg,rgba(155,232,255,.15),rgba(155,232,255,.05));box-shadow:inset 0 0 0 1px rgba(155,232,255,.22),0 0 24px rgba(86,208,255,.10)}
+.nafsam-link.active:after{content:"";position:absolute;bottom:5px;width:18px;height:2px;border-radius:9px;background:linear-gradient(90deg,var(--nx),var(--ng));box-shadow:0 0 10px var(--nx)}
+.nafsam-link.active .material-symbols-outlined{transform:translateY(-2px);text-shadow:0 0 16px rgba(155,232,255,.75)}
+@media(max-width:620px){.nafsam-dock{width:calc(100vw - 18px);gap:2px;padding:6px;border-radius:24px}.nafsam-link{height:54px;border-radius:17px;font-size:7px;letter-spacing:.04em}.nafsam-link .material-symbols-outlined{font-size:20px}.nafsam-link:nth-child(5){display:none}}
+@media(prefers-reduced-motion:reduce){.nafsam-link,.nafsam-link .material-symbols-outlined{transition:none}}
+</style><style id="nafsam-future-system">
+:root{--fx-cyan:#8cecff;--fx-blue:#5b8cff;--fx-gold:#e8c76a;--fx-ink:#030508;--mx:50vw;--my:35vh}
+html{background:#030508;scroll-behavior:smooth}
+body{position:relative;min-height:100dvh;background:
+radial-gradient(900px circle at var(--mx) var(--my),rgba(91,140,255,.10),transparent 42%),
+radial-gradient(700px circle at 78% 12%,rgba(140,236,255,.08),transparent 45%),
+linear-gradient(145deg,#020407 0%,#071019 52%,#030508 100%)!important}
+body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:
+linear-gradient(rgba(140,236,255,.035) 1px,transparent 1px),
+linear-gradient(90deg,rgba(140,236,255,.035) 1px,transparent 1px);
+background-size:54px 54px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 88%);animation:fxGrid 18s linear infinite}
+body:after{content:"";position:fixed;z-index:-1;inset:-20%;pointer-events:none;background:
+conic-gradient(from 180deg at 50% 50%,transparent,rgba(140,236,255,.025),transparent 28%,rgba(232,199,106,.025),transparent 58%);
+filter:blur(28px);animation:fxOrbit 32s linear infinite}
+@keyframes fxGrid{to{transform:translateY(54px)}}
+@keyframes fxOrbit{to{transform:rotate(360deg)}}
+.fx-orb{position:fixed;z-index:-1;border-radius:999px;filter:blur(1px);pointer-events:none;opacity:.65}
+.fx-orb.one{width:280px;height:280px;right:-110px;top:18%;background:radial-gradient(circle,rgba(140,236,255,.13),transparent 68%);animation:fxFloat 9s ease-in-out infinite}
+.fx-orb.two{width:360px;height:360px;left:-180px;bottom:10%;background:radial-gradient(circle,rgba(91,140,255,.11),transparent 68%);animation:fxFloat 12s ease-in-out infinite reverse}
+@keyframes fxFloat{50%{transform:translate3d(0,-28px,0) scale(1.06)}}
+.fx-status{position:fixed;z-index:9998;top:max(14px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid rgba(140,236,255,.14);border-radius:999px;background:rgba(3,8,13,.56);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);font:600 8px/1 Geist,system-ui;letter-spacing:.18em;color:rgba(210,244,255,.62);text-transform:uppercase;box-shadow:0 8px 35px rgba(0,0,0,.28)}
+.fx-status i{width:5px;height:5px;border-radius:50%;background:#82ffd0;box-shadow:0 0 12px #82ffd0;animation:fxPulse 1.8s ease-in-out infinite}
+@keyframes fxPulse{50%{opacity:.35;transform:scale(.7)}}
+.glass-panel,[class*="surface-container"],article{transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s}
+.glass-panel:hover,article:hover{border-color:rgba(140,236,255,.18)!important;box-shadow:0 22px 70px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.035);transform:translateY(-3px)}
+button:not(.nafsam-link),a[class*="rounded"]:not(.nafsam-link){transition:transform .25s ease,filter .25s ease,box-shadow .25s ease}
+button:not(.nafsam-link):hover,a[class*="rounded"]:not(.nafsam-link):hover{transform:translateY(-2px);filter:brightness(1.08)}
+::selection{background:rgba(140,236,255,.22);color:#fff}
+@media(max-width:640px){.fx-status{top:max(8px,env(safe-area-inset-top));font-size:7px}.fx-orb.one{width:190px;height:190px}}
+@media(prefers-reduced-motion:reduce){body:before,body:after,.fx-orb,.fx-status i{animation:none!important}}
+</style><style id="nafsam-hide-legacy-nav">
+/* Keep only the unified futuristic navigation */
+body > nav:not(.nafsam-dock),
+body > header nav,
+main nav:not(.nafsam-dock),
+header nav:not(.nafsam-dock){display:none!important}
+.nafsam-dock{display:flex!important}
+</style><style id="legacy-r2-ui">
+#legacy-media-root{position:relative;z-index:5;width:min(1180px,92vw);margin:34px auto 150px}
+.legacy-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:0 0 24px;padding:0 4px}.legacy-head h2{font:400 clamp(30px,5vw,58px)/1 Playfair Display,serif;color:#eefbff}.legacy-head p{font:600 9px Geist;letter-spacing:.18em;color:#8cecff;text-transform:uppercase}
+.legacy-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.legacy-card{position:relative;overflow:hidden;border-radius:22px;border:1px solid rgba(140,236,255,.12);background:rgba(8,15,22,.68);box-shadow:0 20px 55px rgba(0,0,0,.22);min-width:0}.legacy-card img{width:100%;height:100%;object-fit:cover;display:block}.legacy-photo{aspect-ratio:4/5;cursor:zoom-in}.legacy-video{aspect-ratio:16/10;cursor:pointer}.legacy-video img{opacity:.72}.legacy-play{position:absolute;inset:0;display:grid;place-items:center}.legacy-play b{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:rgba(4,13,20,.72);border:1px solid rgba(140,236,255,.32);color:#8cecff;font-size:26px;box-shadow:0 0 35px rgba(140,236,255,.15)}
+.legacy-meta{padding:14px 16px 16px}.legacy-meta strong{display:block;color:#e9f7fb;font:500 16px Geist}.legacy-meta span{display:block;margin-top:5px;color:#8295a0;font:400 12px Geist}
+.legacy-song{padding:20px}.legacy-song audio{width:100%;margin-top:14px;filter:invert(.88) hue-rotate(155deg)}.legacy-loading{padding:50px;text-align:center;color:#8cecff;font:600 10px Geist;letter-spacing:.2em}
+@media(max-width:800px){.legacy-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.legacy-grid{grid-template-columns:1fr}.legacy-photo{aspect-ratio:4/4.7}}
+</style>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2"/>
+<link rel="icon" type="image/png" href="/apple-touch-icon.png?v=2"/>
+<link rel="manifest" href="/manifest.webmanifest?v=2"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="نفسم"/>
+<style id="nafsam-youtube-songs">
+#youtube-song-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.yt-song{overflow:hidden;border-radius:22px;border:1px solid rgba(165,231,255,.12);background:rgba(8,14,22,.72);box-shadow:0 18px 46px rgba(0,0,0,.24)}
+.yt-media{position:relative;aspect-ratio:16/9;background:#05070b;overflow:hidden}
+.yt-media img,.yt-media iframe{width:100%;height:100%;display:block;border:0;object-fit:cover}
+.yt-media img{transition:transform .4s ease,filter .4s ease}
+.yt-song:hover .yt-media img{transform:scale(1.025);filter:saturate(1.08)}
+.yt-overlay{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(to top,rgba(0,0,0,.36),transparent 60%);border:0;cursor:pointer}
+.yt-play{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:rgba(4,10,16,.82);border:1px solid rgba(165,231,255,.38);color:#a5e7ff;box-shadow:0 0 28px rgba(71,214,255,.14);font-size:28px}
+.yt-info{padding:15px 16px 17px}
+.yt-info h3{margin:0 0 8px;color:#edf9fd;font:600 16px/1.45 Geist,system-ui;white-space:normal}
+.yt-link{display:flex;align-items:center;gap:7px;color:#86dfff;font:500 11px/1.4 Geist,system-ui;text-decoration:none;overflow-wrap:anywhere}
+.yt-link:hover{text-decoration:underline}
+.yt-count{color:#8fe7ff;font:600 11px Geist;letter-spacing:.12em}
+.yt-more{display:block;margin:28px auto 0;padding:12px 22px;border:1px solid rgba(165,231,255,.28);border-radius:999px;background:rgba(165,231,255,.06);color:#a5e7ff;cursor:pointer}
+@media(max-width:900px){#youtube-song-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){#youtube-song-grid{grid-template-columns:1fr}}
+</style></head>
+<body class="antialiased min-h-screen relative flex flex-col items-center pb-32"><div class="fx-orb one"></div><div class="fx-orb two"></div><div class="fx-status"><i></i><span>NAFSAM // PRIVATE MEMORY SYSTEM</span></div>
+<script id="nafsam-future-engine">
+(()=>{let raf=0;addEventListener('pointermove',e=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{document.documentElement.style.setProperty('--mx',e.clientX+'px');document.documentElement.style.setProperty('--my',e.clientY+'px')})},{passive:true});
+document.querySelectorAll('main > *, section').forEach((el,i)=>{el.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'translateY(0)'}],{duration:650,delay:Math.min(i*55,420),easing:'cubic-bezier(.2,.8,.2,1)',fill:'both'})});
+})();
+</script>
+<!-- Ambient Layers -->
+<div class="ambient-aurora"></div>
+<div class="film-grain"></div>
+<!-- TopAppBar -->
+<header class="bg-transparent fixed top-0 w-full bg-gradient-to-b from-surface-dim/80 to-transparent backdrop-blur-sm flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full z-50 transition-all">
+<div class="flex items-center gap-4">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg tracking-tighter text-primary uppercase">Nafsam</h1>
+<span class="text-on-surface-variant font-mono-ui text-mono-ui uppercase mt-2 hidden md:block opacity-60">/// Archive / Songs</span>
+</div>
+<div class="flex items-center gap-4 hidden md:flex">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer" data-icon="language">language</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer" data-icon="lock">lock</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer" data-icon="settings">settings</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-container-max px-margin-mobile md:px-margin-desktop pt-32 md:pt-40 pb-40 flex-grow z-10">
+  <section class="mb-10">
+    <p class="font-label-caps text-label-caps text-secondary tracking-[.22em] mb-3" data-i18n="songs.archive">Archive / Songs</p>
+    <h1 class="font-headline-md text-headline-md text-primary mb-3" data-i18n="songs.chamber">Resonance Chamber</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl" data-i18n="songs.desc">Archived frequencies. Audio logs and musical fragments preserved in the void.</p>
+  </section>
+  <section id="youtube-songs-root" aria-live="polite">
+    <div class="flex items-center justify-between gap-4 mb-5 flex-wrap">
+      <span id="song-count" class="yt-count" data-i18n="songs.loading">Loading songs…</span>
+    </div>
+    <div id="youtube-song-grid"></div>
+    <button id="song-more" type="button" class="yt-more hidden" data-i18n="songs.more">Load more songs</button>
+  </section>
+</main>
+<!-- BottomNavBar (Hidden on MD+, visible on mobile/tablet) -->
+<nav class="md:hidden bg-surface-container-low/10 font-label-caps text-label-caps uppercase text-primary font-mono-ui docked fixed bottom-8 left-1/2 -translate-x-1/2 rounded-full w-[90%] max-w-4xl backdrop-blur-[30px] border border-primary/20 bg-clip-padding relative after:content-[''] after:absolute after:inset-0 after:bg-[url('scanlines.png')] after:opacity-5 after:pointer-events-none shadow-[0_0_40px_rgba(0,210,255,0.15)] fixed bottom-8 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl z-50 flex justify-around items-center py-3 px-6">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-on-surface transition-all duration-500 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-on-surface transition-all duration-500 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined mb-1">image</span>
+<span class="text-[10px]">Photos</span>
+</a>
+<!-- ACTIVE STATE: Songs -->
+<a class="flex flex-col items-center justify-center bg-primary/10 text-primary border border-primary/30 rounded-full px-4 py-2 scale-110 hover:bg-white/5 Active: scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1">music_note</span>
+<span class="text-[10px]">Songs</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-on-surface transition-all duration-500 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined mb-1">movie</span>
+<span class="text-[10px]">Videos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-on-surface transition-all duration-500 hover:bg-white/5 hidden sm:flex" href="#">
+<span class="material-symbols-outlined mb-1">edit_note</span>
+<span class="text-[10px]">Writings</span>
+</a>
+</nav>
+<!-- Top Nav Cluster for Desktop (Replaces BottomNavBar intent) -->
+<nav class="hidden md:flex fixed top-24 left-1/2 -translate-x-1/2 z-40 bg-surface-container-low/30 backdrop-blur-md border border-white/5 rounded-full px-6 py-2 gap-8 shadow-2xl">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors tracking-widest uppercase" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors tracking-widest uppercase" href="#">Photos</a>
+<a class="font-label-caps text-label-caps text-primary border-b border-primary tracking-widest uppercase pb-1" href="#">Songs</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors tracking-widest uppercase" href="#">Videos</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors tracking-widest uppercase" href="#">Writings</a>
+</nav>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const routes = {
+    home: './home.html', photos: './photos.html', gallery: './photos.html',
+    songs: './songs.html', videos: './videos.html', writings: './writings.html',
+    journey: './journey.html', archive: './home.html'
+  };
+  document.querySelectorAll('a, button, nav div[role="button"], nav > div').forEach(el => {
+    const label = (el.textContent || '').trim().toLowerCase();
+    for (const [key, url] of Object.entries(routes)) {
+      if (label === key || label.endsWith(' '+key) || label.includes(key)) {
+        if (el.tagName === 'A' && (el.getAttribute('href') === '#' || !el.getAttribute('href'))) el.setAttribute('href', url);
+        else if (el.tagName !== 'A' && !el.closest('form')) {
+          el.style.cursor = 'pointer';
+          el.addEventListener('click', () => location.href = url);
+        }
+        break;
+      }
+    }
+  });
+});
+</script><nav class="nafsam-dock" aria-label="Nafsam archive navigation">
+<a class="nafsam-link " href="./home.html"><span class="material-symbols-outlined">home</span><span>Home</span></a>
+<a class="nafsam-link " href="./photos.html"><span class="material-symbols-outlined">photo_library</span><span>Photos</span></a>
+<a class="nafsam-link active" href="./songs.html"><span class="material-symbols-outlined">graphic_eq</span><span>Songs</span></a>
+<a class="nafsam-link " href="./videos.html"><span class="material-symbols-outlined">movie</span><span>Videos</span></a>
+<a class="nafsam-link " href="./writings.html"><span class="material-symbols-outlined">ink_pen</span><span>Writings</span></a>
+<a class="nafsam-link " href="./journey.html"><span class="material-symbols-outlined">route</span><span>Journey</span></a>
+</nav><style id="nafsam-2099">
+#fx-transition{position:fixed;inset:0;z-index:20000;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 50%,rgba(140,236,255,.18),#020508 42%,#010203 75%);transition:opacity .32s ease}
+#fx-transition.on{opacity:1;pointer-events:auto}
+#fx-transition:before,#fx-transition:after{content:"";position:absolute;left:0;width:100%;height:1px;background:#8cecff;box-shadow:0 0 18px #8cecff;opacity:.7}
+#fx-transition:before{top:42%;animation:scanA 1.8s linear infinite}#fx-transition:after{top:58%;animation:scanB 2.2s linear infinite reverse}
+@keyframes scanA{50%{transform:translateY(120px);opacity:.15}}@keyframes scanB{50%{transform:translateY(-120px);opacity:.15}}
+#holo-viewer{position:fixed;inset:0;z-index:21000;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(1,4,8,.82);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+#holo-viewer.open{display:flex;animation:holoIn .28s ease both}@keyframes holoIn{from{opacity:0;transform:scale(1.02)}}
+.holo-shell{position:relative;width:min(94vw,1050px);height:min(84vh,760px);padding:14px;border:1px solid rgba(140,236,255,.3);border-radius:30px;background:linear-gradient(145deg,rgba(10,18,28,.9),rgba(3,7,12,.88));box-shadow:0 35px 120px #000,0 0 60px rgba(91,140,255,.12),inset 0 0 50px rgba(140,236,255,.035);overflow:hidden}
+.holo-shell:before{content:"HOLOGRAPHIC MEMORY // DECRYPTED";position:absolute;z-index:3;top:18px;left:22px;font:600 9px Geist;letter-spacing:.18em;color:#8cecff;background:rgba(3,8,13,.7);padding:8px 10px;border-radius:99px;border:1px solid rgba(140,236,255,.15)}
+.holo-shell img,.holo-shell video{width:100%;height:100%;object-fit:contain;border-radius:20px;background:#020407}
+.holo-close{position:absolute;z-index:5;right:22px;top:18px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(140,236,255,.22);background:rgba(2,8,13,.8);color:#dff9ff;font-size:20px;cursor:pointer}
+.holo-line{position:absolute;z-index:4;left:2%;right:2%;height:1px;top:0;background:linear-gradient(90deg,transparent,#8cecff,transparent);box-shadow:0 0 16px #8cecff;animation:holoScan 3.2s linear infinite;pointer-events:none}@keyframes holoScan{to{top:100%}}
+img[data-holo]{cursor:zoom-in}
+</style>
+<div id="fx-transition"></div>
+<div id="holo-viewer" aria-hidden="true"><div class="holo-shell"><button class="holo-close" aria-label="Close">×</button><div class="holo-line"></div><div id="holo-media" style="width:100%;height:100%"></div></div></div>
+<script id="nafsam-2099-engine">
+document.addEventListener('DOMContentLoaded',()=>{
+ const gate=document.getElementById('fx-transition'), viewer=document.getElementById('holo-viewer'), media=document.getElementById('holo-media');
+ document.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(!h||h.startsWith('#')||h.startsWith('http')||h.startsWith('mailto:'))return;a.addEventListener('click',e=>{e.preventDefault();gate.classList.add('on');setTimeout(()=>location.href=h,260)})});
+ document.querySelectorAll('img').forEach(img=>{if(img.closest('#holo-viewer')||img.width<80)return;img.dataset.holo='1';img.addEventListener('click',()=>{const clone=new Image();clone.src=img.currentSrc||img.src;clone.alt=img.alt||'Memory';media.replaceChildren(clone);viewer.classList.add('open');viewer.setAttribute('aria-hidden','false')})});
+ document.querySelectorAll('video').forEach(v=>v.addEventListener('click',()=>{const clone=v.cloneNode(true);clone.controls=true;clone.autoplay=true;media.replaceChildren(clone);viewer.classList.add('open');viewer.setAttribute('aria-hidden','false')}));
+ const close=()=>{viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');media.replaceChildren()};
+ viewer.querySelector('.holo-close').addEventListener('click',close);viewer.addEventListener('click',e=>{if(e.target===viewer)close()});addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+});
+</script><script src="./i18n.js"></script>
+<script id="youtube-songs-loader">
+document.addEventListener('DOMContentLoaded', async () => {
+  const grid=document.getElementById('youtube-song-grid');
+  const more=document.getElementById('song-more');
+  const count=document.getElementById('song-count');
+  if(!grid||!more)return;
+
+  const lang=()=>{try{return localStorage.getItem('nafsam_language')||'ar'}catch(e){return 'ar'}};
+  const tx={
+    ar:{loading:'جارِ تحميل الأغاني…',count:n=>n+' أغنية',more:'تحميل المزيد من الأغاني',play:'تشغيل داخل الصفحة',youtube:'رابط يوتيوب',error:'تعذر تحميل قائمة الأغاني.'},
+    fa:{loading:'در حال بارگذاری آهنگ‌ها…',count:n=>n+' آهنگ',more:'آهنگ‌های بیشتری بارگذاری کن',play:'پخش در همین صفحه',youtube:'لینک یوتیوب',error:'بارگذاری فهرست آهنگ‌ها ممکن نشد.'},
+    tr:{loading:'Şarkılar yükleniyor…',count:n=>n+' şarkı',more:'Daha fazla şarkı yükle',play:'Sayfada oynat',youtube:'YouTube bağlantısı',error:'Şarkı listesi yüklenemedi.'},
+    en:{loading:'Loading songs…',count:n=>n+' songs',more:'Load more songs',play:'Play on this page',youtube:'YouTube link',error:'The song list could not be loaded.'}
+  };
+  const T=()=>tx[lang()]||tx.en;
+  count.textContent=T().loading;
+  more.textContent=T().more;
+
+  const youtubeId=(url)=>{
+    try{
+      const u=new URL(String(url).trim());
+      if(u.hostname.includes('youtu.be')) return u.pathname.split('/').filter(Boolean)[0]||'';
+      if(u.pathname.startsWith('/shorts/')) return u.pathname.split('/')[2]||'';
+      if(u.pathname.startsWith('/embed/')) return u.pathname.split('/')[2]||'';
+      return u.searchParams.get('v')||'';
+    }catch(e){return ''}
+  };
+
+  try{
+    const response=await fetch('./nafsam-media.json',{cache:'no-store'});
+    if(!response.ok)throw new Error('Manifest HTTP '+response.status);
+    const data=await response.json();
+    const items=Array.isArray(data.songs)?data.songs.filter(s=>s&&s.src):[];
+    const l=lang();
+    const page=data.archiveText?.pages?.[l]||data.archiveText?.pages?.ar||data.archiveText?.pages?.tr||data.archiveText?.pages?.en||{};
+    count.textContent=T().count(items.length);
+
+    let index=0;
+    const batch=12;
+    function addBatch(){
+      const stop=Math.min(index+batch,items.length);
+      for(;index<stop;index++){
+        const entry=items[index];
+        const id=youtubeId(entry.src);
+        const card=document.createElement('article');
+        card.className='yt-song';
+
+        const media=document.createElement('div');
+        media.className='yt-media';
+
+        if(id){
+          const img=document.createElement('img');
+          img.loading='lazy';
+          img.decoding='async';
+          img.alt=entry.title||('Song '+(index+1));
+          img.src='https://i.ytimg.com/vi/'+encodeURIComponent(id)+'/hqdefault.jpg';
+
+          const play=document.createElement('button');
+          play.type='button';
+          play.className='yt-overlay';
+          play.setAttribute('aria-label',T().play);
+          play.innerHTML='<span class="yt-play">▶</span>';
+          play.onclick=()=>{window.dispatchEvent(new Event('nafsam:pause-page-audio'));
+            const frame=document.createElement('iframe');
+            frame.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?autoplay=1&playsinline=1&rel=0';
+            frame.title=entry.title||('Song '+(index+1));
+            frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            frame.allowFullscreen=true;
+            media.replaceChildren(frame);
+          };
+          media.append(img,play);
+        }else{
+          const fallback=document.createElement('a');
+          fallback.href=entry.src;fallback.target='_blank';fallback.rel='noopener noreferrer';
+          fallback.className='w-full h-full flex items-center justify-center text-primary';
+          fallback.textContent=T().youtube;
+          media.append(fallback);
+        }
+
+        const info=document.createElement('div');
+        info.className='yt-info';
+        const title=document.createElement('h3');
+        title.textContent=entry.title||('Song '+(index+1));
+        const link=document.createElement('a');
+        link.className='yt-link';
+        link.href=entry.src;link.target='_blank';link.rel='noopener noreferrer';
+        link.innerHTML='<span class="material-symbols-outlined" style="font-size:16px">smart_display</span><span></span>';
+        link.querySelector('span:last-child').textContent=T().youtube+': '+entry.src;
+        info.append(title);
+        const songText=page['song'+(index+1)+'_text']||'';
+        if(songText){
+          const desc=document.createElement('p');
+          desc.style.cssText='margin:0 0 10px;color:#aebfc7;font:400 13px/1.8 Cairo,Geist,sans-serif;white-space:pre-wrap';
+          desc.textContent=songText;
+          info.append(desc);
+        }
+        info.append(link);
+        card.append(media,info);
+        grid.append(card);
+      }
+      more.classList.toggle('hidden',index>=items.length);
+    }
+    more.onclick=addBatch;
+    addBatch();
+  }catch(error){
+    console.error('NAFSAM songs:',error);
+    count.textContent=T().error;
+  }
+});
+</script><script src="./page-audio.js"></script><script src="./json-text-loader.js"></script></body></html>

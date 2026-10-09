@@ -1,0 +1,11 @@
+{
+  "name":"نفسم",
+  "short_name":"نفسم",
+  "start_url":"/",
+  "display":"standalone",
+  "background_color":"#05070c",
+  "theme_color":"#05070c",
+  "icons":[
+    {"src":"/apple-touch-icon.png?v=2","sizes":"180x180","type":"image/png","purpose":"any"}
+  ]
+}
