@@ -468,6 +468,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
     const photos=Array.isArray(data.journeySelectedPhotos)&&data.journeySelectedPhotos.length?data.journeySelectedPhotos:[];
     const l=lang();
     const page=data.archiveText?.pages?.[l]||data.archiveText?.pages?.ar||data.archiveText?.pages?.tr||data.archiveText?.pages?.en||{};
+    const caps=data.archiveText?.captions?.[l]||data.archiveText?.captions?.ar||data.archiveText?.captions?.tr||[];
     count.textContent=T().count(photos.length);
 
     let index=0;
@@ -478,11 +479,17 @@ document.addEventListener('DOMContentLoaded',async()=>{
         const filename=typeof photos[index]==='string'?photos[index]:(photos[index]?.file||'');
         if(!filename)continue;
         const moment=index+1;
-        const cap={
-          title:page['moment'+moment+'_title']||'',
-          text:page['moment'+moment+'_text']||'',
+        const fallbackCap=caps[index]||null;
+        const cap=moment<=9?{
+          title:page['moment'+moment+'_title']||fallbackCap?.title||'',
+          text:page['moment'+moment+'_text']||fallbackCap?.text||'',
           memory:page['moment'+moment+'_memory']||'',
           time:page['moment'+moment+'_time']||''
+        }:{
+          title:fallbackCap?.title||'',
+          text:fallbackCap?.text||'',
+          memory:'',
+          time:''
         };
 
         const card=document.createElement('article');
