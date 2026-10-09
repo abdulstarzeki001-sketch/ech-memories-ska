@@ -494,7 +494,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   if(!response.ok)throw new Error('Manifest HTTP '+response.status);
   const data=await response.json();
   const g=document.createElement('div');g.className='legacy-grid';root.querySelector('.legacy-loading').remove();
-  const items="photos"==='photos'?data.photos:"photos"==='videos'?data.videos:data.songs;
+  const rawItems=Array.isArray(data.photos)?data.photos:[];
+  const seen=new Set();
+  const items=rawItems.filter(entry=>{
+    const filename=String(typeof entry==='string'?entry:(entry?.file||'')).trim();
+    const key=filename.toLowerCase();
+    if(!filename||seen.has(key))return false;
+    seen.add(key);return true;
+  });
+  const lang=(()=>{try{return localStorage.getItem('nafsam_language')||'ar'}catch(e){return 'ar'}})();
+  const caps=data.archiveText?.captions||{};
+  const captions=caps[lang]||caps.ar||caps.tr||[];
   if(!Array.isArray(items))throw new Error('Missing archive section');
   const controls=document.createElement('div');controls.style.cssText='display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:8px 0 16px';
    const counter=document.createElement('p');counter.style.cssText='padding:0;color:#b6ebff;margin:0';counter.textContent=items.length+' memories';
@@ -517,6 +527,13 @@ document.addEventListener('DOMContentLoaded', async () => {
      image.style.cursor='zoom-in';
      image.addEventListener('click',()=>{const large=new Image();large.src=full;large.alt=image.alt;openViewer(large)});
      card.append(image);
+     const cap=captions[i]||null;
+     if(cap){
+       const meta=document.createElement('div');meta.className='legacy-meta';
+       if(cap.title){const h=document.createElement('strong');h.textContent=cap.title;meta.append(h)}
+       if(cap.text){const p=document.createElement('span');p.textContent=cap.text;p.style.cssText='display:block;margin-top:8px;line-height:1.8;white-space:pre-wrap';meta.append(p)}
+       card.append(meta);
+     }
     }else if("photos"==='videos'){
      const filename=entry.file||'';const external=/^https?:\/\//i.test(filename);
      const src=external?filename:fileUrl('media',filename);
