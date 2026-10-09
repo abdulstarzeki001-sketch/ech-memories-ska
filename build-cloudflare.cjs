@@ -8,7 +8,7 @@ fs.mkdirSync(out, { recursive: true });
 
 const files = [
   "index.html", "home.html", "photos.html", "journey.html",
-  "songs.html", "videos.html", "writings.html", "feelings.html", "nafsam-media.json", "i18n.js", "page-audio.js", "json-text-loader.js", "apple-touch-icon.png", "manifest.webmanifest", "_headers"
+  "songs.html", "videos.html", "writings.html", "feelings.html", "nafsam-media.json", "i18n.js", "page-audio.js", "json-text-loader.js", "apple-touch-icon.png", "manifest.webmanifest", "_headers", "_redirects"
 ];
 
 for (const file of files) {
