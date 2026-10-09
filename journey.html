@@ -465,46 +465,65 @@ document.addEventListener('DOMContentLoaded',async()=>{
     const r=await fetch('./nafsam-media.json',{cache:'no-store'});
     if(!r.ok)throw new Error('Manifest HTTP '+r.status);
     const data=await r.json();
-    const photos=Array.isArray(data.journeySelectedPhotos)&&data.journeySelectedPhotos.length?data.journeySelectedPhotos:[];
     const l=lang();
     const page=data.archiveText?.pages?.[l]||data.archiveText?.pages?.ar||data.archiveText?.pages?.tr||data.archiveText?.pages?.en||{};
-    const caps=data.archiveText?.captions?.[l]||data.archiveText?.captions?.ar||data.archiveText?.captions?.tr||[];
-    count.textContent=T().count(photos.length);
+    const exactJourney=Array.isArray(data.journey)?data.journey.filter(Boolean):[];
+    const momentImages=Array.isArray(data.momentImages)?data.momentImages.filter(Boolean):[];
+    const items=exactJourney.length
+      ? exactJourney
+      : Array.from({length:9},(_,i)=>{
+          const n=i+1;
+          return {
+            file:momentImages[i]||'',
+            title:page['moment'+n+'_title']||'',
+            text:page['moment'+n+'_text']||'',
+            memory:page['moment'+n+'_memory']||'',
+            time:page['moment'+n+'_time']||''
+          };
+        }).filter(x=>x.title||x.text||x.memory||x.file);
+
+    const pick=v=>{
+      if(v==null)return '';
+      if(typeof v==='string')return v;
+      return v[l]||v.ar||v.tr||v.en||v.fa||'';
+    };
+    count.textContent=exactJourney.length?T().count(items.length):String(items.length)+' moments';
 
     let index=0;
     const batch=18;
     const add=()=>{
-      const stop=Math.min(index+batch,photos.length);
+      const stop=Math.min(index+batch,items.length);
       for(;index<stop;index++){
-        const filename=typeof photos[index]==='string'?photos[index]:(photos[index]?.file||'');
-        if(!filename)continue;
-        const moment=index+1;
-        const fallbackCap=caps[index]||null;
-        const cap=moment<=9?{
-          title:page['moment'+moment+'_title']||fallbackCap?.title||'',
-          text:page['moment'+moment+'_text']||fallbackCap?.text||'',
-          memory:page['moment'+moment+'_memory']||'',
-          time:page['moment'+moment+'_time']||''
+        const entry=items[index]||{};
+        const filename=String(entry.file||'');
+        const cap=exactJourney.length?{
+          title:pick(entry.title),
+          text:pick(entry.quote||entry.text),
+          memory:pick(entry.memory),
+          time:pick(entry.time)
         }:{
-          title:fallbackCap?.title||'',
-          text:fallbackCap?.text||'',
-          memory:'',
-          time:''
+          title:pick(entry.title),
+          text:pick(entry.text),
+          memory:pick(entry.memory),
+          time:pick(entry.time)
         };
 
         const card=document.createElement('article');
         card.className='journey-memory-card';
 
-        const media=document.createElement('div');
-        media.className='journey-memory-image';
-        const img=document.createElement('img');
-        img.loading='lazy';img.decoding='async';
-        img.alt=cap?.title||T().untitled+' '+(index+1);
-        const full=fileUrl('images/all_photos',filename);
-        const thumb=fileUrl('images/_thumbs/all_photos',filename.replace(/\.(jpe?g|png|heic|webp)$/i,'.webp'));
-        img.src=thumb;
-        img.onerror=()=>{if(img.src!==full){img.onerror=null;img.src=full}};
-        media.append(img);
+        if(filename){
+          const media=document.createElement('div');
+          media.className='journey-memory-image';
+          const img=document.createElement('img');
+          img.loading='lazy';img.decoding='async';
+          img.alt=cap.title||T().untitled+' '+(index+1);
+          const full=fileUrl('images/all_photos',filename);
+          const thumb=fileUrl('images/_thumbs/all_photos',filename.replace(/\.(jpe?g|png|heic|webp)$/i,'.webp'));
+          img.src=thumb;
+          img.onerror=()=>{if(img.src!==full){img.onerror=null;img.src=full}};
+          media.append(img);
+          card.append(media);
+        }
 
         const copy=document.createElement('div');
         copy.className='journey-memory-copy';
@@ -518,18 +537,17 @@ document.addEventListener('DOMContentLoaded',async()=>{
         }
         if(cap.text){
           const p=document.createElement('p');
-          p.textContent=cap.text;
-          copy.append(p);
+          p.textContent=cap.text;copy.append(p);
         }
         if(cap.memory){
           const memory=document.createElement('p');
           memory.style.cssText='margin-top:12px;color:#d8b878;font-style:italic';
           memory.textContent=cap.memory;copy.append(memory);
         }
-        card.append(media,copy);
+        card.append(copy);
         grid.append(card);
       }
-      more.classList.toggle('hidden',index>=photos.length);
+      more.classList.toggle('hidden',index>=items.length);
     };
     more.onclick=add;
     add();
