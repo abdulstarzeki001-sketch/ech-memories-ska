@@ -104,8 +104,15 @@ a{text-decoration:none;color:inherit}
 }
 @media(prefers-reduced-motion:reduce){body:before,body:after,.hero-main:before,.fx-status i{animation:none}}
 </style>
+<style id="nafsam-fixed-home">
+.nafsam-fixed-home{position:fixed;z-index:12000;left:max(14px,env(safe-area-inset-left));top:max(14px,env(safe-area-inset-top));width:44px;height:44px;border-radius:16px;display:grid;place-items:center;text-decoration:none;color:#9be8ff;background:linear-gradient(145deg,rgba(10,20,30,.88),rgba(3,8,13,.82));border:1px solid rgba(155,232,255,.22);box-shadow:0 12px 36px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.05);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:.25s cubic-bezier(.2,.8,.2,1)}
+.nafsam-fixed-home:hover{transform:translateY(-2px) scale(1.04);border-color:rgba(155,232,255,.45);box-shadow:0 16px 44px rgba(0,0,0,.45),0 0 24px rgba(155,232,255,.12)}
+.nafsam-fixed-home .material-symbols-outlined{font-size:23px}
+@media(max-width:640px){.nafsam-fixed-home{width:42px;height:42px;border-radius:14px}}
+</style>
 </head>
 <body>
+<a class="nafsam-fixed-home" href="./home.html" aria-label="Home" title="Home"><span class="material-symbols-outlined">home</span></a>
 <div class="fx-status"><i></i><span>NAFSAM // MEMORY CORE ONLINE</span></div>
 <button id="lang" class="lang-btn" aria-label="Language"><span class="material-symbols-outlined">language</span></button>
 <main class="shell">
