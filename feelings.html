@@ -24,6 +24,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;background-ima
 .nafsam-fixed-home .material-symbols-outlined{font-size:23px}
 @media(max-width:640px){.nafsam-fixed-home{width:42px;height:42px;border-radius:14px}}
 </style>
+<link rel="stylesheet" href="./mobile-responsive.css?v=3">
 </head>
 <body>
 <a class="nafsam-fixed-home" href="./home.html" aria-label="Home" title="Home"><span class="material-symbols-outlined">home</span></a>
@@ -85,4 +86,5 @@ document.getElementById('lang').onclick=()=>{lang=order[(order.indexOf(lang)+1)%
 render().catch(console.error);
 </script>
 <script src="./page-audio.js"></script>
+<script src="./mobile-touch.js?v=3" defer></script>
 </body></html>
