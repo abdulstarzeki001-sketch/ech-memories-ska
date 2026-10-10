@@ -2,7 +2,7 @@
 
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Nafsam - Videos</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -321,6 +321,7 @@ header nav:not(.nafsam-dock){display:none!important}
 .nafsam-fixed-home .material-symbols-outlined{font-size:23px}
 @media(max-width:640px){.nafsam-fixed-home{width:42px;height:42px;border-radius:14px}}
 </style>
+<link rel="stylesheet" href="./mobile-responsive.css?v=3">
 </head>
 <body class="font-body-md text-body-md antialiased selection:bg-primary selection:text-on-primary">
 <a class="nafsam-fixed-home" href="./home.html" aria-label="Home" title="Home"><span class="material-symbols-outlined">home</span></a><div class="fx-orb one"></div><div class="fx-orb two"></div><div class="fx-status"><i></i><span>NAFSAM // PRIVATE MEMORY SYSTEM</span></div>
@@ -652,4 +653,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(count)count.textContent=T().error;
   }
 });
-</script><script src="./page-audio.js"></script><script src="./json-text-loader.js"></script></body></html>
+</script><script src="./page-audio.js"></script><script src="./json-text-loader.js"></script><script src="./mobile-touch.js?v=3" defer></script>
+</body></html>
