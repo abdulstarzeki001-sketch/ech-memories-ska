@@ -1,11 +1,20 @@
 {
-  "name":"نفسم",
-  "short_name":"نفسم",
-  "start_url":"/",
-  "display":"standalone",
-  "background_color":"#05070c",
-  "theme_color":"#05070c",
-  "icons":[
-    {"src":"/apple-touch-icon.png?v=2","sizes":"180x180","type":"image/png","purpose":"any"}
+  "name": "NAFSAM — Private Memory System",
+  "short_name": "NAFSAM",
+  "description": "Private photo, journey, music, video and writings archive.",
+  "start_url": "./home.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#02050a",
+  "theme_color": "#05070b",
+  "categories": ["lifestyle", "photo"],
+  "icons": [
+    {
+      "src": "./apple-touch-icon.png?v=2",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ]
 }
