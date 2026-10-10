@@ -3,7 +3,7 @@ const SHELL=[
   './','./home.html','./photos.html','./journey.html','./songs.html',
   './videos.html','./writings.html','./feelings.html',
   './nafsam-media.json','./i18n.js','./page-audio.js',
-  './mobile-responsive.css','./mobile-touch.js','./manifest.webmanifest',
+  './mobile-responsive.css','./mobile-touch.js','./site-nav.js','./manifest.webmanifest',
   './apple-touch-icon.png?v=2'
 ];
 
