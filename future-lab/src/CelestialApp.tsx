@@ -120,7 +120,7 @@ export default function CelestialApp(){
  const [search,setSearch]=useState(false);
  const [term,setTerm]=useState('');
  const [aiOpen,setAiOpen]=useState(false);
- const [motionOn,setMotionOn]=useState(()=>!matchMedia('(prefers-reduced-motion: reduce)').matches&&localStorage.getItem('nafsam-motion-off')!=='1');
+ const [motionOn,setMotionOn]=useState(()=>{try{return !matchMedia('(prefers-reduced-motion: reduce)').matches&&localStorage.getItem('nafsam-motion-off')!=='1'}catch{return !matchMedia('(prefers-reduced-motion: reduce)').matches}});
  const [can3d,setCan3d]=useState(false);
  const root=useRef<HTMLDivElement>(null);
  const searchInput=useRef<HTMLInputElement>(null);
@@ -133,7 +133,7 @@ export default function CelestialApp(){
  useEffect(()=>{try{localStorage.setItem('nafsam-motion-off',motionOn?'0':'1')}catch{}},[motionOn]);
  useEffect(()=>{const handle=(e:KeyboardEvent)=>{if(e.key==='Escape'){setSearch(false);setAiOpen(false)}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();setSearch(v=>!v)}};addEventListener('keydown',handle);return()=>removeEventListener('keydown',handle)},[]);
  useEffect(()=>{if(search)searchInput.current?.focus()},[search]);
- useEffect(()=>{if(!motionOn||!root.current)return;const ctx=gsap.context(()=>{const nodes=gsap.utils.toArray<HTMLElement>('.cel-reveal');nodes.forEach(node=>{gsap.fromTo(node,{opacity:0,y:28},{opacity:1,y:0,duration:.95,ease:'power2.out',scrollTrigger:{trigger:node,start:'top 98%',once:true}})})},root);return()=>ctx.revert()},[active,data,motionOn]);
+ useEffect(()=>{if(!motionOn||!root.current)return;const ctx=gsap.context(()=>{const nodes=gsap.utils.toArray<HTMLElement>('.cel-reveal');nodes.forEach(node=>{gsap.fromTo(node,{opacity:0,y:28},{opacity:1,y:0,duration:.95,ease:'power2.out',scrollTrigger:{trigger:node,start:'top 98%',once:true}})});if(window.matchMedia('(min-width: 960px) and (prefers-reduced-motion: no-preference)').matches){gsap.to('.cel-hero-visual',{yPercent:-13,ease:'none',scrollTrigger:{trigger:'.cel-hero',start:'top top',end:'bottom top',scrub:.65}});gsap.to('.cel-manifesto-art',{yPercent:-7,ease:'none',scrollTrigger:{trigger:'.cel-manifesto',start:'top bottom',end:'bottom top',scrub:.5}})}},root);return()=>ctx.revert()},[active,data,motionOn]);
  return <div ref={root} className={'cel-app '+(motionOn?'':'cel-still')} dir="rtl">
   <div aria-hidden="true" className="cel-cosmos"><i/><i/><i/><span/></div>
   <header className="cel-header">
