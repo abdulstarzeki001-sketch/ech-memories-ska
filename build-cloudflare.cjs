@@ -16,4 +16,10 @@ for (const file of files) {
   if (fs.existsSync(src)) fs.copyFileSync(src, path.join(out, file));
 }
 
+// Publish the viewer shell only. Do not include personal conversations or media.
+const archiveDir = path.join(root, "archive-private-viewer");
+if (fs.existsSync(archiveDir)) {
+  fs.cpSync(archiveDir, path.join(out, "archive-private-viewer"), { recursive: true });
+}
+
 console.log("Prepared clean Cloudflare assets:", fs.readdirSync(out).join(", "));
