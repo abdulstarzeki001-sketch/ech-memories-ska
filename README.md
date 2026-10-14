@@ -1,18 +1,35 @@
-# Nafsam Archive
+# NAFSAM — Cosmic Experience
 
-Static HTML memory archive prepared for GitHub Pages and Cloudflare Pages.
+This repository retains the existing seven-section Arabic memory archive and encrypted viewer. The futuristic redesign is **additive**, implemented in two independent layers:
+
+1. \`cosmic-system.css\` / \`cosmic-system.js\`: shared progressive enhancement to existing entry + seven HTML pages. Native navigation and original content are preserved.
+2. \`future-lab/\`: an independent React + TypeScript + Vite + Tailwind + GSAP ScrollTrigger + Motion + React Three Fiber interactive prototype built to \`public/future-lab/\`.
+
+## Local development
+
+\`\`\`bash
+npm install
+npm run dev:future
+npm run check
+npm run build
+\`\`\`
+
+Visit the Vite development URL for the prototype, or open \`/future-lab/\` after publishing \`public\`.
 
 ## Cloudflare Pages
 
-- Production branch: `main`
-- Framework preset: None
-- Build command: `node build-cloudflare.cjs`
-- Deploy command: `npx wrangler deploy`
-- Static assets directory: `public` (configured in `wrangler.jsonc`)
-- Root directory: repository root
+- Production branch: \`main\`
+- Build command: \`npm run build\`
+- Output directory: \`public\`
+- Node.js: 22 or newer
+- GitHub Actions validates pull requests but **only deploys on main** (or manual dispatch).
+- Required GitHub secrets for Actions deployment: \`CLOUDFLARE_API_TOKEN\`, \`CLOUDFLARE_ACCOUNT_ID\`.
+- \`vars.CLOUDFLARE_PAGES_PROJECT\` should be set to the actual Pages project name (default remains the existing \`ech-nafasm-ska\`).
 
-The top-level `index.html` is the entry page. Cloudflare will automatically redeploy after each push when the GitHub repository is connected.
+## Preservation, performance, security
 
-## Deployment hygiene
-
-Cloudflare must deploy only the generated `public/` directory. Do not use `--assets=.`; that uploads repository metadata such as `.git`.
+Original media metadata, page content, routes, encrypted JSON data, and protected archive viewer are left unchanged.
+The new prototype is an interface/navigation showcase; its "assistant" is **local route search, not a cloud AI service**.
+The site preserves the original visitor-name form, which **is not real authentication**. Never treat client-side name input or encrypted files shipped to public storage as server-side access control.
+On small screens, reduced-motion settings, data-saving networks, and devices without WebGL, the hero falls back to a CSS illustration.
+Do not deploy the repository root as assets: only deploy the generated \`public/\` directory.
