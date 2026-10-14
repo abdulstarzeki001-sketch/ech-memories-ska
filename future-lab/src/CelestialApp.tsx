@@ -3,7 +3,7 @@ import type { CSSProperties, ReactNode, PointerEvent as RPointerEvent } from 're
 import { AnimatePresence, motion } from 'motion/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowLeft, ArrowUpLeft, AudioLines, BookHeart, BookOpenText, ChevronLeft, CirclePause, CirclePlay, Compass, Heart, Home, Image as ImageIcon, Menu, MoonStar, Search, Sparkles, Video, Volume2, Waves, X } from 'lucide-react';
+import { ArrowLeft, ArrowUpLeft, AudioLines, BookOpenText, CirclePause, CirclePlay, Compass, Heart, Home, Image as ImageIcon, Search, Sparkles, Video, Volume2, Waves, X } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import AiStudio, { prepareLocalImage } from './AiStudio';
 import './styles.css';
