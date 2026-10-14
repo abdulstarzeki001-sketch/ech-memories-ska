@@ -1,14 +1,15 @@
 {
   "name": "ech-memories-ska",
   "private": true,
-  "version": "2.0.0",
+  "version": "3.0.0",
   "type": "commonjs",
   "scripts": {
-    "build": "node build-cloudflare.cjs && vite build --config future-lab/vite.config.ts",
+    "build": "node build-cloudflare.cjs && vite build --config future-lab/vite.config.ts && node future-lab/scripts/publish.cjs && node future-lab/scripts/verify-production.cjs",
     "build:legacy": "node build-cloudflare.cjs",
     "dev:future": "vite --config future-lab/vite.config.ts --host 0.0.0.0",
     "typecheck": "tsc --project future-lab/tsconfig.json --noEmit",
-    "check": "node future-lab/scripts/check-layout.cjs && npm run typecheck"
+    "check": "node future-lab/scripts/check-layout.cjs && npm run typecheck",
+    "verify:production": "node future-lab/scripts/verify-production.cjs"
   },
   "dependencies": {
     "@react-three/fiber": "^9.0.0",
