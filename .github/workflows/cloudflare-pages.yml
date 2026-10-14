@@ -43,7 +43,7 @@ jobs:
       - name: Verify Cloudflare output
         run: |
           test -f public/future-lab/index.html
-          test -f public/future-lab/assets/*.js
+          ls public/future-lab/assets/*.js >/dev/null
           test -f public/cosmic-system.css
           test -f public/cosmic-system.js
           test -f public/index.html
