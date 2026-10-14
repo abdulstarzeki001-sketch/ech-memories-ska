@@ -1,0 +1,29 @@
+/* Cosmic design layer: safe for every existing NAFSAM page */
+:root{--cosmic-violet:#b09afe;--cosmic-cyan:#9cecff;--cosmic-gold:#f1cb87}
+body.cosmic-enhanced{isolation:isolate}
+.cosmic-ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 15% 35%,rgba(103,63,199,.12),transparent 44%),radial-gradient(ellipse at 80% 70%,rgba(11,158,222,.09),transparent 40%);animation:cosmic-float 22s ease-in-out infinite alternate}
+.cosmic-ambient:after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,#e5eaff 1px,transparent 1px),radial-gradient(circle,#9cd7ff 1px,transparent 1px);background-size:143px 171px,227px 193px;background-position:19px 27px,78px 81px;opacity:.15}
+@keyframes cosmic-float{to{transform:translate3d(-2%,2%,0) scale(1.04)}}
+body.cosmic-enhanced .hero-main{background:linear-gradient(135deg,rgba(20,30,61,.93),rgba(5,10,23,.92));border-color:rgba(168,192,255,.32)}
+body.cosmic-enhanced .hero-main:after{content:"";position:absolute;left:-8%;top:-32%;width:clamp(145px,27vw,290px);aspect-ratio:1;border-radius:50%;pointer-events:none;opacity:.62;background:radial-gradient(circle at 37% 32%,#cbdcff,#6b93d2 14%,#392d81 39%,#101334 62%,transparent 71%);box-shadow:0 0 75px #7876ff30;animation:cosmic-float 12s ease-in-out infinite alternate}
+body.cosmic-enhanced .hero-main>*{position:relative;z-index:1}
+body.cosmic-enhanced .module{border-color:rgba(163,208,253,.24);transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+@media(hover:hover){body.cosmic-enhanced .module:hover{transform:translateY(-5px);border-color:rgba(178,157,255,.52);box-shadow:0 30px 70px #23235e40}}
+.cosmic-toolbar{position:fixed;z-index:500;top:max(68px,env(safe-area-inset-top) + 54px);right:max(13px,env(safe-area-inset-right));display:flex;gap:7px}
+.cosmic-tool{color:#e5f8ff;background:rgba(8,17,36,.89);border:1px solid rgba(155,221,255,.27);backdrop-filter:blur(18px);border-radius:13px;min-width:44px;min-height:44px;padding:10px;font:600 12px Tajawal,system-ui,sans-serif;cursor:pointer;box-shadow:0 12px 32px #0006}
+.cosmic-tool:focus-visible,.cosmic-modal a:focus-visible{outline:2px solid var(--cosmic-cyan);outline-offset:3px}
+.cosmic-modal[hidden]{display:none}
+.cosmic-modal{position:fixed;inset:0;z-index:10000;background:#010617db;backdrop-filter:blur(12px);display:grid;place-items:center;padding:18px}
+.cosmic-dialog{width:min(520px,100%);max-height:85dvh;overflow:auto;direction:rtl;border-radius:24px;background:linear-gradient(155deg,#192440,#080c1c);border:1px solid #9cecff52;box-shadow:0 28px 90px #000a;padding:24px;color:#ecf9ff;font-family:Tajawal,system-ui,sans-serif}
+.cosmic-dialog h2{margin:0 0 9px;font-size:24px}.cosmic-dialog p{line-height:1.7;font-size:13px;color:#a9bdc9;margin:0 0 14px}
+.cosmic-dialog input{width:100%;min-height:48px;border:1px solid #9cecff55;border-radius:13px;background:#060f21;color:#fff;padding:12px;font:500 15px Tajawal,system-ui}
+.cosmic-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.cosmic-results a{color:#e4f5ff;text-decoration:none;padding:13px;border:1px solid #a5e7ff30;border-radius:12px;min-height:45px;background:#ffffff08}
+.cosmic-results a:hover{background:#9cecff18}
+.cosmic-close{float:left;border:0;background:none;color:white;cursor:pointer;font-size:27px;min-height:44px;min-width:44px}
+.cosmic-demo-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;margin-top:17px;border-radius:30px;border:1px solid #f1cb8769;background:#c49d4930;color:#ffe9b5!important;font:700 13px Tajawal,system-ui,sans-serif;text-decoration:none}
+.cosmic-reveal{opacity:0;transform:translateY(17px);transition:opacity .6s,transform .6s}.cosmic-reveal.is-visible{opacity:1;transform:none}
+@media(max-width:640px){body.cosmic-enhanced .hero-main:after{opacity:.27}.cosmic-results{grid-template-columns:1fr}.cosmic-toolbar{top:max(58px,env(safe-area-inset-top) + 42px)}}
+@media(prefers-reduced-motion:reduce){.cosmic-ambient,body.cosmic-enhanced .hero-main:after{animation:none!important}.cosmic-reveal{opacity:1;transform:none}}
+body.cosmic-motion-off *,body.cosmic-motion-off *:before,body.cosmic-motion-off *:after{animation:none!important;transition:none!important}
+body.cosmic-motion-off .cosmic-reveal{opacity:1!important;transform:none!important}
