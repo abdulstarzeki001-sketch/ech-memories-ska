@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node build-cloudflare.cjs",
     "build:cosmic": "vite build --config cosmic-app/vite.config.ts",
-    "check:types": "tsc -p cosmic-app/tsconfig.json --noEmit"
+    "check:types": "tsc -p cosmic-app/tsconfig.json --noEmit",
+    "test:ui": "playwright test --config cosmic-app/playwright.config.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.0",
@@ -26,6 +27,7 @@
     "@types/three": "^0.180.0",
     "tailwindcss": "^4.1.0",
     "typescript": "~5.9.3",
-    "vite": "^7.1.0"
+    "vite": "^7.1.0",
+    "@playwright/test": "^1.56.1"
   }
 }
