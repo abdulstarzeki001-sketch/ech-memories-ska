@@ -2,7 +2,7 @@ name: Cosmic Preview Build
 on:
   push:
     branches:
-      - feature/cosmic-nafsam-2026
+      - 'feature/cosmic-memory-react-v2'
   pull_request:
     branches: [main]
   workflow_dispatch:
