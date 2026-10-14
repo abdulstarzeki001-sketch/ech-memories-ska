@@ -1,0 +1,1 @@
+module.exports={content:['./future-lab/index.html','./future-lab/src/**/*.{ts,tsx}'],theme:{extend:{fontFamily:{tajawal:['Tajawal','sans-serif'],outfit:['Outfit','sans-serif']}}},plugins:[]};

@@ -1,0 +1,12 @@
+const fs = require('node:fs');
+const assert = require('node:assert/strict');
+const path = require('node:path');
+const root = path.resolve(__dirname, '../..');
+const read = p => fs.readFileSync(path.join(root,p),'utf8');
+const app=read('future-lab/src/App.tsx');
+for (const section of ['home','photos','journey','songs','videos','writings','feelings']) assert(app.includes('key:"'+section+'"'), 'Missing route '+section);
+for (const file of ['index.html','home.html','photos.html','journey.html','songs.html','videos.html','writings.html','feelings.html']) assert(read(file).includes('cosmic-system.css'), 'Missing design layer: '+file);
+assert(read('build-cloudflare.cjs').includes('cosmic-system.js'));
+assert(read('future-lab/src/styles.css').includes('prefers-reduced-motion'));
+assert(read('future-lab/vite.config.ts').includes('public/future-lab'));
+console.log('NAFSAM route, archive preservation and motion checks passed.');
