@@ -11,5 +11,5 @@ export default defineConfig({
   {name:'ipad-768',use:{...devices['iPad (gen 7)'],viewport:{width:768,height:1024},browserName:'chromium'}},
   {name:'desktop-1440',use:{viewport:{width:1440,height:900},browserName:'chromium'}}
  ],
- webServer:{command:'npx vite preview --config cosmic-app/vite.config.ts --host 127.0.0.1 --port 4173 --strictPort',url:'http://127.0.0.1:4173',reuseExistingServer:!process.env.CI,timeout:90000}
+ webServer:{command:'npx vite preview --config vite.config.ts --host 127.0.0.1 --port 4173 --strictPort',url:'http://127.0.0.1:4173',reuseExistingServer:!process.env.CI,timeout:90000}
 });
