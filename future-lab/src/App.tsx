@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowLeft, ArrowUpLeft, AudioLines, BookOpenText, Check, ChevronLeft, Command, Compass, Heart, Home, Image, Menu, MoonStar, Play, Search, Sparkles, Video, Waves, X } from 'lucide-react';
+import { ArrowLeft, ArrowUpLeft, AudioLines, BookOpenText, Check, ChevronLeft, Command, Compass, Heart, Home, Image, Menu, MoonStar, Search, Sparkles, Video, Waves, X } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger);
 const OrbScene = lazy(() => import('./OrbScene'));
