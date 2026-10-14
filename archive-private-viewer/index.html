@@ -1,332 +1,89 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="robots" content="noindex,nofollow" />
-<meta name="referrer" content="no-referrer" />
-<title>ECH Archive — الذكريات</title>
-<style>
-:root{font-family:Tahoma,Arial,sans-serif;color-scheme:dark;background:#070d14;color:#e8eef5}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 60% 0,#17293b 0%,#0a111b 43%,#080c13 100%);min-height:100vh}
-main{max-width:1160px;margin:0 auto;padding:0 18px}
-header{display:flex;justify-content:space-between;align-items:center;gap:12px;height:88px;border-bottom:1px solid #ffffff1a}
-.logo{font:600 18px Georgia;letter-spacing:3px;color:#c8b088}.logo b{color:#8ab1ca}
-.security{font-size:11px;color:#9eb4ac}.hero{text-align:center;padding:68px 8px 50px}
-.eyebrow{letter-spacing:2px;font-size:10px;color:#d1b584}.hero h1{font:500 clamp(38px,6vw,66px) Georgia,serif;margin:16px 0}
-.hero h1 em{font-style:normal;color:#e2c595}.hero p{color:#a4b2c0;max-width:600px;margin:0 auto;line-height:2;font-size:13px}
-form{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:26px auto 12px}
-input,select{font:inherit;background:#182a3b;color:#edf0f2;border:1px solid #ffffff2a;border-radius:10px;padding:13px;min-height:45px}
-input[type=password]{min-width:225px;text-align:center;direction:ltr;letter-spacing:1px;border-color:#b7a17877}
-input:focus,select:focus{outline:1px solid #f1ce8b}button{font:inherit;cursor:pointer;border-radius:10px;padding:13px 19px;border:1px solid #ffffff29;background:#284359;color:#e8f3fc}
-.primary{background:linear-gradient(120deg,#e2c899,#b6925f);color:#161b21;border-color:#d2b584;font-weight:700}.secondary{background:#ffffff0b}
-button:disabled{opacity:.4;cursor:default}[hidden]{display:none!important}
-#status{font-size:11px;line-height:1.8;color:#a0b3c5;min-height:34px;margin-top:8px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 42px}
-.stats article{border:1px solid #ffffff1c;background:#121e2c;border-radius:14px;padding:19px}
-.stats span{display:block;font-size:11px;color:#91a3b4}.stats strong{display:block;font:30px Georgia;margin-top:8px;color:#e5c897}
-section.library{border:1px solid #ffffff1c;background:#0e1825;border-radius:22px;min-height:420px;padding:23px}
-.library-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.library-head h2{margin:0 0 16px;font-size:23px}
-#loaded{font-size:10px;color:#91a4b5}
-.tabs{border-bottom:1px solid #ffffff20;display:flex;gap:4px;overflow-x:auto;white-space:nowrap}
-.tabs button{background:transparent;border:none;border-bottom:2px solid transparent;border-radius:0;padding:16px;color:#9db0c0;font-size:12px}
-.tabs button.active{color:#e8ca96;border-bottom-color:#e4c995}
-.controls{display:flex;gap:10px;margin:18px 0;flex-wrap:wrap}.controls input{flex:1;min-width:220px}.controls select{min-width:140px}
-#count{font-size:12px;color:#8e9dac;margin-bottom:14px}
-#results{display:grid;gap:11px}.message{border:1px solid #ffffff14;border-radius:12px;background:#1b2a38;padding:13px 15px;max-width:91%;justify-self:end;overflow-wrap:anywhere}
-.message.me{background:#253a4c;justify-self:start}.message.elham{background:#302a3c}.message-head{display:flex;justify-content:space-between;gap:12px;font-size:11px;color:#ebc592;margin-bottom:10px}
-.message time{color:#9daebb;direction:ltr}.message .body{white-space:pre-wrap;font-size:13px;line-height:1.9;unicode-bidi:plaintext}.message small{display:block;color:#899bab;font-size:10px;margin-top:9px}
-.empty{padding:60px 15px;border:1px dashed #ffffff24;border-radius:14px;text-align:center;background:#ffffff05;color:#9badbc;font-size:12px;line-height:2}.empty strong{display:block;color:#e7cfa9;font-size:18px;margin-bottom:12px}
-.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.media-card{border:1px solid #ffffff1b;background:#162435;border-radius:12px;overflow:hidden;min-width:0}
-.media-frame{height:170px;background:#0a1522;color:#b9c6cd;display:grid;place-items:center}.media-frame img,.media-frame video{width:100%;height:100%;object-fit:cover}.media-details{padding:13px;overflow-wrap:anywhere}.media-details strong{display:block;font-size:12px}.media-details p{font-size:11px;color:#a2b1be;line-height:1.8}.media-details a,.media-details button{display:inline-block;margin-top:7px;padding:8px 12px;text-decoration:none;font-size:11px;color:#dceefc;background:#273f52;border-radius:8px;border:1px solid #ffffff28}
-.notice{border:1px solid #dac08b4a;padding:24px;background:#cba76612;border-radius:13px;color:#d7c7a4;line-height:2;font-size:12px}.more{display:block;margin:24px auto}
-footer{display:flex;justify-content:space-between;gap:15px;padding:34px 0;color:#889bad;font-size:11px}
-@media(max-width:700px){main{padding:0 12px}header{height:73px}.hero{padding:47px 0 39px}.hero p{font-size:12px}.stats{grid-template-columns:1fr 1fr;gap:8px;margin-bottom:29px}.stats article{padding:15px}.stats strong{font-size:25px}.library{padding:17px 12px!important}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.media-frame{height:118px}.media-details{padding:10px}.controls input{flex-basis:100%}.controls select{width:calc(50% - 5px);min-width:0}.message{max-width:97%}footer{display:block;line-height:2}form{flex-direction:column}form input,form button{width:100%;max-width:370px}}
-
-.original-files{display:grid;gap:10px;width:100%}
-.file-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:12px 14px;border-radius:12px;background:#1b2b3a;border:1px solid #ffffff20;min-width:0}
-.file-meta{min-width:0;max-width:100%;overflow-wrap:anywhere;flex:1}
-.file-meta strong{display:block;font-size:12px;line-height:1.9;color:#ecdfca;unicode-bidi:plaintext;direction:ltr;text-align:right}
-.file-meta small{font-size:10px;color:#9dabb8}
-.file-actions{display:flex;align-items:center;gap:6px}
-.file-actions button{font-size:11px;padding:9px 11px}
-.file-preview{white-space:pre-wrap;overflow-wrap:anywhere;max-height:460px;overflow-y:auto;padding:13px;background:#09131f;color:#dce5eb;border:1px solid #ffffff1a;border-radius:9px;font:12px/1.9 ui-monospace,SFMono-Regular,Consolas,monospace;direction:auto}
-.file-hint{font-size:11px;color:#a9b9c6;line-height:2}
-@media(max-width:700px){.file-row{padding:11px}.file-actions button{padding:8px 9px}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#080d13" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <title>ECH — أرشيف الذكريات الخاص</title>
+  <meta name="description" content="أرشيف خاص للمحادثات والكتابات والذكريات، يُفتح بتشفير محلي داخل المتصفح." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./premium.css" />
 </head>
 <body>
-<main>
-<header><div class="logo">E<b>✦</b>H ARCHIVE</div><span class="security">◉ أرشيف مشفّر ومحمي</span></header>
-<section class="hero">
-  <div class="eyebrow">PRIVATE MEMORY LIBRARY · 2026</div>
-  <h1>الأشياء التي <em>بقيت</em></h1>
-  <p>رسائلكما والصور والفيديوهات وأصوات الذكريات محفوظة على الموقع بنسخة مشفّرة. أدخل رمز الفتح لتصفح الأرشيف مباشرة، من دون تحميل ZIP.</p>
-  <form id="unlockForm" autocomplete="off">
-    <input id="archivePass" type="password" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="رمز فتح الأرشيف" aria-label="رمز فتح الأرشيف" required />
-    <button id="unlockButton" type="submit" class="primary">فتح الأرشيف الآن</button>
-  </form>
-  <button id="lockButton" class="secondary" type="button" disabled>قفل الأرشيف</button>
-  <p id="status" role="status">الأرشيف موجود على الصفحة بشكل مشفّر. أدخل رمز الفتح فقط.</p>
-</section>
-<div class="stats"><article><span>السجلات</span><strong id="s1">—</strong></article><article><span>بينكما</span><strong id="s2">—</strong></article><article><span>الصور المفهرسة</span><strong id="s3">—</strong></article><article><span>الفيديوهات المفهرسة</span><strong id="s4">—</strong></article></div>
-<section class="library">
-  <div class="library-head"><h2>مكتبة الأرشيف</h2><span id="loaded">الأرشيف مقفل</span></div>
-  <nav class="tabs" aria-label="أقسام الأرشيف"><button data-tab="messages" class="active">المحادثات</button><button data-tab="photos">الصور</button><button data-tab="videos">الفيديوهات</button><button data-tab="audio">الأصوات والأغاني</button><button data-tab="files">جميع الملفات (44)</button><button data-tab="privacy">الخصوصية</button></nav>
-  <div class="controls"><input id="search" type="search" autocomplete="off" placeholder="بحث في الرسائل والوسائط…" /><select id="scope"><option value="direct">محادثاتكما فقط</option><option value="all">كل المحادثات</option><option value="other">المحادثات الأخرى</option></select><select id="platform"><option value="all">كل المنصات</option><option value="WhatsApp">واتساب</option><option value="TikTok">تيك توك</option></select></div>
-  <div id="count"></div><div id="results"></div><button id="more" class="more" hidden>عرض المزيد</button>
-</section>
-<footer><span>ECH · PRIVATE ARCHIVE</span><span>لا تظهر البيانات قبل فك التشفير داخل متصفحك.</span></footer>
-</main>
-<script>
-(() => {
-'use strict';
-const el = id => document.getElementById(id);
-let messages = [], catalog = {}, active = 'messages', resultRows = [], shown = 0;
-let fileVault = null, fileVaultState = 'idle', currentPassword = '', vaultEpoch = 0;
-let blobUrls = [];
-const encryptedUrl = new URL('./archive.enc.json', window.location.href);
-// AppDeploy serves the same public viewer but consumes encrypted originals from the GitHub source.
-const filesBase = /\.v2\.appdeploy\.ai$/.test(location.hostname)
-  ? 'https://raw.githubusercontent.com/abdulstarzeki001-sketch/ech-memories-ska/main/archive-private-viewer/'
-  : './';
-const filesUrl = new URL('files.enc.json', new URL(filesBase, window.location.href));
-const decodeB64 = value => Uint8Array.from(atob(value), c => c.charCodeAt(0));
-const clean = value => String(value ?? '');
-function metrics() {
-  el('s1').textContent = messages.length || '—';
-  el('s2').textContent = messages.length ? messages.filter(m => m.group === 'مباشر').length : '—';
-  el('s3').textContent = catalog.photos?.length || '—';
-  el('s4').textContent = (catalog.videos || []).length || '—';
-}
-function clear() {
-  messages = [];
-  catalog = {};
-  fileVault = null;
-  currentPassword = '';
-  fileVaultState = 'idle';
-  vaultEpoch++;
-  blobUrls.forEach(URL.revokeObjectURL);
-  blobUrls = [];
-  metrics();
-  el('unlockForm').hidden = false;
-  el('archivePass').value = '';
-  el('loaded').textContent = 'الأرشيف مقفل';
-  el('lockButton').disabled = true;
-  el('status').textContent = 'تم قفل الأرشيف ومسح الجلسة من الذاكرة.';
-  render();
-}
-async function unlock(event) {
-  event.preventDefault();
-  const pwd = el('archivePass').value.trim().toUpperCase();
-  if (!pwd) return;
-  if (!window.crypto?.subtle || !window.DecompressionStream) {
-    el('status').textContent = 'المتصفح قديم ولا يدعم فك التشفير. افتح الموقع في Safari حديث.';
-    return;
-  }
-  el('unlockButton').disabled = true;
-  el('status').textContent = 'جارٍ فتح الأرشيف المشفّر على الجهاز…';
-  try {
-    const request = await fetch(encryptedUrl, {cache: 'no-store'});
-    if (!request.ok) throw new Error('not found');
-    const packet = await request.json();
-    if (packet.format !== 'ECH_ARCHIVE_AES256_GCM_V1' || packet.compression !== 'gzip' || !Array.isArray(packet.chunks)) throw new Error('invalid format');
-    const utf8 = new TextEncoder();
-    const rawKey = await crypto.subtle.importKey('raw', utf8.encode(pwd), 'PBKDF2', false, ['deriveKey']);
-    const key = await crypto.subtle.deriveKey({name:'PBKDF2', salt:decodeB64(packet.salt), iterations:packet.iterations, hash:'SHA-256'},rawKey,{name:'AES-GCM',length:256},false,['decrypt']);
-    const data = await crypto.subtle.decrypt({name:'AES-GCM', iv:decodeB64(packet.iv), additionalData:utf8.encode(packet.aad)},key,decodeB64(packet.chunks.join('')));
-    const inflated = await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
-    const archive = JSON.parse(inflated);
-    if (!Array.isArray(archive.conversations) || !archive.manifest?.photos) throw new Error('invalid archive');
-    messages = archive.conversations.sort((a,b) => clean(a.dt).localeCompare(clean(b.dt)));
-    catalog = archive.manifest;
-    currentPassword = pwd;
-    el('archivePass').value = '';
-    el('unlockForm').hidden = true;
-    el('lockButton').disabled = false;
-    el('loaded').textContent = 'الأرشيف المفتوح';
-    el('scope').value = 'direct';
-    el('platform').value = 'all';
-    el('search').value = '';
-    active = 'messages';
-    el('status').textContent = 'تم فتح الأرشيف: ' + messages.length + ' سجلًا. لا حاجة إلى ZIP.';
-    metrics(); render();
-  } catch (error) {
-    el('archivePass').value = '';
-    el('status').textContent = 'تعذر فتح الأرشيف. تحقق من رمز الفتح ثم أعد المحاولة.';
-  } finally { el('unlockButton').disabled = false; }
-}
-async function loadOriginalFiles() {
-  if (fileVaultState === 'loading' || fileVaultState === 'ready' || !currentPassword) return;
-  fileVaultState = 'loading';
-  const requestEpoch = vaultEpoch;
-  render();
-  try {
-    const response = await fetch(filesUrl, {cache:'no-store'});
-    if (!response.ok) throw new Error('encrypted file catalog unavailable');
-    const packet = await response.json();
-    if (packet.format !== 'ECH_SOURCE_FILES_AES256_GCM_V1' || packet.compression !== 'gzip' || !Array.isArray(packet.cipherChunks)) throw new Error('Invalid file archive');
-    const encoder = new TextEncoder();
-    const rawKey = await crypto.subtle.importKey('raw', encoder.encode(currentPassword), 'PBKDF2', false, ['deriveKey']);
-    const key = await crypto.subtle.deriveKey({name:'PBKDF2',salt:decodeB64(packet.salt),iterations:packet.iterations,hash:'SHA-256'},rawKey,{name:'AES-GCM',length:256},false,['decrypt']);
-    const plain = await crypto.subtle.decrypt({name:'AES-GCM',iv:decodeB64(packet.iv),additionalData:encoder.encode(packet.aad)},key,decodeB64(packet.cipherChunks.join('')));
-    const data = JSON.parse(await new Response(new Blob([plain]).stream().pipeThrough(new DecompressionStream('gzip'))).text());
-    if (data.format !== 'ECH_SOURCE_FILES_V1' || !Array.isArray(data.files) || data.count !== data.files.length) throw new Error('Invalid file manifest');
-    if (vaultEpoch !== requestEpoch || !currentPassword) return;
-    fileVault = data.files;
-    fileVaultState = 'ready';
-    if (active === 'files') render();
-  } catch (e) {
-    if (vaultEpoch !== requestEpoch) return;
-    fileVaultState = 'error';
-    if (active === 'files') render();
-  }
-}
-function fileBytes(record) {
-  // Objects are never injected into HTML; decoded bytes are used solely in Blob downloads.
-  return decodeB64(record.b64);
-}
-function fileUrl(record) {
-  const uri = URL.createObjectURL(new Blob([fileBytes(record)], {type:record.mime||'application/octet-stream'}));
-  blobUrls.push(uri);
-  return uri;
-}
-function fileRow(record) {
-  const row=document.createElement('article');row.className='file-row';
-  const meta=document.createElement('div');meta.className='file-meta';
-  const name=document.createElement('strong');name.textContent=record.path;
-  const detail=document.createElement('small');detail.textContent=(record.bytes/1024).toFixed(1)+' KB · '+(record.mime||'ملف');
-  meta.append(name,detail);
-  const controls=document.createElement('div');controls.className='file-actions';
-  const dl=document.createElement('button');dl.type='button';dl.textContent='حفظ';
-  dl.addEventListener('click',()=>{
-    const a=document.createElement('a');a.href=fileUrl(record);a.download=record.path.split('/').at(-1);a.click();
-  });
-  controls.append(dl);
-  if (/^(text\/|application\/json|application\/javascript)/.test(record.mime) || /\.(txt|json|csv|html|md|js|css)$/i.test(record.path)) {
-    const show=document.createElement('button');show.type='button';show.textContent='قراءة';
-    show.addEventListener('click',()=>{
-      const old=row.querySelector('.file-preview');if(old){old.remove();show.textContent='قراءة';return;}
-      const preview=document.createElement('pre');preview.className='file-preview';
-      preview.textContent=new TextDecoder().decode(fileBytes(record)).slice(0,180000);
-      row.append(preview);show.textContent='إغلاق';
-    });
-    controls.append(show);
-  } else if (record.mime === 'application/pdf') {
-    const view=document.createElement('button');view.type='button';view.textContent='عرض PDF';
-    view.addEventListener('click',()=>{ const url=fileUrl(record);window.open(url,'_blank','noopener,noreferrer'); });
-    controls.append(view);
-  }
-  row.append(meta,controls);return row;
-}
-function renderOriginalFiles(query) {
-  if (fileVaultState === 'idle') { empty('الملفات الأصلية','يتم فك تشفير ملفات الأرشيف عند فتح هذا القسم للمرة الأولى…');void loadOriginalFiles();return; }
-  if (fileVaultState === 'loading') { empty('جارٍ تحميل الملفات','جميع الملفات مشفّرة ويجري فك التشفير محليًا في المتصفح.');return; }
-  if (fileVaultState === 'error') { empty('تعذر فتح الملفات الأصلية','تحقق من الاتصال ثم أعد فتح الأرشيف برمز الفتح.');return; }
-  const results=fileVault.filter(file=>file.path.toLocaleLowerCase().includes(query));
-  el('count').textContent=results.length+' ملفًا من أصل '+fileVault.length+' ملفًا أصليًا';
-  if (!results.length) {empty('لا توجد ملفات مطابقة','جرّب البحث عن اسم آخر.');return;}
-  const list=document.createElement('div');list.className='original-files';
-  const warning=document.createElement('p');warning.className='file-hint';warning.textContent='هذه ملفات التصدير الأصلية بعد فك التشفير، وليست صور وفيديوهات واتساب المفقودة. اختر «قراءة» أو «عرض PDF» أو «حفظ» لأي ملف بشكل منفرد، بدون ZIP.';
-  list.append(warning);
-  for (const file of results) list.append(fileRow(file));
-  el('results').append(list);
-}
-function empty(title,detail) {
-  const n = document.createElement('div'); n.className = 'empty';
-  const titleEl = document.createElement('strong'); titleEl.textContent = title;
-  const body = document.createElement('span'); body.textContent = detail;
-  n.append(titleEl,body); el('results').append(n);
-}
-function appendMessages() {
-  const root = el('results'), end = Math.min(resultRows.length, shown+65);
-  for (; shown < end; shown++) {
-    const item = resultRows[shown], box = document.createElement('article');
-    box.className = 'message '+(item.role === 'me' ? 'me' : item.role === 'elham' ? 'elham' : '');
-    const top = document.createElement('div'); top.className = 'message-head';
-    const who = document.createElement('span'); who.textContent = clean(item.speaker);
-    const when = document.createElement('time'); when.textContent = clean(item.dt);
-    top.append(who,when);
-    const text = document.createElement('div'); text.className = 'body'; text.textContent = clean(item.text);
-    const info = document.createElement('small'); info.textContent = [item.platform,item.kind,item.source].filter(Boolean).join(' • ');
-    box.append(top,text,info); root.append(box);
-  }
-  el('more').hidden = shown >= resultRows.length;
-}
-const safeLink = url => typeof url === 'string' && /^https:\/\//i.test(url) ? url : '';
-const mediaLink = (type,name) => {
-  const base = clean(catalog.base).replace(/\/$/,'');
-  if (!base || !name) return '';
-  const fileName = clean(name).split('/').map(encodeURIComponent).join('/');
-  return base + '/' + (type === 'photo' ? 'images/all_photos' : 'media') + '/' + fileName;
-};
-function card(type,item) {
-  const card = document.createElement('article');card.className = 'media-card';
-  const frame = document.createElement('div');frame.className = 'media-frame';
-  const d = document.createElement('div');d.className = 'media-details';
-  const name = clean(item.name), href = item.link || mediaLink(type,name);
-  if (type === 'photo' && href) {
-    const img = document.createElement('img');img.loading = 'lazy';img.alt = clean(item.title);img.src = href;
-    img.onerror = () => frame.replaceChildren(document.createTextNode('الصورة غير متاحة'));
-    frame.append(img);
-  } else frame.textContent = type === 'video' ? '▶ فيديو' : '♫ صوت';
-  const title = document.createElement('strong');title.textContent = clean(item.title || name);d.append(title);
-  if (item.description) {const desc = document.createElement('p');desc.textContent = clean(item.description);d.append(desc);}
-  if (href) {
-    if (type === 'video' || (type === 'audio' && !item.link)) {
-      const button = document.createElement('button');button.textContent = 'تشغيل';
-      button.onclick = () => { const player = document.createElement(type === 'video' ? 'video' : 'audio');player.controls = true;player.playsInline = true;player.src = href;player.style.width = '100%';frame.replaceChildren(player);player.play().catch(() => {});};
-      d.append(button);
-    } else { const link = document.createElement('a');link.href = href;link.target = '_blank';link.rel = 'noopener noreferrer';link.textContent = 'فتح ↗';d.append(link); }
-  }
-  card.append(frame,d);return card;
-}
-function render() {
-  document.querySelectorAll('[data-tab]').forEach(node => node.classList.toggle('active',node.dataset.tab === active));
-  el('scope').hidden = active !== 'messages';el('platform').hidden = active !== 'messages';
-  el('results').replaceChildren();el('more').hidden = true;el('count').textContent = '';
-  if (active === 'privacy') {
-    const p = document.createElement('div');p.className = 'notice';
-    p.textContent = 'المحتوى محفوظ على الاستضافة بتشفير AES-256-GCM ولا يُفك إلا بعد إدخال الرمز. لا تُحفظ كلمة المرور على الخادم. صور وفيديوهات نفسم مفهرسة بروابط خارجية، وقد لا تعمل بعض الملفات إذا كانت الاستضافة الأصلية غير متاحة. توجد أيضًا 44 ملفًا أصليًا مشفّرًا (PDF وHTML وJSON وTXT وCSV). قفل الجلسة يمسح البيانات من ذاكرة الصفحة.';
-    el('results').append(p);return;
-  }
-  if (!messages.length) {empty('الأرشيف مقفل','أدخل رمز الفتح في الأعلى لعرض المحادثات والصور والفيديوهات مباشرةً.');return;}
-  const q = el('search').value.trim().toLocaleLowerCase();
-  if (active === 'files') { renderOriginalFiles(q);return; }
-  if (active === 'messages') {
-    resultRows = messages.filter(m => {
-      if (el('scope').value === 'direct' && m.group !== 'مباشر')return false;
-      if (el('scope').value === 'other' && m.group === 'مباشر')return false;
-      if (el('platform').value !== 'all' && m.platform !== el('platform').value)return false;
-      return !q || [m.text,m.speaker,m.dt,m.source].join(' ').toLocaleLowerCase().includes(q);
-    });
-    shown = 0;el('count').textContent = resultRows.length + ' سجل';
-    if (resultRows.length)appendMessages();else empty('لا توجد نتائج','غيّر كلمات البحث أو مرشح المنصة.');
-    return;
-  }
-  let items = [];
-  if (active === 'photos') items = (catalog.photoEntries?.length ? catalog.photoEntries : catalog.photos || []).map(x=>typeof x === 'string' ? {name:x,title:x} : {name:x.file,title:x.captions?.ar?.title || x.file,description:x.captions?.ar?.text || ''});
-  if (active === 'videos') items = (catalog.videos || []).map(v=>({name:v.file,title:v.title || v.file,description:v.caption || ''}));
-  if (active === 'audio') {
-    items = Object.entries(catalog.pageAudio || {}).map(([section,file])=>({name:file,title:file,description:'صوت قسم '+section}));
-    items.push(...(catalog.songs || []).map(song=>({name:song.title || '',title:song.title || 'أغنية',link:safeLink(song.src)})));
-  }
-  items = items.filter(item=>!q || (item.title+' '+item.name).toLocaleLowerCase().includes(q));
-  el('count').textContent = items.length + ' عنصر';
-  if (!items.length) {empty('لا توجد عناصر','هذه الفئة لا تحتوي على عناصر مطابقة.');return;}
-  const grid = document.createElement('div');grid.className = 'gallery';
-  for (const item of items)grid.append(card(active === 'photos' ? 'photo' : active === 'videos' ? 'video' : 'audio',item));
-  el('results').append(grid);
-}
-el('unlockForm').addEventListener('submit',unlock);
-el('lockButton').addEventListener('click',clear);
-el('search').addEventListener('input',render);
-el('scope').addEventListener('change',render);
-el('platform').addEventListener('change',render);
-el('more').addEventListener('click',appendMessages);
-document.querySelectorAll('[data-tab]').forEach(btn=>btn.addEventListener('click',()=>{active=btn.dataset.tab;render();}));
-metrics();render();
-})();
-</script>
+  <div class="page-grain" aria-hidden="true"></div>
+  <div class="site" id="site">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="ECH Archive"><span class="brand-emblem">✦</span><span>ECH <small>ARCHIVE</small></span></a>
+      <div class="top-center">THE PRIVATE COLLECTION <span class="dot">✧</span> 2026</div>
+      <div class="secure-status" id="topSecure"><span class="live-dot"></span><span>محمي بالتشفير</span></div>
+    </header>
+    <main id="top">
+      <section class="hero" aria-label="مقدمة الأرشيف">
+        <div class="hero-words">
+          <span class="overline"><span class="floret">✦</span> حكاية مُؤرشفة، لا تختفي</span>
+          <h1>الأشياء التي <span>بقيت.</span></h1>
+          <p class="hero-quote">بين رسالةٍ لم تُنسَ، وصورةٍ بقيَ أثرها، وكلمةٍ ما زالت تتكلّم.</p>
+          <p class="hero-desc">مساحة واحدة تجمع المحادثات والكتابات والذكريات والملفات الأصلية. محفوظة ومشفّرة، وتفتحها مباشرة من المتصفح دون تحميل ZIP.</p>
+          <div class="hero-pills"><span>محادثات</span><span>كتابات أصلية</span><span>وسائط وذكريات</span><span>ملفات المصدر</span></div>
+        </div>
+        <div class="access-panel" id="accessPanel">
+          <div class="access-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="10" y="20" width="28" height="21" rx="4"/><path d="M16 20v-6a8 8 0 0 1 16 0v6"/><circle cx="24" cy="30" r="2.5"/><path d="M24 32.5v3.5"/></svg></div>
+          <span class="access-eyebrow">PRIVATE ACCESS / وصول خاص</span>
+          <h2 id="accessTitle">افتح أرشيفك</h2>
+          <p id="accessText">جميع السجلات متاحة في الموقع بصيغة مشفّرة. لا حاجة إلى رفع أي ملف.</p>
+          <form id="unlockForm" autocomplete="off">
+            <label for="archivePass">رمز فتح الأرشيف</label>
+            <div class="password-wrap"><input id="archivePass" type="password" spellcheck="false" autocomplete="off" autocapitalize="characters" placeholder="أدخل الرمز الخاص" required /><button id="showPass" type="button" aria-label="إظهار أو إخفاء الرمز">◉</button></div>
+            <button class="button button-primary" type="submit" id="unlockButton"><span>فتح المكتبة الخاصة</span><span aria-hidden="true">↗</span></button>
+          </form>
+          <button class="button button-quiet" id="lockButton" type="button" disabled hidden>قفل الأرشيف ومسح الجلسة <span>✕</span></button>
+          <div class="status-message" id="status" role="status" aria-live="polite">يجري فك تشفير المحتوى على جهازك فقط.</div>
+        </div>
+        <div class="hero-decoration" aria-hidden="true"><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="orb"></span></div>
+      </section>
+      <section class="overview" aria-label="محتويات الأرشيف">
+        <div class="overview-head"><div><span class="small-label">THE COLLECTION</span><h2>كل التفاصيل، في مكان واحد.</h2></div><p>إحصائيات المواد المفهرسة من النسخة المحفوظة.</p></div>
+        <div class="metric-grid">
+          <article class="metric"><span class="metric-icon">◈</span><strong id="mMessages">569</strong><span>سجل محادثة</span><small>واتساب وتيك توك</small></article>
+          <article class="metric"><span class="metric-icon">✎</span><strong id="mWritings">—</strong><span>الكتابات والنصوص</span><small>من أرشيف نفسم</small></article>
+          <article class="metric"><span class="metric-icon">▣</span><strong id="mPhotos">143</strong><span>صورة مفهرسة</span><small>روابط وصور الذكريات</small></article>
+          <article class="metric"><span class="metric-icon">▷</span><strong id="mVideos">243</strong><span>فيديو مفهرس</span><small>أسماء وروابط الملفات</small></article>
+          <article class="metric"><span class="metric-icon">♬</span><strong id="mMusic">46</strong><span>أغنية</span><small>و7 مقاطع للصفحات</small></article>
+          <article class="metric"><span class="metric-icon">◇</span><strong id="mFiles">44</strong><span>ملفًا أصليًا</span><small>محفوظة بصيغة مشفّرة</small></article>
+        </div>
+      </section>
+      <section class="archive" id="archive" aria-label="مكتبة الذكريات">
+        <div class="section-top"><div><span class="small-label">EXPLORE THE ARCHIVE</span><h2>مكتبة الذكريات<span class="gold-stop">.</span></h2></div><div class="archive-state" id="loaded"><span class="mini-lock">◆</span> الأرشيف مقفل</div></div>
+        <nav class="tabs" aria-label="أقسام الأرشيف" id="tabs">
+          <button class="tab active" data-tab="messages" type="button"><span>✉</span> المحادثات</button>
+          <button class="tab" data-tab="writings" type="button"><span>✒</span> الكتابات</button>
+          <button class="tab" data-tab="photos" type="button"><span>▧</span> الصور</button>
+          <button class="tab" data-tab="videos" type="button"><span>▷</span> الفيديوهات</button>
+          <button class="tab" data-tab="audio" type="button"><span>♫</span> الموسيقى</button>
+          <button class="tab" data-tab="files" type="button"><span>▤</span> الملفات الأصلية</button>
+          <button class="tab" data-tab="about" type="button"><span>✧</span> عن الأرشيف</button>
+        </nav>
+        <div class="search-row" id="controls">
+          <div class="search-wrapper"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="ابحث في المحتوى…" autocomplete="off" aria-label="البحث في الأرشيف" /></div>
+          <select id="scope" aria-label="نوع المحادثات"><option value="direct">محادثاتكما فقط</option><option value="all">كل المحادثات</option><option value="other">المحادثات الأخرى</option></select>
+          <select id="platform" aria-label="مصدر المحادثة"><option value="all">كل المنصات</option><option value="WhatsApp">واتساب</option><option value="TikTok">تيك توك</option></select>
+          <select id="writingType" hidden aria-label="نوع الكتابة"><option value="all">كل الكتابات</option><option value="original">الكتابات الأساسية</option><option value="farewell">الوداع</option><option value="photo">كتابات الصور</option><option value="video">كتابات الفيديو</option><option value="journey">الرحلة</option><option value="songs">كتابات الأغاني</option><option value="page">نصوص الموقع</option><option value="feelings">المشاعر</option></select>
+          <select id="writingLang" hidden aria-label="لغة الكتابات"><option value="ar">العربية</option><option value="fa">الفارسية</option><option value="tr">التركية</option><option value="en">الإنجليزية</option></select>
+        </div>
+        <div class="list-heading"><p id="count">الأرشيف مُقفل</p><span id="viewLabel">تاريخ الذكريات</span></div>
+        <div id="results" class="results"></div>
+        <button id="more" class="more" type="button" hidden>عرض المزيد <span>↓</span></button>
+      </section>
+      <section class="ending" aria-label="خاتمة"><span class="ending-symbol">✦</span><p>ما يُكتب بصدق، لا يمحوه الوقت.</p><small>ECH — A PRIVATE PLACE FOR EVERYTHING THAT REMAINS</small></section>
+    </main>
+    <footer class="footer"><span>ECH © 2026</span><span>محتوى شخصي مشفّر · تُعرض الوسائط المفهرسة حسب توافر روابطها</span><a href="#top">العودة للأعلى ↑</a></footer>
+  </div>
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="عرض الوسائط"><button id="closeLightbox" class="lightbox-close" type="button" aria-label="إغلاق">✕</button><div id="lightboxContent"></div></div>
+  <script type="module" src="./premium.js"></script>
 </body>
 </html>
