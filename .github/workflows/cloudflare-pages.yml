@@ -18,6 +18,7 @@ jobs:
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT || 'ech-nafasm-ska' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,6 +42,9 @@ jobs:
           test -f public/writings.html
           test -f public/feelings.html
           test -f public/nafsam-media.json
+          test -f public/archive-private-viewer/index.html
+          test -f public/archive-private-viewer/archive.enc.json
+          test -f public/archive-private-viewer/files.enc.json
           test -f public/_headers
           test -f public/_redirects
           echo "Cloudflare Pages output is valid."
@@ -52,8 +56,11 @@ jobs:
           apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4"
-          command: pages deploy public --project-name=ech-memories-ska --branch=main
+          command: pages deploy public --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }} --branch=main
 
       - name: Deployment credentials not configured
         if: ${{ env.CLOUDFLARE_API_TOKEN == '' || env.CLOUDFLARE_ACCOUNT_ID == '' }}
-        run: echo "Build passed. Cloudflare deployment is handled by the Pages Git integration until repository secrets are configured."
+        run: |
+          echo "::warning::Cloudflare deployment skipped: configure CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID in GitHub repository secrets."
+          echo "### Cloudflare deploy not started" >> "$GITHUB_STEP_SUMMARY"
+          echo "Cloudflare credentials are missing. Configure repository secrets: CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID; then rerun this workflow." >> "$GITHUB_STEP_SUMMARY"
