@@ -52,7 +52,7 @@ export default function App(){
  const searchInput=useRef<HTMLInputElement>(null);
  const chosen=modules.find(m=>m.key===active)||modules[0];
  const requestAi = async (route:'assistant'|'classify', payload:object, key:string):Promise<Record<string,unknown>> => {
-   const response = await fetch('./api/ai/'+route, { method:'POST',headers:{'Content-Type':'application/json','X-NAFSAM-AI-Key':key},body:JSON.stringify(payload),cache:'no-store' });
+   const response = await fetch('/api/ai/'+route, { method:'POST',headers:{'Content-Type':'application/json','X-NAFSAM-AI-Key':key},body:JSON.stringify(payload),cache:'no-store' });
    const data = await response.json().catch(()=>({message:'رد غير صالح من الخدمة'})) as Record<string,unknown>;
    if(!response.ok)throw new Error(typeof data.message==='string'?data.message:'خطأ في AI ('+response.status+')');
    return data;

@@ -1,4 +1,4 @@
-import { authorize, json, parse, textResult } from './_shared.js';
+import { authorize, json, parse, textResult } from '../../../server/ai-common.js';
 export async function onRequestPost({ request, env }) {
   const deny = await authorize(request, env);
   if (deny) return deny;

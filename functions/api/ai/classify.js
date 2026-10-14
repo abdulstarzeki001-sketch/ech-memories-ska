@@ -1,4 +1,4 @@
-import { authorize, json, parse, parseObject, textResult } from './_shared.js';
+import { authorize, json, parse, parseObject, textResult } from '../../../server/ai-common.js';
 const CATEGORIES = ['أشخاص', 'أماكن', 'رحلات', 'مناسبات', 'مشاعر', 'أغاني', 'نصوص', 'أخرى'];
 export async function onRequestPost({ request, env }) {
   const deny = await authorize(request, env);
