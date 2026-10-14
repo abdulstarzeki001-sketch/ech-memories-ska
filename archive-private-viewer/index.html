@@ -42,6 +42,17 @@ section.library{border:1px solid #ffffff1c;background:#0e1825;border-radius:22px
 .notice{border:1px solid #dac08b4a;padding:24px;background:#cba76612;border-radius:13px;color:#d7c7a4;line-height:2;font-size:12px}.more{display:block;margin:24px auto}
 footer{display:flex;justify-content:space-between;gap:15px;padding:34px 0;color:#889bad;font-size:11px}
 @media(max-width:700px){main{padding:0 12px}header{height:73px}.hero{padding:47px 0 39px}.hero p{font-size:12px}.stats{grid-template-columns:1fr 1fr;gap:8px;margin-bottom:29px}.stats article{padding:15px}.stats strong{font-size:25px}.library{padding:17px 12px!important}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.media-frame{height:118px}.media-details{padding:10px}.controls input{flex-basis:100%}.controls select{width:calc(50% - 5px);min-width:0}.message{max-width:97%}footer{display:block;line-height:2}form{flex-direction:column}form input,form button{width:100%;max-width:370px}}
+
+.original-files{display:grid;gap:10px;width:100%}
+.file-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:12px 14px;border-radius:12px;background:#1b2b3a;border:1px solid #ffffff20;min-width:0}
+.file-meta{min-width:0;max-width:100%;overflow-wrap:anywhere;flex:1}
+.file-meta strong{display:block;font-size:12px;line-height:1.9;color:#ecdfca;unicode-bidi:plaintext;direction:ltr;text-align:right}
+.file-meta small{font-size:10px;color:#9dabb8}
+.file-actions{display:flex;align-items:center;gap:6px}
+.file-actions button{font-size:11px;padding:9px 11px}
+.file-preview{white-space:pre-wrap;overflow-wrap:anywhere;max-height:460px;overflow-y:auto;padding:13px;background:#09131f;color:#dce5eb;border:1px solid #ffffff1a;border-radius:9px;font:12px/1.9 ui-monospace,SFMono-Regular,Consolas,monospace;direction:auto}
+.file-hint{font-size:11px;color:#a9b9c6;line-height:2}
+@media(max-width:700px){.file-row{padding:11px}.file-actions button{padding:8px 9px}}
 </style>
 </head>
 <body>
@@ -61,7 +72,7 @@ footer{display:flex;justify-content:space-between;gap:15px;padding:34px 0;color:
 <div class="stats"><article><span>السجلات</span><strong id="s1">—</strong></article><article><span>بينكما</span><strong id="s2">—</strong></article><article><span>الصور المفهرسة</span><strong id="s3">—</strong></article><article><span>الفيديوهات المفهرسة</span><strong id="s4">—</strong></article></div>
 <section class="library">
   <div class="library-head"><h2>مكتبة الأرشيف</h2><span id="loaded">الأرشيف مقفل</span></div>
-  <nav class="tabs" aria-label="أقسام الأرشيف"><button data-tab="messages" class="active">المحادثات</button><button data-tab="photos">الصور</button><button data-tab="videos">الفيديوهات</button><button data-tab="audio">الأصوات والأغاني</button><button data-tab="privacy">الخصوصية</button></nav>
+  <nav class="tabs" aria-label="أقسام الأرشيف"><button data-tab="messages" class="active">المحادثات</button><button data-tab="photos">الصور</button><button data-tab="videos">الفيديوهات</button><button data-tab="audio">الأصوات والأغاني</button><button data-tab="files">جميع الملفات (44)</button><button data-tab="privacy">الخصوصية</button></nav>
   <div class="controls"><input id="search" type="search" autocomplete="off" placeholder="بحث في الرسائل والوسائط…" /><select id="scope"><option value="direct">محادثاتكما فقط</option><option value="all">كل المحادثات</option><option value="other">المحادثات الأخرى</option></select><select id="platform"><option value="all">كل المنصات</option><option value="WhatsApp">واتساب</option><option value="TikTok">تيك توك</option></select></div>
   <div id="count"></div><div id="results"></div><button id="more" class="more" hidden>عرض المزيد</button>
 </section>
@@ -72,7 +83,14 @@ footer{display:flex;justify-content:space-between;gap:15px;padding:34px 0;color:
 'use strict';
 const el = id => document.getElementById(id);
 let messages = [], catalog = {}, active = 'messages', resultRows = [], shown = 0;
+let fileVault = null, fileVaultState = 'idle', currentPassword = '', vaultEpoch = 0;
+let blobUrls = [];
 const encryptedUrl = new URL('./archive.enc.json', window.location.href);
+// AppDeploy serves the same public viewer but consumes encrypted originals from the GitHub source.
+const filesBase = /\.v2\.appdeploy\.ai$/.test(location.hostname)
+  ? 'https://raw.githubusercontent.com/abdulstarzeki001-sketch/ech-memories-ska/main/archive-private-viewer/'
+  : './';
+const filesUrl = new URL('files.enc.json', new URL(filesBase, window.location.href));
 const decodeB64 = value => Uint8Array.from(atob(value), c => c.charCodeAt(0));
 const clean = value => String(value ?? '');
 function metrics() {
@@ -84,6 +102,12 @@ function metrics() {
 function clear() {
   messages = [];
   catalog = {};
+  fileVault = null;
+  currentPassword = '';
+  fileVaultState = 'idle';
+  vaultEpoch++;
+  blobUrls.forEach(URL.revokeObjectURL);
+  blobUrls = [];
   metrics();
   el('unlockForm').hidden = false;
   el('archivePass').value = '';
@@ -116,6 +140,7 @@ async function unlock(event) {
     if (!Array.isArray(archive.conversations) || !archive.manifest?.photos) throw new Error('invalid archive');
     messages = archive.conversations.sort((a,b) => clean(a.dt).localeCompare(clean(b.dt)));
     catalog = archive.manifest;
+    currentPassword = pwd;
     el('archivePass').value = '';
     el('unlockForm').hidden = true;
     el('lockButton').disabled = false;
@@ -130,6 +155,82 @@ async function unlock(event) {
     el('archivePass').value = '';
     el('status').textContent = 'تعذر فتح الأرشيف. تحقق من رمز الفتح ثم أعد المحاولة.';
   } finally { el('unlockButton').disabled = false; }
+}
+async function loadOriginalFiles() {
+  if (fileVaultState === 'loading' || fileVaultState === 'ready' || !currentPassword) return;
+  fileVaultState = 'loading';
+  const requestEpoch = vaultEpoch;
+  render();
+  try {
+    const response = await fetch(filesUrl, {cache:'no-store'});
+    if (!response.ok) throw new Error('encrypted file catalog unavailable');
+    const packet = await response.json();
+    if (packet.format !== 'ECH_SOURCE_FILES_AES256_GCM_V1' || packet.compression !== 'gzip' || !Array.isArray(packet.cipherChunks)) throw new Error('Invalid file archive');
+    const encoder = new TextEncoder();
+    const rawKey = await crypto.subtle.importKey('raw', encoder.encode(currentPassword), 'PBKDF2', false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey({name:'PBKDF2',salt:decodeB64(packet.salt),iterations:packet.iterations,hash:'SHA-256'},rawKey,{name:'AES-GCM',length:256},false,['decrypt']);
+    const plain = await crypto.subtle.decrypt({name:'AES-GCM',iv:decodeB64(packet.iv),additionalData:encoder.encode(packet.aad)},key,decodeB64(packet.cipherChunks.join('')));
+    const data = JSON.parse(await new Response(new Blob([plain]).stream().pipeThrough(new DecompressionStream('gzip'))).text());
+    if (data.format !== 'ECH_SOURCE_FILES_V1' || !Array.isArray(data.files) || data.count !== data.files.length) throw new Error('Invalid file manifest');
+    if (vaultEpoch !== requestEpoch || !currentPassword) return;
+    fileVault = data.files;
+    fileVaultState = 'ready';
+    if (active === 'files') render();
+  } catch (e) {
+    if (vaultEpoch !== requestEpoch) return;
+    fileVaultState = 'error';
+    if (active === 'files') render();
+  }
+}
+function fileBytes(record) {
+  // Objects are never injected into HTML; decoded bytes are used solely in Blob downloads.
+  return decodeB64(record.b64);
+}
+function fileUrl(record) {
+  const uri = URL.createObjectURL(new Blob([fileBytes(record)], {type:record.mime||'application/octet-stream'}));
+  blobUrls.push(uri);
+  return uri;
+}
+function fileRow(record) {
+  const row=document.createElement('article');row.className='file-row';
+  const meta=document.createElement('div');meta.className='file-meta';
+  const name=document.createElement('strong');name.textContent=record.path;
+  const detail=document.createElement('small');detail.textContent=(record.bytes/1024).toFixed(1)+' KB · '+(record.mime||'ملف');
+  meta.append(name,detail);
+  const controls=document.createElement('div');controls.className='file-actions';
+  const dl=document.createElement('button');dl.type='button';dl.textContent='حفظ';
+  dl.addEventListener('click',()=>{
+    const a=document.createElement('a');a.href=fileUrl(record);a.download=record.path.split('/').at(-1);a.click();
+  });
+  controls.append(dl);
+  if (/^(text\/|application\/json|application\/javascript)/.test(record.mime) || /\.(txt|json|csv|html|md|js|css)$/i.test(record.path)) {
+    const show=document.createElement('button');show.type='button';show.textContent='قراءة';
+    show.addEventListener('click',()=>{
+      const old=row.querySelector('.file-preview');if(old){old.remove();show.textContent='قراءة';return;}
+      const preview=document.createElement('pre');preview.className='file-preview';
+      preview.textContent=new TextDecoder().decode(fileBytes(record)).slice(0,180000);
+      row.append(preview);show.textContent='إغلاق';
+    });
+    controls.append(show);
+  } else if (record.mime === 'application/pdf') {
+    const view=document.createElement('button');view.type='button';view.textContent='عرض PDF';
+    view.addEventListener('click',()=>{ const url=fileUrl(record);window.open(url,'_blank','noopener,noreferrer'); });
+    controls.append(view);
+  }
+  row.append(meta,controls);return row;
+}
+function renderOriginalFiles(query) {
+  if (fileVaultState === 'idle') { empty('الملفات الأصلية','يتم فك تشفير ملفات الأرشيف عند فتح هذا القسم للمرة الأولى…');void loadOriginalFiles();return; }
+  if (fileVaultState === 'loading') { empty('جارٍ تحميل الملفات','جميع الملفات مشفّرة ويجري فك التشفير محليًا في المتصفح.');return; }
+  if (fileVaultState === 'error') { empty('تعذر فتح الملفات الأصلية','تحقق من الاتصال ثم أعد فتح الأرشيف برمز الفتح.');return; }
+  const results=fileVault.filter(file=>file.path.toLocaleLowerCase().includes(query));
+  el('count').textContent=results.length+' ملفًا من أصل '+fileVault.length+' ملفًا أصليًا';
+  if (!results.length) {empty('لا توجد ملفات مطابقة','جرّب البحث عن اسم آخر.');return;}
+  const list=document.createElement('div');list.className='original-files';
+  const warning=document.createElement('p');warning.className='file-hint';warning.textContent='هذه ملفات التصدير الأصلية بعد فك التشفير، وليست صور وفيديوهات واتساب المفقودة. اختر «قراءة» أو «عرض PDF» أو «حفظ» لأي ملف بشكل منفرد، بدون ZIP.';
+  list.append(warning);
+  for (const file of results) list.append(fileRow(file));
+  el('results').append(list);
 }
 function empty(title,detail) {
   const n = document.createElement('div'); n.className = 'empty';
@@ -186,11 +287,12 @@ function render() {
   el('results').replaceChildren();el('more').hidden = true;el('count').textContent = '';
   if (active === 'privacy') {
     const p = document.createElement('div');p.className = 'notice';
-    p.textContent = 'المحتوى محفوظ على الاستضافة بتشفير AES-256-GCM ولا يُفك إلا بعد إدخال الرمز. لا تُحفظ كلمة المرور على الخادم. صور وفيديوهات نفسم مفهرسة بروابط خارجية، وقد لا تعمل بعض الملفات إذا كانت الاستضافة الأصلية غير متاحة. قفل الجلسة يمسح البيانات من ذاكرة الصفحة.';
+    p.textContent = 'المحتوى محفوظ على الاستضافة بتشفير AES-256-GCM ولا يُفك إلا بعد إدخال الرمز. لا تُحفظ كلمة المرور على الخادم. صور وفيديوهات نفسم مفهرسة بروابط خارجية، وقد لا تعمل بعض الملفات إذا كانت الاستضافة الأصلية غير متاحة. توجد أيضًا 44 ملفًا أصليًا مشفّرًا (PDF وHTML وJSON وTXT وCSV). قفل الجلسة يمسح البيانات من ذاكرة الصفحة.';
     el('results').append(p);return;
   }
   if (!messages.length) {empty('الأرشيف مقفل','أدخل رمز الفتح في الأعلى لعرض المحادثات والصور والفيديوهات مباشرةً.');return;}
   const q = el('search').value.trim().toLocaleLowerCase();
+  if (active === 'files') { renderOriginalFiles(q);return; }
   if (active === 'messages') {
     resultRows = messages.filter(m => {
       if (el('scope').value === 'direct' && m.group !== 'مباشر')return false;
