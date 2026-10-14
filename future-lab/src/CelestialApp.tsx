@@ -102,7 +102,13 @@ function MusicRoom({data}:{data:Manifest|null}){
 }
 function Words({data,mode}:{data:Manifest|null;mode:'writings'|'journey'|'feelings'}){
  const [shown,setShown]=useState(8);
- const inputs:unknown=mode==='journey'?data?.pageTextGroups?.journey:mode==='writings'?(data?.writings?.ar||data?.pageTextGroups?.writings):data?.feelings;
+ const arabicJourney=data?.archiveText?.pages && typeof data.archiveText.pages==='object' ? (data.archiveText.pages as Record<string,unknown>).ar as Record<string,unknown>|undefined : undefined;
+ const journeyEntries=Array.from({length:9},(_,i)=>{
+  const key='moment'+(i+1);
+  return [arabicJourney?.[key+'_title'],arabicJourney?.[key+'_text'],arabicJourney?.[key+'_memory']]
+   .filter((v):v is string=>typeof v==='string'&&v.trim().length>0).join('\n');
+ }).filter(Boolean);
+ const inputs:unknown=mode==='journey'?journeyEntries:mode==='writings'?(data?.writings?.ar||data?.pageTextGroups?.writings):data?.feelings;
  const all=useMemo(()=>[...new Set(extractText(inputs,1000))].filter(s=>s.length>30),[inputs]);
  const fallback=mode==='journey'?'كانت الرحلة أكبر من مجرد مكان؛ كانت لحظة نحتفظ بها في القلب.':mode==='writings'?'لا تزال الكلمات قادرة على حفظ الأشياء التي غادرت.':'بعض المشاعر لا يمكن اختصارها في صورة.';
  return <div className="cel-letters"><div className="cel-letters-lead cel-reveal"><span>✳</span><h2>{mode==='journey'?'خريطة من اللحظات':mode==='writings'?'رسائل عبر الزمن':'مسافة بين القلب والسماء'}</h2><p>النصوص التالية مأخوذة من محتوى الأرشيف الأصلي عند توفرها.</p></div><div className="cel-letter-list">{(all.length?all.slice(0,shown):[fallback]).map((str,i)=><article key={i} className="cel-letter cel-reveal"><span>{String(i+1).padStart(2,'0')} / {mode==='journey'?'TIMELINE':mode==='writings'?'LETTER':'FEELING'}</span><p>{str}</p><i>✦</i></article>)}</div>{shown<all.length&&<button type="button" className="cel-load-more" onClick={()=>setShown(v=>v+8)}>اقرأ المزيد <span>+08</span></button>}</div>;
