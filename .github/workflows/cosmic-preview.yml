@@ -1,0 +1,66 @@
+name: Cosmic Preview Build
+on:
+  push:
+    branches:
+      - 'feature/cosmic-memory-react-v2'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  deployments: write
+concurrency:
+  group: cosmic-preview-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build-and-preview:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Typecheck React app
+        run: npm run check:types
+      - name: Build legacy and cosmic experiences
+        run: npm run build
+      - name: Browser tests at iPhone and desktop sizes
+        run: npm run test:ui
+      - name: Save preview artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nafsam-cosmic-preview
+          path: public/cosmic
+          if-no-files-found: ignore
+      - name: Validate distribution
+        shell: bash
+        run: |
+          test -s public/index.html
+          test -s public/home.html
+          test -s public/photos.html
+          test -s public/journey.html
+          test -s public/songs.html
+          test -s public/videos.html
+          test -s public/writings.html
+          test -s public/feelings.html
+          test -s public/cosmic/index.html
+          test -s public/archive-private-viewer/archive.enc.json
+          test -s public/archive-private-viewer/files.enc.json
+          ! grep -R -l 'PRIVATE_KEY\|OPENAI_API_KEY' public/cosmic/ || exit 1
+      - name: Deploy isolated Cloudflare Pages preview
+        if: ${{ github.event_name != 'pull_request' && env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != '' }}
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: '4'
+          command: pages deploy public --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT || 'ech-nafasm-ska' }} --branch=cosmic-nafsam-preview
+      - name: No deploy credentials
+        if: ${{ github.event_name != 'pull_request' && (env.CLOUDFLARE_API_TOKEN == '' || env.CLOUDFLARE_ACCOUNT_ID == '') }}
+        run: echo "Cloudflare preview skipped; built output verified."

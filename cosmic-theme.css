@@ -1,0 +1,25 @@
+/* Shared, non-destructive NAFSAM cosmic design layer (legacy pages). */
+:root{--cosmic-ink:#eff5ff;--cosmic-stroke:rgba(142,207,253,.19);--cosmic-cyan:#94e4fa;--cosmic-gold:#d7b97d;--cosmic-surface:rgba(8,18,37,.74)}
+html{scroll-padding-bottom:115px}
+body{--safe-bottom:max(10px,env(safe-area-inset-bottom));}
+body::selection{background:#27495f;color:#fff}
+.nafsam-unified-dock{direction:rtl!important;position:fixed!important;z-index:15000!important;left:50%!important;right:auto!important;bottom:max(10px,env(safe-area-inset-bottom))!important;transform:translateX(-50%)!important;width:min(810px,calc(100% - 20px))!important;display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:4px!important;padding:8px!important;border:1px solid rgba(147,215,250,.19)!important;border-radius:22px!important;background:rgba(6,15,31,.89)!important;backdrop-filter:blur(24px)!important;-webkit-backdrop-filter:blur(24px)!important;box-shadow:0 22px 70px rgba(0,0,0,.55),inset 0 1px rgba(255,255,255,.05)!important;}
+.nafsam-unified-link{box-sizing:border-box!important;display:flex!important;flex-direction:column!important;gap:4px!important;align-items:center!important;justify-content:center!important;text-decoration:none!important;border-radius:14px!important;border:1px solid transparent!important;min-width:0!important;min-height:54px!important;max-width:100%!important;padding:6px 1px!important;color:#899fb6!important;font:600 11px 'Tajawal','IBM Plex Sans Arabic',sans-serif!important;white-space:nowrap!important;transition:color .2s,background .2s!important}
+.nafsam-unified-link .material-symbols-outlined{font-size:21px!important;line-height:1.2!important;color:inherit!important}
+.nafsam-unified-link .nafsam-nav-label{font:inherit!important;max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.nafsam-unified-link:hover,.nafsam-unified-link.active{color:#a6e5ff!important;border-color:rgba(137,216,255,.14)!important;background:linear-gradient(135deg,rgba(49,113,173,.23),rgba(15,40,72,.31))!important}
+.cosmic-preview-link{position:fixed;top:max(16px,env(safe-area-inset-top));left:72px;z-index:10000;display:inline-flex;gap:8px;align-items:center;min-height:42px;border:1px solid rgba(140,216,251,.27);border-radius:100px;padding:8px 14px;background:linear-gradient(120deg,rgba(9,31,53,.88),rgba(25,21,50,.87));color:#a7eafd;text-decoration:none;box-shadow:0 8px 30px rgba(0,0,0,.32),0 0 25px rgba(58,133,224,.08);font:600 11px 'Tajawal',sans-serif;letter-spacing:.03em;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.cosmic-preview-link:before{content:'✦';font-size:15px;color:#e8c590}
+.cosmic-preview-link:hover{border-color:rgba(145,227,255,.55);color:#fff}
+body:not(.cosmic-no-fx)::before{will-change:auto}
+body .module,body .glass-panel,body .glass-card,body .legacy-card{border-color:var(--cosmic-stroke)}
+body .module{transition:transform .36s cubic-bezier(.2,.75,.2,1),border-color .3s,box-shadow .3s}
+body .module:hover{border-color:rgba(142,218,253,.38);box-shadow:0 22px 65px rgba(0,0,0,.3),0 0 36px rgba(73,133,200,.1)}
+body .hero-main{border-color:rgba(152,202,237,.17)}
+body:has(.nafsam-unified-dock) main{padding-bottom:max(105px,env(safe-area-inset-bottom))}
+body .cosmic-reveal{transition:opacity .7s ease,translate .7s ease}
+body.cosmic-ready .cosmic-reveal:not(.cosmic-inview){opacity:.64;translate:0 10px}
+body.cosmic-ready .cosmic-reveal.cosmic-inview{opacity:1;translate:0 0}
+@media(max-width:700px){.nafsam-unified-dock{width:calc(100% - 10px)!important;gap:0!important;padding:5px!important;border-radius:17px!important}.nafsam-unified-link{padding:6px 0!important;min-height:50px!important;font-size:9px!important}.nafsam-unified-link .material-symbols-outlined{font-size:19px!important}.cosmic-preview-link{left:58px;top:max(11px,env(safe-area-inset-top));padding:7px 9px;font-size:10px;min-height:38px}body .module{min-height:190px}}
+@media(max-width:355px){.nafsam-unified-link{font-size:8px!important}.nafsam-unified-link .material-symbols-outlined{font-size:17px!important}.cosmic-preview-link{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.cosmic-reveal,.nafsam-unified-link,.module{animation:none!important;transition:none!important;translate:none!important}}

@@ -29,12 +29,19 @@ jobs:
         with:
           node-version: 24
 
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Typecheck cosmic React app
+        run: npm run check:types
+
       - name: Build static site
         run: npm run build
 
       - name: Verify Cloudflare output
         run: |
           test -f public/index.html
+          test -f public/cosmic/index.html
           test -f public/home.html
           test -f public/photos.html
           test -f public/journey.html
